@@ -5,18 +5,24 @@
   
 
   
-  <title>First blog | 欢迎来到lionsom的blog</title>
+  <title>拆分搭建私人blog（三） | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建于2018年03月">
+  <meta name="description" content="Part Three - 本地Hexo关联github 3.1、配置_config.yml 3.2、前往Hexo本地目录生成静态网页并Deploy到github 确认依赖包和插件安装完成，特别是hexo-deployer-git  1$ npm install hexo-deployer-git --save    指令操作   1234$ hexo clean  #清理缓存$ hexo g">
+<meta name="keywords" content="Hexo,blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First blog">
-<meta property="og:url" content="http://yoursite.com/2018/03/13/First-blog/index.html">
+<meta property="og:title" content="拆分搭建私人blog（三）">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/拆分搭建私人blog（三）/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="创建于2018年03月">
-<meta property="og:updated_time" content="2018-03-13T07:05:46.000Z">
+<meta property="og:description" content="Part Three - 本地Hexo关联github 3.1、配置_config.yml 3.2、前往Hexo本地目录生成静态网页并Deploy到github 确认依赖包和插件安装完成，特别是hexo-deployer-git  1$ npm install hexo-deployer-git --save    指令操作   1234$ hexo clean  #清理缓存$ hexo g">
+<meta property="og:image" content="http://yoursite.com/2018-03-14-拆分搭建私人blog（三）/_config.yml.jpg">
+<meta property="og:image" content="http://yoursite.com/_post/2018-03-14-拆分搭建私人blog（三）/clean+generate.jpg">
+<meta property="og:image" content="http://yoursite.com/Users/lionsom/Downloads/Hexo搭建图片/deploy.jpg">
+<meta property="og:image" content="http://yoursite.com/Users/lionsom/Downloads/Hexo搭建图片/部署成功.jpg">
+<meta property="og:updated_time" content="2018-03-14T07:49:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First blog">
-<meta name="twitter:description" content="创建于2018年03月">
+<meta name="twitter:title" content="拆分搭建私人blog（三）">
+<meta name="twitter:description" content="Part Three - 本地Hexo关联github 3.1、配置_config.yml 3.2、前往Hexo本地目录生成静态网页并Deploy到github 确认依赖包和插件安装完成，特别是hexo-deployer-git  1$ npm install hexo-deployer-git --save    指令操作   1234$ hexo clean  #清理缓存$ hexo g">
+<meta name="twitter:image" content="http://yoursite.com/2018-03-14-拆分搭建私人blog（三）/_config.yml.jpg">
   
     <link rel="alternate" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
   
@@ -67,12 +73,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-First-blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-拆分搭建私人blog（三）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/13/First-blog/" class="article-date">
-  <time datetime="2018-03-13T07:05:46.000Z" itemprop="datePublished">2018-03-13</time>
+    <a href="/2018/03/14/拆分搭建私人blog（三）/" class="article-date">
+  <time datetime="2018-03-14T07:43:11.000Z" itemprop="datePublished">2018-03-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo创建blog/">Hexo创建blog</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -81,7 +91,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      First blog
+      拆分搭建私人blog（三）
     </h1>
   
 
@@ -89,32 +99,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <hr>
+<h1 id="Part-Three-本地Hexo关联github"><a href="#Part-Three-本地Hexo关联github" class="headerlink" title="Part Three - 本地Hexo关联github"></a>Part Three - 本地Hexo关联github</h1><hr>
+<h3 id="3-1、配置-config-yml"><a href="#3-1、配置-config-yml" class="headerlink" title="3.1、配置_config.yml"></a>3.1、配置<strong>_config.yml</strong></h3><p><img src="/2018-03-14-拆分搭建私人blog（三）/_config.yml.jpg" alt="具体配置"></p>
+<h3 id="3-2、前往Hexo本地目录生成静态网页并Deploy到github"><a href="#3-2、前往Hexo本地目录生成静态网页并Deploy到github" class="headerlink" title="3.2、前往Hexo本地目录生成静态网页并Deploy到github"></a>3.2、前往Hexo本地目录生成静态网页并Deploy到github</h3><ul>
+<li>确认依赖包和插件安装完成，特别是<code>hexo-deployer-git</code>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>指令操作</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean  #清理缓存</span><br><span class="line">$ hexo g      #生成静态文件</span><br><span class="line">$ hexo d      #部署</span><br><span class="line">或 $ hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实际操作图</p>
+<ul>
+<li>清理缓存+重新生成静态文件<br><img src="/_post/2018-03-14-拆分搭建私人blog（三）/clean+generate.jpg" alt="清理缓存+重新生成静态文件"></li>
+<li>部署到github<br><img src="/Users/lionsom/Downloads/Hexo搭建图片/deploy.jpg" alt="部署到github"></li>
+</ul>
+</li>
+<li><p>输入<a href="https://lionsom.github.io" target="_blank" rel="noopener">https://lionsom.github.io</a>查看<br>  <img src="/Users/lionsom/Downloads/Hexo搭建图片/部署成功.jpg" alt="部署成功"></p>
+</li>
+</ul>
+<hr>
+<hr>
+<p>#以上就能实现基本的个人blog</p>
+<hr>
+<hr>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/First-blog/" data-id="cjeqscpjp000a3n7xely4phwe" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2018/03/14/拆分搭建私人blog（三）/" data-id="cjeqscpjf00033n7xwfsk2z2p" class="article-share-link">Teilen</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/03/13/AAA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          AAA
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/03/14/拆分搭建私人blog（一）/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">拆分搭建私人blog（一）</div>
     </a>
   
 </nav>
