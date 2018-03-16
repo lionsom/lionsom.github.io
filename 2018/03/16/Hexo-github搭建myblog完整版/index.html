@@ -237,36 +237,36 @@
 </ul>
 <pre><code>![依赖包安装](/Users/lionsom/Downloads/Hexo搭建图片/依赖包安装.jpg)
 </code></pre><ul>
-<li>安装相关插件<ul>
-<li><strong>重要：安装便于自动部署到Github上的插件</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<li><p>安装相关插件</p>
+<ul>
+<li><p><strong>重要：安装便于自动部署到Github上的插件</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装atom生成插件，便于感兴趣的小伙伴们订阅</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装博客首页生成插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-index --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装归档生成插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装tag生成插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-tag --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装category生成插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-category --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Sitemap文件生成插件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装百度Sitemap文件生成插件，因为普通的Sitemap格式不符合百度的要求</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<pre><code>* 安装atom生成插件，便于感兴趣的小伙伴们订阅
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
-
-
-* 安装博客首页生成插件
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-index --save</span><br></pre></td></tr></table></figure>
-
-* 安装归档生成插件
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
-
-
-* 安装tag生成插件
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-tag --save</span><br></pre></td></tr></table></figure>
-
-* 安装category生成插件
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-category --save</span><br></pre></td></tr></table></figure>
-
-* 安装Sitemap文件生成插件
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
-
-
-* 安装百度Sitemap文件生成插件，因为普通的Sitemap格式不符合百度的要求
-    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="1-5、本地启动Hexo"><a href="#1-5、本地启动Hexo" class="headerlink" title="1.5、本地启动Hexo"></a>1.5、本地启动Hexo</h3><h4 id="操作指令一览表"><a href="#操作指令一览表" class="headerlink" title="操作指令一览表"></a>操作指令一览表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean      #清理缓存</span><br><span class="line">$ hexo generate   #生成静态文件</span><br><span class="line">$ hexo server	  #启动本地服务器</span><br><span class="line">或者</span><br><span class="line">$ hexo clean      #清理缓存</span><br><span class="line">$ hexo g          #生成静态文件</span><br><span class="line">$ hexo s          #启动本地服务器</span><br></pre></td></tr></table></figure>
+<h3 id="1-5、本地启动Hexo"><a href="#1-5、本地启动Hexo" class="headerlink" title="1.5、本地启动Hexo"></a>1.5、本地启动Hexo</h3><h4 id="操作指令一览表"><a href="#操作指令一览表" class="headerlink" title="操作指令一览表"></a>操作指令一览表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean      #清理缓存</span><br><span class="line">$ hexo generate   #生成静态文件</span><br><span class="line">$ hexo server	  #启动本地服务器</span><br><span class="line">或者</span><br><span class="line">$ hexo clean      #清理缓存</span><br><span class="line">$ hexo g          #生成静态文件</span><br><span class="line">$ hexo s          #启动本地服务器</span><br></pre></td></tr></table></figure>
 <ul>
 <li>前往myblog目录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &quot;test&quot;</span><br></pre></td></tr></table></figure>
 </li>
