@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/3 | 欢迎来到lionsom的blog</title>
+  <title>避免程序崩溃iOS探索 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建于2018年03月">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到lionsom的blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/03/index.html">
+  <meta name="description" content="目录 Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 Part Two - 崩溃发生时Runtime避免崩溃 Part Three - 崩溃发生后Bug收集处理  ios项目如何避免crash—LongCrash IOS 防止崩溃 Crash 组件—SafeGuard  Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 文件参考： ios中json解析出现的n">
+<meta name="keywords" content="iOS,崩溃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="避免程序崩溃iOS探索">
+<meta property="og:url" content="http://yoursite.com/2018/03/20/避免程序崩溃iOS探索/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="创建于2018年03月">
+<meta property="og:description" content="目录 Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 Part Two - 崩溃发生时Runtime避免崩溃 Part Three - 崩溃发生后Bug收集处理  ios项目如何避免crash—LongCrash IOS 防止崩溃 Crash 组件—SafeGuard  Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 文件参考： ios中json解析出现的n">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1859399-edc665b555034e8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1859399-607940347ffad313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1859399-b2bbcc0a311d32dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1859399-9aef960978c3970c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog_avoidCrash_001.jpg">
+<meta property="og:updated_time" content="2018-03-20T10:04:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到lionsom的blog">
-<meta name="twitter:description" content="创建于2018年03月">
+<meta name="twitter:title" content="避免程序崩溃iOS探索">
+<meta name="twitter:description" content="目录 Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 Part Two - 崩溃发生时Runtime避免崩溃 Part Three - 崩溃发生后Bug收集处理  ios项目如何避免crash—LongCrash IOS 防止崩溃 Crash 组件—SafeGuard  Part ONE - 崩溃发生前之数据&amp;lt;null&amp;gt;处理 文件参考： ios中json解析出现的n">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1859399-edc665b555034e8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
   
@@ -152,36 +160,133 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-避免程序崩溃iOS探索" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/20/避免程序崩溃iOS探索/" class="archive-article-date">
-  	<time datetime="2018-03-20T04:45:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/20/避免程序崩溃iOS探索/">避免程序崩溃iOS探索</a>
+    <h1 class="article-title" itemprop="name">
+      避免程序崩溃iOS探索
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/20/避免程序崩溃iOS探索/" class="archive-article-date">
+  	<time datetime="2018-03-20T04:45:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>Part ONE - 崩溃发生前之数据<code>&lt;null&gt;</code>处理</li>
+<li>Part Two - 崩溃发生时Runtime避免崩溃</li>
+<li>Part Three - 崩溃发生后Bug收集处理</li>
+</ul>
+<p><a href="https://www.cnblogs.com/lizilong/p/7908955.html" target="_blank" rel="noopener">ios项目如何避免crash</a><br>—<a href="https://github.com/lizilong1989/LongCrash" target="_blank" rel="noopener">LongCrash</a></p>
+<p><a href="http://blog.csdn.net/qihongru1227/article/details/75090361" target="_blank" rel="noopener">IOS 防止崩溃 Crash 组件</a><br>—<a href="https://github.com/hongruqi/SafeGuard" target="_blank" rel="noopener">SafeGuard</a></p>
+<hr>
+<h1 id="Part-ONE-崩溃发生前之数据-lt-null-gt-处理"><a href="#Part-ONE-崩溃发生前之数据-lt-null-gt-处理" class="headerlink" title="Part ONE - 崩溃发生前之数据&lt;null&gt;处理"></a>Part ONE - 崩溃发生前之数据<code>&lt;null&gt;</code>处理</h1><hr>
+<h3 id="文件参考："><a href="#文件参考：" class="headerlink" title="文件参考："></a>文件参考：</h3><ul>
+<li><a href="https://my.oschina.net/iq19900204/blog/408034" target="_blank" rel="noopener">ios中json解析出现的null问题</a></li>
+<li><a href="https://github.com/nicklockwood/NullSafe" target="_blank" rel="noopener">GitHub-NullSafe</a></li>
+</ul>
+<h2 id="一、问题"><a href="#一、问题" class="headerlink" title="一、问题"></a>一、问题</h2><p>客户端与服务器之间的数据请求一般以Json形式传递，正常有null值。<br>这个数据类型不是nil 也不是 String。 解析成对象之后，如果直接向这个对象发送消息（eg：length，count 等等）就会直接崩溃。提示错误为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-[NSNull length]: unrecognized selector sent to instance 0x388a4a70</span><br></pre></td></tr></table></figure>
+<h2 id="二、实战场景"><a href="#二、实战场景" class="headerlink" title="二、实战场景"></a>二、实战场景</h2><p><img src="http://upload-images.jianshu.io/upload_images/1859399-edc665b555034e8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据为null"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1859399-607940347ffad313.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="调用.length操作"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1859399-b2bbcc0a311d32dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="崩溃。。。"></p>
+<h2 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h2><h4 id="方案一：解析后进行判断"><a href="#方案一：解析后进行判断" class="headerlink" title="方案一：解析后进行判断"></a>方案一：解析后进行判断</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">if( [m isEqual:[NSNull null]] )</span><br><span class="line">&#123; </span><br><span class="line">    NSLog(@&quot;&lt;null&gt;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">//方法二</span><br><span class="line">if ( ![isKindOfClass:[NSNull class]] )</span><br><span class="line">&#123;</span><br><span class="line">    // 操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方案二：AFN"><a href="#方案二：AFN" class="headerlink" title="方案二：AFN"></a>方案二：AFN</h4><p>如果你使用AFNetwork 这个库做网络请求的话，可以用以下代码，自动帮你去掉这个讨厌的空值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">removesKeysWithNullValues = YES</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">_dataSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:baseUrl]];</span><br><span class="line">[_dataSessionManager setRequestSerializer:[AFJSONRequestSerializer serializer]];  //告诉AFN使用JSON格式，AFN内部会自动转JSON</span><br><span class="line"></span><br><span class="line">AFJSONResponseSerializer * response = [AFJSONResponseSerializer serializer];</span><br><span class="line">response.removesKeysWithNullValues = YES;</span><br><span class="line">    </span><br><span class="line">[_dataSessionManager setResponseSerializer:response];  //以JSON格式返回</span><br><span class="line">_dataSessionManager.requestSerializer.timeoutInterval = 10;</span><br></pre></td></tr></table></figure>
+<h4 id="方案三：利用Category将nil转为-””"><a href="#方案三：利用Category将nil转为-””" class="headerlink" title="方案三：利用Category将nil转为@””"></a>方案三：利用Category将nil转为@””</h4><p><img src="http://upload-images.jianshu.io/upload_images/1859399-9aef960978c3970c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="使用案例"></p>
+<p><strong>代码如下 :</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">@interface NSDictionary (DeleteNull)</span><br><span class="line"></span><br><span class="line">+(id)changeType:(id)myObj;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  NSDictionary+DeleteNull.m</span><br><span class="line">//  PAL-iOS</span><br><span class="line">//</span><br><span class="line">//  Created by linxiang on 2017/11/1.</span><br><span class="line">//  Copyright © 2017年 minxing. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;NSDictionary+DeleteNull.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation NSDictionary (DeleteNull)</span><br><span class="line"></span><br><span class="line">#pragma mark - 私有方法</span><br><span class="line">//将NSDictionary中的Null类型的项目转化成@&quot;&quot;</span><br><span class="line">+(NSDictionary *)nullDic:(NSDictionary *)myDic</span><br><span class="line">&#123;</span><br><span class="line">    NSArray *keyArr = [myDic allKeys];</span><br><span class="line">    NSMutableDictionary *resDic = [[NSMutableDictionary alloc]init];</span><br><span class="line">    for (int i = 0; i &lt; keyArr.count; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        id obj = [myDic objectForKey:keyArr[i]];</span><br><span class="line">        </span><br><span class="line">        obj = [self changeType:obj];</span><br><span class="line">        </span><br><span class="line">        [resDic setObject:obj forKey:keyArr[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    return resDic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将NSArray中的Null类型的项目转化成@&quot;&quot;</span><br><span class="line">+(NSArray *)nullArr:(NSArray *)myArr</span><br><span class="line">&#123;</span><br><span class="line">    NSMutableArray *resArr = [[NSMutableArray alloc] init];</span><br><span class="line">    for (int i = 0; i &lt; myArr.count; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        id obj = myArr[i];</span><br><span class="line">        </span><br><span class="line">        obj = [self changeType:obj];</span><br><span class="line">        </span><br><span class="line">        [resArr addObject:obj];</span><br><span class="line">    &#125;</span><br><span class="line">    return resArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将NSString类型的原路返回</span><br><span class="line">+(NSString *)stringToString:(NSString *)string</span><br><span class="line">&#123;</span><br><span class="line">    return string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将Null类型的项目转化成@&quot;&quot;</span><br><span class="line">+(NSString *)nullToString</span><br><span class="line">&#123;</span><br><span class="line">    return @&quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 公有方法</span><br><span class="line">//类型识别:将所有的NSNull类型转化成@&quot;&quot;</span><br><span class="line">+(id)changeType:(id)myObj</span><br><span class="line">&#123;</span><br><span class="line">    if ([myObj isKindOfClass:[NSDictionary class]])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self nullDic:myObj];</span><br><span class="line">    &#125;</span><br><span class="line">    else if([myObj isKindOfClass:[NSArray class]])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self nullArr:myObj];</span><br><span class="line">    &#125;</span><br><span class="line">    else if([myObj isKindOfClass:[NSString class]])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self stringToString:myObj];</span><br><span class="line">    &#125;</span><br><span class="line">    else if([myObj isKindOfClass:[NSNull class]])</span><br><span class="line">    &#123;</span><br><span class="line">        return [self nullToString];</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return myObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h4 id="方案四：NullSafe"><a href="#方案四：NullSafe" class="headerlink" title="方案四：NullSafe"></a>方案四：NullSafe</h4><h5 id="4-1、NullSafe简介"><a href="#4-1、NullSafe简介" class="headerlink" title="4.1、NullSafe简介"></a>4.1、NullSafe简介</h5><p>NullSafe是一个Category，在运行时操作，把这个讨厌的空值置为nil，而nil是安全的，可以向nil对象发送任何message而不会奔溃。这个category使用起来非常方便，只要加入到了工程中就可以了，你其他的什么都不用做，对，就是这么简单。详细的请去Github上查看：<br><a href="https://github.com/nicklockwood/NullSafe" target="_blank" rel="noopener">NullSafe</a></p>
+<h5 id="4-2、NullSafe使用"><a href="#4-2、NullSafe使用" class="headerlink" title="4.2、NullSafe使用"></a>4.2、NullSafe使用</h5><p>使用时只需要把 <code>NullSafe.m</code> 文件拖进工程就可以了，它在程序运行时自动加载，你不需要再导入其他头文件了。</p>
+<p>　　如果想要禁止 <code>NullSafe</code> 的话，需要设置：<code>NULLSAFE_ENABLED=0</code>，或者在 <code>.pch 文件</code>中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#ifdef DEBUG</span><br><span class="line">#define NULLSAFE_ENABLED 0</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<h5 id="4-3、NullSafe原理"><a href="#4-3、NullSafe原理" class="headerlink" title="4.3、NullSafe原理"></a>4.3、NullSafe原理</h5><p><a href="https://www.2cto.com/kf/201710/690327.html" target="_blank" rel="noopener">iOS开发技巧之NullSafe原理分析</a></p>
+<p>简单点说,当我们给一个<code>NSNull</code>对象发送消息的话，可能会崩溃<code>（null是有内存的）</code>，而发送给<code>nil</code>的话，是不会崩溃的。<br>作者就是使用了这么一个原理，把发送给<code>NSNull</code>的而<code>NSNull</code>又无法处理的消息经过如下几步处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.创建一个方法缓存，这个缓存会缓存项目中类的所有类名。</span><br><span class="line">2.遍历缓存，寻找是否已经有可以执行此方法的类。</span><br><span class="line">3.如果有的话，返回这个 NSMethodSignature 。</span><br><span class="line">4.如果没有的话，返回 nil ,接下来会走 forwardInvocation: 方法。</span><br><span class="line">5.[invocation invokeWithTarget:nil]; 将消息转发给 nil。</span><br></pre></td></tr></table></figure>
+<p>那么，如何判断 <code>NSNull</code> 无法处理这个消息呢，在OC中，系统如果对某个实例发送消息之后，它（及其父类）无法处理（比如，没有这个方法等），系统就会发送 <code>methodSignatureForSelector</code> 消息，如果这个方法返回非空，那么就去执行返回的方法，如果为nil,则发送 <code>forwardInvocation</code> 消息。</p>
+<p>这样就完成整个转发链了。</p>
+<hr>
+<h1 id="Part-TWO-崩溃发生时Runtime避免崩溃"><a href="#Part-TWO-崩溃发生时Runtime避免崩溃" class="headerlink" title="Part TWO - 崩溃发生时Runtime避免崩溃"></a>Part TWO - 崩溃发生时Runtime避免崩溃</h1><hr>
+<h2 id="一、AvoidCrash"><a href="#一、AvoidCrash" class="headerlink" title="一、AvoidCrash"></a>一、AvoidCrash</h2><h3 id="1-1、AvoidCrash参考文档"><a href="#1-1、AvoidCrash参考文档" class="headerlink" title="1.1、AvoidCrash参考文档"></a>1.1、AvoidCrash参考文档</h3><p><a href="https://www.jianshu.com/p/5d625f86bd02" target="_blank" rel="noopener">iOS runtime实用篇–和常见崩溃say good-bye！</a><br>—<a href="https://github.com/chenfanfang/AvoidCrash" target="_blank" rel="noopener">AvoidCrash</a></p>
+<h3 id="1-2、AvoidCrash与Bugly、友盟等三方冲突吗？"><a href="#1-2、AvoidCrash与Bugly、友盟等三方冲突吗？" class="headerlink" title="1.2、AvoidCrash与Bugly、友盟等三方冲突吗？"></a>1.2、AvoidCrash与Bugly、友盟等三方冲突吗？</h3><p><a href="https://www.jianshu.com/p/2b90aa96c0a0" target="_blank" rel="noopener">AvoidCrash的集成注意事项、疑惑的解答</a></p>
+<blockquote>
+<p>1、若集成了腾讯Bugly或者友盟等等异常搜集的SDK,AvoidCrash会影响到它们的异常搜集吗？</p>
+</blockquote>
+<p>首先要清楚的一点是，对于一些第三方crash信息搜集工具，比如Bugly或者友盟，它们只有当程序出现异常(崩溃)的时候才会搜集异常信息。而AvoidCrash的作用是，防止部分常见异常的发生，异常被AvoidCrash捕获了，程序就不会崩溃，第三方crash信息搜集工具就不会搜集到崩溃信息咯。</p>
+<blockquote>
+<p>2、如何处理才能既防止崩溃，又搜集到崩溃信息</p>
+</blockquote>
+<p>AvoidCrash若捕获到异常，将会发出一个通知:AvoidCrashNotification,监听该通知即可获取到原本将导致崩溃的具体信息。此时你可以利用Bugly的自定义异常接口将这些异常信息上传到Bugly。</p>
+<h3 id="1-3、AvoidCrash分析"><a href="#1-3、AvoidCrash分析" class="headerlink" title="1.3、AvoidCrash分析"></a>1.3、AvoidCrash分析</h3><h5 id="1-3-1、不添加AvoidCrash情况下"><a href="#1-3-1、不添加AvoidCrash情况下" class="headerlink" title="1.3.1、不添加AvoidCrash情况下"></a>1.3.1、不添加AvoidCrash情况下</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSString *nilStr = nil;</span><br><span class="line">NSArray *array = @[@&quot;lionsom&quot;, nilStr, @&quot;哈哈哈哈&quot;];</span><br><span class="line">NSLog(@&quot;%@&quot;,array);</span><br></pre></td></tr></table></figure>
+<p><strong>出现崩溃</strong><br><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog_avoidCrash_001.jpg" alt="崩溃"></p>
+<h5 id="1-3-2、添加AvoidCrash后"><a href="#1-3-2、添加AvoidCrash后" class="headerlink" title="1.3.2、添加AvoidCrash后"></a>1.3.2、添加AvoidCrash后</h5><ul>
+<li>先交换初始化NSArray方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//instance array method exchange</span><br><span class="line">[AvoidCrash exchangeClassMethod:[self class]    </span><br><span class="line">                     method1Sel:@selector(arrayWithObjects:count:) </span><br><span class="line">                     method2Sel:@selector(AvoidCrashArrayWithObjects:count:)];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在我们自定义的<code>AvoidCrashArrayWithObjects:count:</code>方法中进行异常捕捉（此处涉及<code>@Try Catch</code> 和 <code>NSException</code>）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">+ (instancetype)AvoidCrashArrayWithObjects:(const id  _Nonnull __unsafe_unretained *)objects count:(NSUInteger)cnt &#123;</span><br><span class="line">    </span><br><span class="line">    id instance = nil;</span><br><span class="line">    </span><br><span class="line">    @try &#123;</span><br><span class="line">        instance = [self AvoidCrashArrayWithObjects:objects count:cnt];</span><br><span class="line">    &#125;</span><br><span class="line">    @catch (NSException *exception) &#123;</span><br><span class="line">        </span><br><span class="line">        NSString *defaultToDo = @&quot;AvoidCrash default is to remove nil object and instance a array.&quot;;</span><br><span class="line">        [AvoidCrash noteErrorWithException:exception defaultToDo:defaultToDo];</span><br><span class="line">        </span><br><span class="line">        //以下是对错误数据的处理，把为nil的数据去掉,然后初始化数组</span><br><span class="line">        NSInteger newObjsIndex = 0;</span><br><span class="line">        id  _Nonnull __unsafe_unretained newObjects[cnt];</span><br><span class="line">        </span><br><span class="line">        for (int i = 0; i &lt; cnt; i++) &#123;</span><br><span class="line">            if (objects[i] != nil) &#123;</span><br><span class="line">                newObjects[newObjsIndex] = objects[i];</span><br><span class="line">                newObjsIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        instance = [self AvoidCrashArrayWithObjects:newObjects count:newObjsIndex];</span><br><span class="line">    &#125;</span><br><span class="line">    @finally &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在自己写的函数中，如果出现异常，先将<strong>异常的具体信息</strong>抛出去，然后将<strong>NSArray中的nil移除得到新的数组</strong>。</p>
+</li>
+<li><p>外部接收到抛出的异常信息，整理。例如：获取具体的崩溃在哪个类的哪个方法中（如下）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//堆栈数据</span><br><span class="line">NSArray *callStackSymbolsArr = [NSThread callStackSymbols];</span><br><span class="line">    </span><br><span class="line">//获取在哪个类的哪个方法中实例化的数组  字符串格式 -[类名 方法名]  或者 +[类名 方法名]</span><br><span class="line">NSString *mainCallStackSymbolMsg = [AvoidCrash getMainCallStackSymbolMessageWithCallStackSymbols:callStackSymbolsArr];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后将整理好的崩溃信息使用通知的形式传递出去，给具体的函数进行Bug上传服务器等操作。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//将错误信息放在字典里，用通知的形式发送出去</span><br><span class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    [[NSNotificationCenter defaultCenter] postNotificationName:AvoidCrashNotification object:nil userInfo:errorInfoDic];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="1-4、想法"><a href="#1-4、想法" class="headerlink" title="1.4、想法"></a>1.4、想法</h3><p>个人觉得：首先肯定作者<a href="https://www.jianshu.com/u/80fadb71940d" target="_blank" rel="noopener">chenfanfang</a>的想法与执行力，AvoidCrash也非常的好用，但是它是针对特定的崩溃进行特定的操作，让人感觉依旧有未列举出来的地方。例如不在主线程上处理UI奔溃无法捕获异常。勿喷！！！</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/yilia/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/yilia/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,7 +302,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -210,70 +315,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/20/避免程序崩溃iOS探索/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/16/Hexo-github搭建myblog完整版/" class="archive-article-date">
-  	<time datetime="2018-03-16T07:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/16/Hexo-github搭建myblog完整版/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac+Hexo+github搭建myblog完整版</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/16/Hexo-github搭建myblog完整版/">Mac+Hexo+github搭建myblog完整版</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/myblog搭建//" class="article-tag-list-link color4">myblog搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-ONE-崩溃发生前之数据-lt-null-gt-处理"><span class="toc-number">2.</span> <span class="toc-text">Part ONE - 崩溃发生前之数据&lt;null&gt;处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件参考："><span class="toc-number">2.0.1.</span> <span class="toc-text">文件参考：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、问题"><span class="toc-number">2.1.</span> <span class="toc-text">一、问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、实战场景"><span class="toc-number">2.2.</span> <span class="toc-text">二、实战场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、解决方案"><span class="toc-number">2.3.</span> <span class="toc-text">三、解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方案一：解析后进行判断"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">方案一：解析后进行判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案二：AFN"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">方案二：AFN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案三：利用Category将nil转为-””"><span class="toc-number">2.3.0.3.</span> <span class="toc-text">方案三：利用Category将nil转为@””</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方案四：NullSafe"><span class="toc-number">2.3.0.4.</span> <span class="toc-text">方案四：NullSafe</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1、NullSafe简介"><span class="toc-number">2.3.0.4.1.</span> <span class="toc-text">4.1、NullSafe简介</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2、NullSafe使用"><span class="toc-number">2.3.0.4.2.</span> <span class="toc-text">4.2、NullSafe使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3、NullSafe原理"><span class="toc-number">2.3.0.4.3.</span> <span class="toc-text">4.3、NullSafe原理</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Part-TWO-崩溃发生时Runtime避免崩溃"><span class="toc-number">3.</span> <span class="toc-text">Part TWO - 崩溃发生时Runtime避免崩溃</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、AvoidCrash"><span class="toc-number">3.1.</span> <span class="toc-text">一、AvoidCrash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、AvoidCrash参考文档"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.1、AvoidCrash参考文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、AvoidCrash与Bugly、友盟等三方冲突吗？"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.2、AvoidCrash与Bugly、友盟等三方冲突吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、AvoidCrash分析"><span class="toc-number">3.1.3.</span> <span class="toc-text">1.3、AvoidCrash分析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-1、不添加AvoidCrash情况下"><span class="toc-number">3.1.3.0.1.</span> <span class="toc-text">1.3.1、不添加AvoidCrash情况下</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-2、添加AvoidCrash后"><span class="toc-number">3.1.3.0.2.</span> <span class="toc-text">1.3.2、添加AvoidCrash后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、想法"><span class="toc-number">3.1.4.</span> <span class="toc-text">1.4、想法</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -306,8 +458,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
