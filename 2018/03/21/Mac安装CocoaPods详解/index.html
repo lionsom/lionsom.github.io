@@ -15,10 +15,14 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/21/Mac安装CocoaPods详解/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
 <meta property="og:description" content="目录 Ruby环境的安装  安装系统需要的包 Homebrew安装 安装RVM 使用RVM安装Ruby环境 设置 Ruby 版本 替换Ruby源为taobao.org   安装CocoaPods  CocoaPods是什么？ 直接安装CocoaPods">
-<meta property="og:updated_time" content="2018-03-21T07:33:17.000Z">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_001.jpg">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_002.jpg">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_003.jpg">
+<meta property="og:updated_time" content="2018-03-21T10:49:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac安装CocoaPods详解">
 <meta name="twitter:description" content="目录 Ruby环境的安装  安装系统需要的包 Homebrew安装 安装RVM 使用RVM安装Ruby环境 设置 Ruby 版本 替换Ruby源为taobao.org   安装CocoaPods  CocoaPods是什么？ 直接安装CocoaPods">
+<meta name="twitter:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_001.jpg">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
   
@@ -256,6 +260,41 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod --version</span><br></pre></td></tr></table></figure>
 <p>或者</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod search AFNetworking</span><br></pre></td></tr></table></figure>
+<h3 id="2-3、在使用Pod进行操作之前最好手动更新repos文件"><a href="#2-3、在使用Pod进行操作之前最好手动更新repos文件" class="headerlink" title="2.3、在使用Pod进行操作之前最好手动更新repos文件"></a>2.3、在使用Pod进行操作之前最好手动更新repos文件</h3><blockquote>
+<p>为什么最好手动导入呢？</p>
+<p>如果不手动导入也没有问题，再使用<code>pod search AFNetworking</code>的时候pod会自动进行<code>setting up cocoapods master repo</code>的更新，由于文件过大，需要下载好一会儿。所以此时使用手动添加<code>repos</code>的文件比较方便。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_001.jpg" alt="setting up cocoapods master repo"></p>
+<h4 id="2-3-1、如何前往-cocoapods文件"><a href="#2-3-1、如何前往-cocoapods文件" class="headerlink" title="2.3.1、如何前往.cocoapods文件"></a>2.3.1、如何前往<code>.cocoapods</code>文件</h4><ul>
+<li>显示隐藏文件<code>Command + shift + .</code></li>
+<li>也可在<code>Finder-&gt;前往-&gt;前往文件夹-&gt;./.cocoapods</code></li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_002.jpg" alt="前往./.cocoapods"></p>
+<ul>
+<li>具体路径如下</li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog_SetupPods_003.jpg" alt="路径图"></p>
+<h2 id="3、后期使用出现的问题"><a href="#3、后期使用出现的问题" class="headerlink" title="3、后期使用出现的问题"></a>3、后期使用出现的问题</h2><h3 id="3-1、问题一：”setting-up-cocoapods-master-repo”卡着不动"><a href="#3-1、问题一：”setting-up-cocoapods-master-repo”卡着不动" class="headerlink" title="3.1、问题一：”setting up cocoapods master repo”卡着不动"></a>3.1、问题一：”setting up cocoapods master repo”卡着不动</h3><blockquote>
+<p>分析：<br>那个淘宝镜像（<a href="https://ruby.taobao.org）不可用了，所以需要使用最新的ruby镜像（https://gems.ruby-china.org/）" target="_blank" rel="noopener">https://ruby.taobao.org）不可用了，所以需要使用最新的ruby镜像（https://gems.ruby-china.org/）</a></p>
+</blockquote>
+<p><strong>具体操作 可查看1.6章节</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gem source -r https://ruby.taobao.org</span><br><span class="line">$ gem source -a https://gems.ruby-china.org/</span><br></pre></td></tr></table></figure>
+<h3 id="3-2、问题二："><a href="#3-2、问题二：" class="headerlink" title="3.2、问题二："></a>3.2、问题二：</h3><p><strong>3.2.1、执行pod setup</strong></p>
+<ul>
+<li>终端输入：<code>pod search AFNetworking</code></li>
+<li>输出：<code>Unable to find a pod with name, author, summary, or descriptionmatching &#39;AFNetworking&#39;</code> 这时就需要继续下面的步骤了。</li>
+</ul>
+<p><strong>3.2.2、删除~/Library/Caches/CocoaPods目录下的search_index.json文件</strong></p>
+<ul>
+<li><code>pod setup</code>成功后，依然不能<code>pod search</code>，是因为之前你执行<code>pod search</code>生成了<code>search_index.json</code>，此时需要删掉。</li>
+<li>终端输入：<code>rm ~/Library/Caches/CocoaPods/search_index.json</code></li>
+<li>删除成功后，再执行<code>pod search</code>。</li>
+</ul>
+<p><strong>3.2.3、执行pod search</strong></p>
+<ul>
+<li>终端输入：<code>pod search afnetworking(不区分大小写)</code></li>
+<li>输出：<code>Creating search index for spec repo &#39;master&#39;.. Done!</code>，稍等片刻······就会出现所有带有afnetworking字段的类库。</li>
+</ul>
 <hr>
 <blockquote>
 <h4 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h4><p><strong>欢迎指正补充，可联系<a href="lionsom_lin@qq.com">lionsom_lin@qq.com</a></strong><br><strong>原文地址：<a href="http://lionsom.com/2018/03/21/Mac安装CocoaPods详解/" target="_blank" rel="noopener">Mac安装CocoaPods详解</a></strong></p>
@@ -414,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Ruby环境的安装"><span class="toc-number">2.</span> <span class="toc-text">一、Ruby环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、安装系统需要的包"><span class="toc-number">2.1.</span> <span class="toc-text">1.1、安装系统需要的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、Homebrew安装"><span class="toc-number">2.2.</span> <span class="toc-text">1.2、Homebrew安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1、Homebrew是神马"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.2.1、Homebrew是神马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2、是否已安装Homebrew"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2.2、是否已安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3、安装Homebrew"><span class="toc-number">2.2.3.</span> <span class="toc-text">1.2.3、安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4、更多详情，请前往Homebrew官网查看"><span class="toc-number">2.2.4.</span> <span class="toc-text">1.2.4、更多详情，请前往Homebrew官网查看</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、安装RVM"><span class="toc-number">2.3.</span> <span class="toc-text">1.3、安装RVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1、RVM是什么？"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.3.1、RVM是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2、具体安装步骤"><span class="toc-number">2.3.2.</span> <span class="toc-text">1.3.2、具体安装步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、使用RVM安装Ruby环境"><span class="toc-number">2.4.</span> <span class="toc-text">1.4、使用RVM安装Ruby环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、设置-Ruby-版本"><span class="toc-number">2.5.</span> <span class="toc-text">1.5、设置 Ruby 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、替换Ruby源为taobao-org"><span class="toc-number">2.6.</span> <span class="toc-text">1.6、替换Ruby源为taobao.org</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装CocoaPods"><span class="toc-number">3.</span> <span class="toc-text">2、安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、CocoaPods是什么？"><span class="toc-number">3.1.</span> <span class="toc-text">2.1、CocoaPods是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、直接安装CocoaPods"><span class="toc-number">3.2.</span> <span class="toc-text">2.2、直接安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">3.2.1.</span> <span class="toc-text">完结</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Ruby环境的安装"><span class="toc-number">2.</span> <span class="toc-text">一、Ruby环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、安装系统需要的包"><span class="toc-number">2.1.</span> <span class="toc-text">1.1、安装系统需要的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、Homebrew安装"><span class="toc-number">2.2.</span> <span class="toc-text">1.2、Homebrew安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1、Homebrew是神马"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.2.1、Homebrew是神马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2、是否已安装Homebrew"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2.2、是否已安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3、安装Homebrew"><span class="toc-number">2.2.3.</span> <span class="toc-text">1.2.3、安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4、更多详情，请前往Homebrew官网查看"><span class="toc-number">2.2.4.</span> <span class="toc-text">1.2.4、更多详情，请前往Homebrew官网查看</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、安装RVM"><span class="toc-number">2.3.</span> <span class="toc-text">1.3、安装RVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1、RVM是什么？"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.3.1、RVM是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2、具体安装步骤"><span class="toc-number">2.3.2.</span> <span class="toc-text">1.3.2、具体安装步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、使用RVM安装Ruby环境"><span class="toc-number">2.4.</span> <span class="toc-text">1.4、使用RVM安装Ruby环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、设置-Ruby-版本"><span class="toc-number">2.5.</span> <span class="toc-text">1.5、设置 Ruby 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、替换Ruby源为taobao-org"><span class="toc-number">2.6.</span> <span class="toc-text">1.6、替换Ruby源为taobao.org</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装CocoaPods"><span class="toc-number">3.</span> <span class="toc-text">2、安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、CocoaPods是什么？"><span class="toc-number">3.1.</span> <span class="toc-text">2.1、CocoaPods是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、直接安装CocoaPods"><span class="toc-number">3.2.</span> <span class="toc-text">2.2、直接安装CocoaPods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3、在使用Pod进行操作之前最好手动更新repos文件"><span class="toc-number">3.3.</span> <span class="toc-text">2.3、在使用Pod进行操作之前最好手动更新repos文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1、如何前往-cocoapods文件"><span class="toc-number">3.3.1.</span> <span class="toc-text">2.3.1、如何前往.cocoapods文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、后期使用出现的问题"><span class="toc-number">4.</span> <span class="toc-text">3、后期使用出现的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、问题一：”setting-up-cocoapods-master-repo”卡着不动"><span class="toc-number">4.1.</span> <span class="toc-text">3.1、问题一：”setting up cocoapods master repo”卡着不动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、问题二："><span class="toc-number">4.2.</span> <span class="toc-text">3.2、问题二：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">4.2.1.</span> <span class="toc-text">完结</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -536,11 +575,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,7 +587,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pods</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
             
             <div class="clearfix"></div>
