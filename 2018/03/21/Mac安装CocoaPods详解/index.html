@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Mac安装CocoaPods详解 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Ruby环境的安装1.1、安装系统需要的包 先安装 Xcode 开发工具，它将帮你安装好 Unix 环境需要的开发包  1.2、Homebrew安装1.2.1、Homebrew是神马 linux系统有个让人蛋疼的通病，软件包依赖，好在当前主流的两大发行版本都自带了解决方案，Red hat有yum，Ubuntu有apt-get神马，你用mac os，不好意Mac os木有类似的东东，泪奔中几经折">
+  <meta name="description" content="目录 Ruby环境的安装  安装系统需要的包 Homebrew安装 安装RVM 使用RVM安装Ruby环境 设置 Ruby 版本 替换Ruby源为taobao.org   安装CocoaPods  CocoaPods是什么？ 直接安装CocoaPods">
 <meta name="keywords" content="pods">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac安装CocoaPods详解">
 <meta property="og:url" content="http://yoursite.com/2018/03/21/Mac安装CocoaPods详解/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="一、Ruby环境的安装1.1、安装系统需要的包 先安装 Xcode 开发工具，它将帮你安装好 Unix 环境需要的开发包  1.2、Homebrew安装1.2.1、Homebrew是神马 linux系统有个让人蛋疼的通病，软件包依赖，好在当前主流的两大发行版本都自带了解决方案，Red hat有yum，Ubuntu有apt-get神马，你用mac os，不好意Mac os木有类似的东东，泪奔中几经折">
-<meta property="og:updated_time" content="2018-03-21T07:27:12.000Z">
+<meta property="og:description" content="目录 Ruby环境的安装  安装系统需要的包 Homebrew安装 安装RVM 使用RVM安装Ruby环境 设置 Ruby 版本 替换Ruby源为taobao.org   安装CocoaPods  CocoaPods是什么？ 直接安装CocoaPods">
+<meta property="og:updated_time" content="2018-03-21T07:33:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac安装CocoaPods详解">
-<meta name="twitter:description" content="一、Ruby环境的安装1.1、安装系统需要的包 先安装 Xcode 开发工具，它将帮你安装好 Unix 环境需要的开发包  1.2、Homebrew安装1.2.1、Homebrew是神马 linux系统有个让人蛋疼的通病，软件包依赖，好在当前主流的两大发行版本都自带了解决方案，Red hat有yum，Ubuntu有apt-get神马，你用mac os，不好意Mac os木有类似的东东，泪奔中几经折">
+<meta name="twitter:description" content="目录 Ruby环境的安装  安装系统需要的包 Homebrew安装 安装RVM 使用RVM安装Ruby环境 设置 Ruby 版本 替换Ruby源为taobao.org   安装CocoaPods  CocoaPods是什么？ 直接安装CocoaPods">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
   
@@ -174,7 +174,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Ruby环境的安装"><a href="#一、Ruby环境的安装" class="headerlink" title="一、Ruby环境的安装"></a>一、Ruby环境的安装</h2><h3 id="1-1、安装系统需要的包"><a href="#1-1、安装系统需要的包" class="headerlink" title="1.1、安装系统需要的包"></a>1.1、安装系统需要的包</h3><blockquote>
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><p>Ruby环境的安装</p>
+<ul>
+<li>安装系统需要的包</li>
+<li>Homebrew安装</li>
+<li>安装RVM</li>
+<li>使用RVM安装Ruby环境</li>
+<li>设置 Ruby 版本</li>
+<li>替换Ruby源为taobao.org</li>
+</ul>
+</li>
+<li><p>安装CocoaPods</p>
+<ul>
+<li>CocoaPods是什么？</li>
+<li>直接安装CocoaPods</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="一、Ruby环境的安装"><a href="#一、Ruby环境的安装" class="headerlink" title="一、Ruby环境的安装"></a>一、Ruby环境的安装</h2><h3 id="1-1、安装系统需要的包"><a href="#1-1、安装系统需要的包" class="headerlink" title="1.1、安装系统需要的包"></a>1.1、安装系统需要的包</h3><blockquote>
 <p>先安装 <a href="http://developer.apple.com/xcode/" target="_blank" rel="noopener">Xcode</a> 开发工具，它将帮你安装好 Unix 环境需要的开发包</p>
 </blockquote>
 <h3 id="1-2、Homebrew安装"><a href="#1-2、Homebrew安装" class="headerlink" title="1.2、Homebrew安装"></a>1.2、Homebrew安装</h3><h4 id="1-2-1、Homebrew是神马"><a href="#1-2-1、Homebrew是神马" class="headerlink" title="1.2.1、Homebrew是神马"></a>1.2.1、Homebrew是神马</h4><blockquote>
@@ -239,7 +258,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod search AFNetworking</span><br></pre></td></tr></table></figure>
 <hr>
 <blockquote>
-<h4 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h4><h4 id="欢迎指正补充，可联系lionsom-lin-qq-com"><a href="#欢迎指正补充，可联系lionsom-lin-qq-com" class="headerlink" title="欢迎指正补充，可联系lionsom_lin@qq.com"></a>欢迎指正补充，可联系<a href="lionsom_lin@qq.com">lionsom_lin@qq.com</a></h4><h4 id="原文地址：Mac安装CocoaPods详解"><a href="#原文地址：Mac安装CocoaPods详解" class="headerlink" title="原文地址：Mac安装CocoaPods详解"></a>原文地址：<a href="http://lionsom.com/2018/03/21/Mac安装CocoaPods详解/" target="_blank" rel="noopener">Mac安装CocoaPods详解</a></h4></blockquote>
+<h4 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h4><p><strong>欢迎指正补充，可联系<a href="lionsom_lin@qq.com">lionsom_lin@qq.com</a></strong><br><strong>原文地址：<a href="http://lionsom.com/2018/03/21/Mac安装CocoaPods详解/" target="_blank" rel="noopener">Mac安装CocoaPods详解</a></strong></p>
+</blockquote>
 
       
 
@@ -394,7 +414,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Ruby环境的安装"><span class="toc-number">1.</span> <span class="toc-text">一、Ruby环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、安装系统需要的包"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、安装系统需要的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、Homebrew安装"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、Homebrew安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1、Homebrew是神马"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1、Homebrew是神马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2、是否已安装Homebrew"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2、是否已安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3、安装Homebrew"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3、安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4、更多详情，请前往Homebrew官网查看"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4、更多详情，请前往Homebrew官网查看</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、安装RVM"><span class="toc-number">1.3.</span> <span class="toc-text">1.3、安装RVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1、RVM是什么？"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1、RVM是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2、具体安装步骤"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2、具体安装步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、使用RVM安装Ruby环境"><span class="toc-number">1.4.</span> <span class="toc-text">1.4、使用RVM安装Ruby环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、设置-Ruby-版本"><span class="toc-number">1.5.</span> <span class="toc-text">1.5、设置 Ruby 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、替换Ruby源为taobao-org"><span class="toc-number">1.6.</span> <span class="toc-text">1.6、替换Ruby源为taobao.org</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装CocoaPods"><span class="toc-number">2.</span> <span class="toc-text">2、安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、CocoaPods是什么？"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、CocoaPods是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、直接安装CocoaPods"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、直接安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">2.2.1.</span> <span class="toc-text">完结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#欢迎指正补充，可联系lionsom-lin-qq-com"><span class="toc-number">2.2.2.</span> <span class="toc-text">欢迎指正补充，可联系lionsom_lin@qq.com</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原文地址：Mac安装CocoaPods详解"><span class="toc-number">2.2.3.</span> <span class="toc-text">原文地址：Mac安装CocoaPods详解</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Ruby环境的安装"><span class="toc-number">2.</span> <span class="toc-text">一、Ruby环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、安装系统需要的包"><span class="toc-number">2.1.</span> <span class="toc-text">1.1、安装系统需要的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、Homebrew安装"><span class="toc-number">2.2.</span> <span class="toc-text">1.2、Homebrew安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1、Homebrew是神马"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.2.1、Homebrew是神马</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2、是否已安装Homebrew"><span class="toc-number">2.2.2.</span> <span class="toc-text">1.2.2、是否已安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3、安装Homebrew"><span class="toc-number">2.2.3.</span> <span class="toc-text">1.2.3、安装Homebrew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4、更多详情，请前往Homebrew官网查看"><span class="toc-number">2.2.4.</span> <span class="toc-text">1.2.4、更多详情，请前往Homebrew官网查看</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、安装RVM"><span class="toc-number">2.3.</span> <span class="toc-text">1.3、安装RVM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1、RVM是什么？"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.3.1、RVM是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2、具体安装步骤"><span class="toc-number">2.3.2.</span> <span class="toc-text">1.3.2、具体安装步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、使用RVM安装Ruby环境"><span class="toc-number">2.4.</span> <span class="toc-text">1.4、使用RVM安装Ruby环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、设置-Ruby-版本"><span class="toc-number">2.5.</span> <span class="toc-text">1.5、设置 Ruby 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、替换Ruby源为taobao-org"><span class="toc-number">2.6.</span> <span class="toc-text">1.6、替换Ruby源为taobao.org</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、安装CocoaPods"><span class="toc-number">3.</span> <span class="toc-text">2、安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、CocoaPods是什么？"><span class="toc-number">3.1.</span> <span class="toc-text">2.1、CocoaPods是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、直接安装CocoaPods"><span class="toc-number">3.2.</span> <span class="toc-text">2.2、直接安装CocoaPods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">3.2.1.</span> <span class="toc-text">完结</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -516,6 +536,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
@@ -525,14 +553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
             
             <div class="clearfix"></div>
