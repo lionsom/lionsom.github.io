@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SDWebImage4.0源码探究（一）UML类图和时序图 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、SDWebImage类图和时序图  二、UML类图阅读规则UML基本使用–类图 UML Class类图的3个基本组件：类名，属性，方法。在描述方法时可以通过在方法下面添加一个横线来区分类方法和实例方法,以及在后面添加 readOnly 来表明只读属性  UML Protocol 常见的关系 ####继承（Generalization）  【定义】：表示的是子类和父类的关系，例如猫和动物的关系一">
+  <meta name="description" content="目录 SDWebImage类图和时序图 UML类图阅读规则 UML时序图阅读规则">
 <meta name="keywords" content="SDWebImage">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDWebImage4.0源码探究（一）UML类图和时序图">
 <meta property="og:url" content="http://yoursite.com/2018/04/10/SDWebImage4-0源码探究（一）UML类图和时序图/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="一、SDWebImage类图和时序图  二、UML类图阅读规则UML基本使用–类图 UML Class类图的3个基本组件：类名，属性，方法。在描述方法时可以通过在方法下面添加一个横线来区分类方法和实例方法,以及在后面添加 readOnly 来表明只读属性  UML Protocol 常见的关系 ####继承（Generalization）  【定义】：表示的是子类和父类的关系，例如猫和动物的关系一">
+<meta property="og:description" content="目录 SDWebImage类图和时序图 UML类图阅读规则 UML时序图阅读规则">
 <meta property="og:image" content="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png">
 <meta property="og:image" content="https://github.com/rs/SDWebImage/blob/master/Docs/SDWebImageSequenceDiagram.png?raw=true">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/183487-47aa82683b4dfd5d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/241">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/183487-593a41bc51d996dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/213">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/183487-7113c45c5b39707b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/403">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/183487-5e4d615ae22da4d1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/519">
-<meta property="og:updated_time" content="2018-04-10T05:56:49.000Z">
+<meta property="og:updated_time" content="2018-04-10T10:12:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDWebImage4.0源码探究（一）UML类图和时序图">
-<meta name="twitter:description" content="一、SDWebImage类图和时序图  二、UML类图阅读规则UML基本使用–类图 UML Class类图的3个基本组件：类名，属性，方法。在描述方法时可以通过在方法下面添加一个横线来区分类方法和实例方法,以及在后面添加 readOnly 来表明只读属性  UML Protocol 常见的关系 ####继承（Generalization）  【定义】：表示的是子类和父类的关系，例如猫和动物的关系一">
+<meta name="twitter:description" content="目录 SDWebImage类图和时序图 UML类图阅读规则 UML时序图阅读规则">
 <meta name="twitter:image" content="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
@@ -186,7 +186,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、SDWebImage类图和时序图"><a href="#一、SDWebImage类图和时序图" class="headerlink" title="一、SDWebImage类图和时序图"></a>一、SDWebImage类图和时序图</h2><p><img src="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png" alt="SDWebImage类图"></p>
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>SDWebImage类图和时序图</li>
+<li>UML类图阅读规则</li>
+<li>UML时序图阅读规则</li>
+</ul>
+<a id="more"></a>
+<h2 id="一、SDWebImage类图和时序图"><a href="#一、SDWebImage类图和时序图" class="headerlink" title="一、SDWebImage类图和时序图"></a>一、SDWebImage类图和时序图</h2><p><img src="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png" alt="SDWebImage类图"></p>
 <p><img src="https://github.com/rs/SDWebImage/blob/master/Docs/SDWebImageSequenceDiagram.png?raw=true" alt="SDWebImage时序图"></p>
 <h2 id="二、UML类图阅读规则"><a href="#二、UML类图阅读规则" class="headerlink" title="二、UML类图阅读规则"></a>二、UML类图阅读规则</h2><p><a href="https://www.jianshu.com/p/10cc65dea07a" target="_blank" rel="noopener">UML基本使用–类图</a></p>
 <h4 id="UML-Class"><a href="#UML-Class" class="headerlink" title="UML Class"></a>UML Class</h4><p>类图的3个基本组件：类名，属性，方法。<br>在描述方法时可以通过在方法下面添加一个横线来区分类方法和实例方法,以及在后面添加 readOnly 来表明只读属性</p>
@@ -353,7 +359,7 @@
   
   
     <a href="/2018/03/22/SDWebImage4.0源码探究/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SDWebImage4.0源码探究（二）</div>
+      <div class="article-nav-title">SDWebImage4.0源码探究（二）框架设计</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -380,7 +386,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、SDWebImage类图和时序图"><span class="toc-number">1.</span> <span class="toc-text">一、SDWebImage类图和时序图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、UML类图阅读规则"><span class="toc-number">2.</span> <span class="toc-text">二、UML类图阅读规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML-Class"><span class="toc-number">2.0.1.</span> <span class="toc-text">UML Class</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UML-Protocol"><span class="toc-number">2.0.2.</span> <span class="toc-text">UML Protocol</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的关系"><span class="toc-number">2.0.3.</span> <span class="toc-text">常见的关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、UML时序图阅读规则"><span class="toc-number">3.</span> <span class="toc-text">三、UML时序图阅读规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">3.0.1.</span> <span class="toc-text">完结</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、SDWebImage类图和时序图"><span class="toc-number">2.</span> <span class="toc-text">一、SDWebImage类图和时序图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、UML类图阅读规则"><span class="toc-number">3.</span> <span class="toc-text">二、UML类图阅读规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UML-Class"><span class="toc-number">3.0.1.</span> <span class="toc-text">UML Class</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UML-Protocol"><span class="toc-number">3.0.2.</span> <span class="toc-text">UML Protocol</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的关系"><span class="toc-number">3.0.3.</span> <span class="toc-text">常见的关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、UML时序图阅读规则"><span class="toc-number">4.</span> <span class="toc-text">三、UML时序图阅读规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完结"><span class="toc-number">4.0.1.</span> <span class="toc-text">完结</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
