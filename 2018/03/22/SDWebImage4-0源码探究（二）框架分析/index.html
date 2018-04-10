@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>SDWebImage4.0源码探究（二）框架设计 | 欢迎来到lionsom的blog</title>
+  <title>SDWebImage4.0源码探究（二）框架分析 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="目录 SDWebImage UML分析 SDWebImage 中@autoreleasepool的应用 SDWebImage 支持GIF动图吗？ SDWebImage 如何区分图片格式？ SDWebImage 缓存图片的名称如何避免重名 SDWebImage 如何保证UI操作放在主线程中执行？ SDWebImage 的最大并发数 和 超时时长 SDWebImage 的Memory缓存是用什么实现的">
 <meta name="keywords" content="SDWebImage">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SDWebImage4.0源码探究（二）框架设计">
-<meta property="og:url" content="http://yoursite.com/2018/03/22/SDWebImage4.0源码探究/index.html">
+<meta property="og:title" content="SDWebImage4.0源码探究（二）框架分析">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/SDWebImage4-0源码探究（二）框架分析/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
 <meta property="og:description" content="目录 SDWebImage UML分析 SDWebImage 中@autoreleasepool的应用 SDWebImage 支持GIF动图吗？ SDWebImage 如何区分图片格式？ SDWebImage 缓存图片的名称如何避免重名 SDWebImage 如何保证UI操作放在主线程中执行？ SDWebImage 的最大并发数 和 超时时长 SDWebImage 的Memory缓存是用什么实现的">
 <meta property="og:image" content="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png">
@@ -20,9 +20,9 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1859399-b106e48344d3ebef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1859399-66c9b525aa5c5175.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/rac_issue_queue_thread.png">
-<meta property="og:updated_time" content="2018-04-10T10:14:25.000Z">
+<meta property="og:updated_time" content="2018-04-09T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SDWebImage4.0源码探究（二）框架设计">
+<meta name="twitter:title" content="SDWebImage4.0源码探究（二）框架分析">
 <meta name="twitter:description" content="目录 SDWebImage UML分析 SDWebImage 中@autoreleasepool的应用 SDWebImage 支持GIF动图吗？ SDWebImage 如何区分图片格式？ SDWebImage 缓存图片的名称如何避免重名 SDWebImage 如何保证UI操作放在主线程中执行？ SDWebImage 的最大并发数 和 超时时长 SDWebImage 的Memory缓存是用什么实现的">
 <meta name="twitter:image" content="https://github.com/rs/SDWebImage/raw/master/Docs/SDWebImageClassDiagram.png">
   
@@ -160,19 +160,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SDWebImage4.0源码探究" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SDWebImage4-0源码探究（二）框架分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      SDWebImage4.0源码探究（二）框架设计
+      SDWebImage4.0源码探究（二）框架分析
     </h1>
   
 
         
-        <a href="/2018/03/22/SDWebImage4.0源码探究/" class="archive-article-date">
+        <a href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/" class="archive-article-date">
   	<time datetime="2018-03-22T06:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
 </a>
         
@@ -487,7 +487,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/22/SDWebImage4.0源码探究/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/22/SDWebImage4-0源码探究（二）框架分析/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -661,10 +661,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -682,6 +678,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
               </li>
             
             <div class="clearfix"></div>
