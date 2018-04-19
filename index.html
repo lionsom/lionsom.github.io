@@ -267,18 +267,20 @@
       
         <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
 <li>一、SDWebImage UML分析</li>
-<li>二、SDWebImage 中@autoreleasepool的应用</li>
-<li>三、SDWebImage 支持GIF动图吗？</li>
-<li>四、SDWebImage 如何区分图片格式？</li>
-<li>五、SDWebImage 缓存图片的名称如何避免重名</li>
-<li>六、SDWebImage 如何保证UI操作放在主线程中执行？</li>
-<li>七、SDWebImage 的最大并发数 和 超时时长</li>
-<li>八、SDWebImage 的Memory缓存是用什么实现的？</li>
-<li>九、SDWebImage 的内存缓存是用什么实现的？</li>
-<li>十、SDWebImage 读取Memory和Disk的时候如何保证线程安全？</li>
-<li>十一、SDWebImage 的Memory警告是如何处理的！</li>
+<li>二、SDWebImage 中 <strong>@autoreleasepool</strong> 的应用</li>
+<li>三、SDWebImage 支持 <strong>GIF动图</strong> 吗？</li>
+<li>四、SDWebImage 如何 <strong>区分图片格式</strong>？</li>
+<li>五、SDWebImage 缓存图片的名称如何 <strong>避免重名</strong>？</li>
+<li>六、SDWebImage 中 <strong>常量的定义</strong></li>
+<li>七、SDWebImage 如何保证UI操作放在主线程中执行？</li>
+<li>八、SDWebImage 的 <strong>最大并发数</strong> 和 <strong>超时时长</strong></li>
+<li>九、SDWebImage 的Memory缓存和Disk缓存是用什么实现的？</li>
+<li>十、SDWebImage 读取Memory和Disk的时候如何保证 <strong>线程安全</strong>？</li>
+<li>十一、SDWebImage 的 <strong>Memory警告</strong> 是如何处理的！</li>
 <li>十二、SDWebImage Disk缓存时长？ Disk清理操作时间点？ Disk清理原则？</li>
-<li>十三、SDWebImage Disk目录位于哪里？</li>
+<li>十三、SDWebImage <strong>Disk目录</strong> 位于哪里？</li>
+<li>十四、SDWebImage 的回调设计？</li>
+<li>十五、SDWebImage 中 <strong>NS_OPTIONS</strong> 与 <strong>NS_ENUM</strong> 的使用</li>
 </ul>
         
           <a class="article-more-a" href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/#more">more >></a>
@@ -752,6 +754,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -760,7 +766,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
+                <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,10 +775,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">崩溃</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
             
             <div class="clearfix"></div>
