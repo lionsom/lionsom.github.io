@@ -6,17 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Hexo | 欢迎来到lionsom的blog</title>
+  <title>《网络是怎样连接的》阅读整理 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建于2018年03月">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到lionsom的blog">
-<meta property="og:url" content="http://yoursite.com/tags/Hexo/index.html">
+  <meta name="description" content="目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《网络是怎样连接的》阅读整理">
+<meta property="og:url" content="http://yoursite.com/2018/06/03/HowNetWork/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="创建于2018年03月">
+<meta property="og:description" content="目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%9B%AE%E5%BD%95.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/URL%E5%90%84%E7%A7%8D%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E6%A0%BC%E5%BC%8FURL%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B01.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B02.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B03.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP:IP%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
+<meta property="og:updated_time" content="2018-06-03T15:26:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欢迎来到lionsom的blog">
-<meta name="twitter:description" content="创建于2018年03月">
+<meta name="twitter:title" content="《网络是怎样连接的》阅读整理">
+<meta name="twitter:description" content="目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+<meta name="twitter:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
   
@@ -152,75 +167,310 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-HowNetWork" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/16/Hexo-github搭建myblog完整版/" class="archive-article-date">
-  	<time datetime="2018-03-16T07:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/16/Hexo-github搭建myblog完整版/">Mac+Hexo+github搭建myblog完整版</a>
+    <h1 class="article-title" itemprop="name">
+      《网络是怎样连接的》阅读整理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/03/HowNetWork/" class="archive-article-date">
+  	<time datetime="2018-06-03T14:55:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>前序</li>
+<li>生成HTTP请求消息</li>
+<li>向DNS服务器查询Web服务器的IP地址</li>
+</ul>
+<a id="more"></a>
+<h2 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h2><p>为什么会读这本书？作为一名普通的iOS开发者，在iOS开发过程中一般使用三方库<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="noopener">AFNetworking</a>来进行网络请求，很少使用到系统的网络请求接口<a href="https://developer.apple.com/documentation/foundation/nsurlsession?language=occ" target="_blank" rel="noopener">NSURLSession</a>，顶多顶多使用过<a href="https://developer.apple.com/documentation/foundation/socketport/1399492-socket" target="_blank" rel="noopener">socket</a>套接字进行网络请求，<a href="https://github.com/lionsom/FastDFS_iOS_demo" target="_blank" rel="noopener">这里</a>是我用socket与FastDFS文件服务器进行交互的一个demo。所以我们作为上层开发者一般只会使用规定好的接口，根本不会在意网络请求底层是如何实现或者说是如何传递数据的，基于这种情况，我也就很好奇网络请求底层是如何如何的。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png" alt="作者：[日]户根勤"></p>
+<p>于是我也就在亚马逊上挑选了这本《网络是怎样连接的》书籍来进行阅读，希望能从中得到些许启发，借此文章来记录一些我对网络的理解。</p>
+<h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%9B%AE%E5%BD%95.png" alt="整体结构"></p>
+<h3 id="一、生成HTTP请求消息"><a href="#一、生成HTTP请求消息" class="headerlink" title="一、生成HTTP请求消息"></a>一、生成HTTP请求消息</h3><ul>
+<li><h4 id="浏览器输入URL"><a href="#浏览器输入URL" class="headerlink" title="浏览器输入URL"></a>浏览器输入URL</h4></li>
+</ul>
+<blockquote>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+</blockquote>
+<ul>
+<li><h4 id="首先根据HTTP的规则，解析URL"><a href="#首先根据HTTP的规则，解析URL" class="headerlink" title="首先根据HTTP的规则，解析URL"></a>首先根据HTTP的规则，解析URL</h4></li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/URL%E5%90%84%E7%A7%8D%E6%A0%BC%E5%BC%8F.png" alt=""></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E6%A0%BC%E5%BC%8FURL%E8%A7%A3%E6%9E%90.png" alt=""></p>
+<ul>
+<li><h4 id="URL省略文件名的几种情况"><a href="#URL省略文件名的几种情况" class="headerlink" title="URL省略文件名的几种情况"></a>URL省略文件名的几种情况</h4><strong>a）、<a href="http://www.baidu.com/dir/" target="_blank" rel="noopener">http://www.baidu.com/dir/</a></strong><blockquote>
+<p>在<code>/dir/</code>后面省略了访问的文件名，服务器已经默认设置在省略文件名情况下要访问的默认文件名，一般都会访问<code>/dir/index.html</code>或者<code>/dir/default.html</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>b）、<a href="http://www.baidu.com/dir" target="_blank" rel="noopener">http://www.baidu.com/dir</a></strong></p>
+<blockquote>
+<p>一般处理方案：如果web服务器上存在dir文件，则将dir当作文件名来处理；如果web服务器上存在名为dir的目录，则将dir当作目录来处理。</p>
+</blockquote>
+<p><strong>c）、<a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a></strong></p>
+<blockquote>
+<p>这个URL表示：它访问一个名叫<code>/</code>的目录。由于省略了文件名，所以根据上一种情况，它访问的文件也就是<code>/index.html</code>或者<code>/default.html</code>。<br>注释：<code>/</code>目录表示的是目录层级中最顶级的『根目录』。</p>
+</blockquote>
+<p><strong>d）、<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></strong></p>
+<blockquote>
+<p>没有路径时，表示访问<code>根目录</code>下事先设置的默认文件夹，也就是<code>/index.html</code>或者<code>/default.html</code>。</p>
+</blockquote>
+<ul>
+<li><h4 id="HTTP的基本思路"><a href="#HTTP的基本思路" class="headerlink" title="HTTP的基本思路"></a>HTTP的基本思路</h4></li>
+</ul>
+<blockquote>
+<h5 id="HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"><a href="#HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤" class="headerlink" title="HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"></a>HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤</h5></blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt=""></p>
+<p>HTTP请求消息包含『对什么』和『进行怎样的操作』两个部分。<br>其中相当于『对什么』的部分称为<strong>URI</strong>。一般来说URI的内容是一个存放网页的文件名或者是一个CGI程序的文件名，例如”/dir/file.html”、”/dir/program.cgi”等。<br>其中『进行怎样的操作』的部分称为<strong>方法</strong>。方法表示需要让web服务器完成怎样的工作，其中典型的例子包括读取URI表示的数据、将客户端输入的数据传递给CGI程序等。</p>
+<p><strong>URI：Uniform Resource Identifier，统一资源标识符</strong><br><strong>CGI程序：对web服务器程序调用其他程序的规则所做的定义就是CGI，安装这个规则来工作的程序就是CGI程序。</strong></p>
+<p><strong>HTTP的主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">获取URI指定的信息，如果URI指定的文件，则返回文件的内容；如果URI指定的是CGI程序，则返回该程序的输出数据</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">从客户端向服务器发送数据。一般用于发送表单中填写的数据等情况下。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><h4 id="生成HTTP请求消息"><a href="#生成HTTP请求消息" class="headerlink" title="生成HTTP请求消息"></a>生成HTTP请求消息</h4></li>
+</ul>
+<p>HTTP消息在格式上是有严格规定的，因此浏览器会按照规定的格式来生成请求消息。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF.png" alt=""></p>
+<ul>
+<li><h4 id="发送请求后收到响应消息"><a href="#发送请求后收到响应消息" class="headerlink" title="发送请求后收到响应消息"></a>发送请求后收到响应消息</h4></li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF.png" alt=""></p>
+<p><strong>响应状态码</strong></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81.png" alt=""></p>
+<ul>
+<li><h4 id="请求网页中包含图片"><a href="#请求网页中包含图片" class="headerlink" title="请求网页中包含图片"></a>请求网页中包含图片</h4></li>
+</ul>
+<blockquote>
+<h5 id="1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"><a href="#1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求" class="headerlink" title="1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"></a>1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求</h5></blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B01.png" alt=""></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B02.png" alt=""></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B03.png" alt=""></p>
+<h3 id="二、向DNS服务器查询Web服务器的IP地址"><a href="#二、向DNS服务器查询Web服务器的IP地址" class="headerlink" title="二、向DNS服务器查询Web服务器的IP地址"></a>二、向DNS服务器查询Web服务器的IP地址</h3><blockquote>
+<p>浏览器能够解析网址并生成HTTP消息，但它本身不具备将消息发送到网络的功能，因此这一功能需要委托操作系统来实现。在委托操作系统发送消息时，必须提供通讯对象的IP地址，而不是域名，因此在HTTP消息之后，我们需要根据域名查询IP地址。</p>
+</blockquote>
+<ul>
+<li><h4 id="TCP-IP网络"><a href="#TCP-IP网络" class="headerlink" title="TCP/IP网络"></a>TCP/IP网络</h4>互联网和公司内部的局域网都是基于TCP/IP的思路来设计的，TCP/IP的结构就是由一些小的子网，通过路由器连接起来组成一个大的网络，这里的子网可以理解为用集线器连接起来的几台计算机，我们将它看成一个单位，称为子网，将子网通过路由器连接起来，就形成一个网络。</li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP:IP%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" alt=""></p>
+<ul>
+<li><h4 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h4><blockquote>
+<p>在网络中，所有的设备都会被分配一个地址，这个地址就相当于显示中某一条路上的”XX号XX室”，其中”号”对应的号码是分配给整个子网的，而”室”对应的号码是分配给子网中的计算机的，这就是网络中的地址。<strong>“号”称为网络号，”室”称为主机号</strong>，整个地址称为<code>IP地址</code>。<br><code>IP地址 = 网络号 + 主机号</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>预热：数据传递过程</strong><br>通过IP地址我们可以判断出访问对象服务器的位置，从而将消息发送到服务器。消息传送的具体过程在后面的章节有详细讲解，不过现在我们先简单了解一下。发送者发出的消息首先经过子网中的集线器，转发到距离发送者最近的路由器上（上图①）。接下来，路由器会根据消息的目的地判断下一个路由器的位置，然后将消息发送到下一个路由器，即消息再次经过子网内的集线器被转发到下一个路由器（上图②）。前面的过程不断重复，最终消息就被传送到了目的地。</p>
+</blockquote>
+<ul>
+<li><h4 id="实际的IP地址"><a href="#实际的IP地址" class="headerlink" title="实际的IP地址"></a>实际的IP地址</h4><blockquote>
+<p>实际的IP地址是一串32比特(bit)的数字，按照8bit=1byte(字节)为一组分成4组，分别用十进制表示。这就是我们常见的IP地址格式，但仅凭这一串数字我们无法区分哪部分是网络号，哪部分是主机号。在IP地址的规则中，网络号和主机号连起来总共是32比特，但这两部分的具体结构是不固定的。在组建网络时，用户可以自行决定它们之间的分配关系，因此，我们还需要另外的附加信息来表示IP地址的内部结构。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="" alt="IP地址的表示方法"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.200</span><br><span class="line">1100 0000 . 1010 1000 . 0000 0001 . 1100 1000</span><br></pre></td></tr></table></figure>
+<p><strong>【拓展】</strong><br>问：有了 IP 地址，为什么还要用 MAC 地址？<br>答：<a href="https://www.zhihu.com/question/21546408" target="_blank" rel="noopener">知乎-有了 IP 地址，为什么还要用 MAC 地址？</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/yilia/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/yilia/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/myblog搭建//" class="article-tag-list-link color4">myblog搭建</a>
+        			<a href="/categories/Reading//" class="article-tag-list-link color3">Reading</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/03/HowNetWork/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/04/10/SDWebImage4-0源码探究（一）UML类图和时序图/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SDWebImage4.0源码探究（一）UML类图和时序图</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前序"><span class="toc-number">2.</span> <span class="toc-text">前序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体结构"><span class="toc-number">3.</span> <span class="toc-text">整体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、生成HTTP请求消息"><span class="toc-number">3.1.</span> <span class="toc-text">一、生成HTTP请求消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器输入URL"><span class="toc-number">3.1.1.</span> <span class="toc-text">浏览器输入URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#首先根据HTTP的规则，解析URL"><span class="toc-number">3.1.2.</span> <span class="toc-text">首先根据HTTP的规则，解析URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL省略文件名的几种情况"><span class="toc-number">3.1.3.</span> <span class="toc-text">URL省略文件名的几种情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP的基本思路"><span class="toc-number">3.1.4.</span> <span class="toc-text">HTTP的基本思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成HTTP请求消息"><span class="toc-number">3.1.5.</span> <span class="toc-text">生成HTTP请求消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发送请求后收到响应消息"><span class="toc-number">3.1.6.</span> <span class="toc-text">发送请求后收到响应消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求网页中包含图片"><span class="toc-number">3.1.7.</span> <span class="toc-text">请求网页中包含图片</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"><span class="toc-number">3.1.7.1.</span> <span class="toc-text">1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、向DNS服务器查询Web服务器的IP地址"><span class="toc-number">3.2.</span> <span class="toc-text">二、向DNS服务器查询Web服务器的IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP网络"><span class="toc-number">3.2.1.</span> <span class="toc-text">TCP/IP网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP地址"><span class="toc-number">3.2.2.</span> <span class="toc-text">IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实际的IP地址"><span class="toc-number">3.2.3.</span> <span class="toc-text">实际的IP地址</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -253,9 +503,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: false,
