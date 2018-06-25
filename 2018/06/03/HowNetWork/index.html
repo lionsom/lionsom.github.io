@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>《网络是怎样连接的》阅读整理 | 欢迎来到lionsom的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+  <meta name="description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 一、生成HTTP请求消息 二、向DNS服务器查询Web服务器的IP地址 三、浏览器委托协议栈发送消息 四、IP与以太网的包收发操作 五、集线器、交换机、路由器 六、探索接入网和网络运营商（没有深入了解） 七、服务器端的局域网中有什么玄机 八、请求到达Web服务器">
 <meta name="keywords" content="网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《网络是怎样连接的》阅读整理">
 <meta property="og:url" content="http://yoursite.com/2018/06/03/HowNetWork/index.html">
 <meta property="og:site_name" content="欢迎来到lionsom的blog">
-<meta property="og:description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+<meta property="og:description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 一、生成HTTP请求消息 二、向DNS服务器查询Web服务器的IP地址 三、浏览器委托协议栈发送消息 四、IP与以太网的包收发操作 五、集线器、交换机、路由器 六、探索接入网和网络运营商（没有深入了解） 七、服务器端的局域网中有什么玄机 八、请求到达Web服务器">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%9B%AE%E5%BD%95.png">
-<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/URL%E5%90%84%E7%A7%8D%E6%A0%BC%E5%BC%8F.png">
-<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E6%A0%BC%E5%BC%8FURL%E8%A7%A3%E6%9E%90.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%80%BB%E7%BA%B21.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%80%BB%E7%BA%B22.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/3/163c64fc435d748f?w=643&h=854&f=jpeg&s=88415">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/3/163c64fc17878ac4?w=659&h=493&f=jpeg&s=57769">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF.png">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF.png">
@@ -27,10 +29,60 @@
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B02.png">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B03.png">
 <meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP:IP%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
-<meta property="og:updated_time" content="2018-06-03T15:48:12.000Z">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%9C%B0%E5%9D%80%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%B3%95.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%9C%B0%E5%9D%80%E7%9A%84%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/C%E8%AF%AD%E8%A8%80gethostbyname.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E7%9A%84IP%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%9F%A5%E6%89%BE%E7%9B%AE%E6%A0%87DNS%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%AF%A6%E7%BB%86.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket%E4%BD%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8B%E5%A5%97%E6%8E%A5%E5%AD%97.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E5%A4%B4%E9%83%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BB%9C%E5%8C%85%E4%B8%AD%E5%A4%B4%E9%83%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E8%BF%9E%E6%8E%A5%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MTU:MSS.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%95%B0%E6%8D%AE%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ACK%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket_Close.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%96%AD%E5%BC%80%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%8C%85.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E6%A8%A1%E5%9D%97%E5%B7%A5%E4%BD%9C%E5%9B%BE.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%A4%B4%E9%83%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8BRouteTable.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Windows%E6%9F%A5%E7%9C%8BRouteTable.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MAC%E5%A4%B4%E9%83%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ARP%E5%B7%A5%E4%BD%9C%E5%9B%BE.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8BARP%E7%BC%93%E5%AD%98.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Windows%E6%9F%A5%E7%9C%8BARP%E7%BC%93%E5%AD%98.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MAC%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%8C%85%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%8C%85%E7%9A%84%E6%8A%A5%E5%A4%B4.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%97%B6%E9%92%9F%E6%B5%8B%E9%87%8F%E8%AF%BB%E5%8F%96%E4%BF%A1%E5%8F%B7.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ICMP%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%B8%83%E5%B1%80.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%88%B0%E9%9B%86%E7%BA%BF%E5%99%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BA%BF%E4%BF%A1%E5%8F%B7%E8%A1%B0%E5%BC%B1.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%8F%8C%E7%BB%9E%E7%BA%BF%E5%AF%B9%E5%99%AA%E5%A3%B0%E7%9A%84%E6%8A%91%E5%88%B6.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B7%AF%E7%94%B1%E8%A1%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E9%98%B2%E7%81%AB%E5%A2%99.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%99%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%89%E7%A7%8D%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%94%B5%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%BF%98%E5%8E%9F%E6%95%B0%E5%AD%97%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E8%BF%9E%E6%8E%A5%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%96%AD%E5%BC%80%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:updated_time" content="2018-06-25T16:58:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《网络是怎样连接的》阅读整理">
-<meta name="twitter:description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 生成HTTP请求消息 向DNS服务器查询Web服务器的IP地址">
+<meta name="twitter:description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：《网络是怎样连接的》阅读整理  目录 前序 一、生成HTTP请求消息 二、向DNS服务器查询Web服务器的IP地址 三、浏览器委托协议栈发送消息 四、IP与以太网的包收发操作 五、集线器、交换机、路由器 六、探索接入网和网络运营商（没有深入了解） 七、服务器端的局域网中有什么玄机 八、请求到达Web服务器">
 <meta name="twitter:image" content="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png">
   
     <link rel="alternative" href="/atom.xml" title="欢迎来到lionsom的blog" type="application/atom+xml">
@@ -194,31 +246,49 @@
 </blockquote>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
 <li>前序</li>
-<li>生成HTTP请求消息</li>
-<li>向DNS服务器查询Web服务器的IP地址</li>
+<li>一、生成HTTP请求消息</li>
+<li>二、向DNS服务器查询Web服务器的IP地址</li>
+<li>三、浏览器委托协议栈发送消息</li>
+<li>四、IP与以太网的包收发操作</li>
+<li>五、集线器、交换机、路由器</li>
+<li>六、探索接入网和网络运营商（没有深入了解）</li>
+<li>七、服务器端的局域网中有什么玄机</li>
+<li>八、请求到达Web服务器，响应返回浏览器</li>
 </ul>
 <a id="more"></a>
+<hr>
+<hr>
+<h2 id="macOS-Sierra-网络实用工具帮助"><a href="#macOS-Sierra-网络实用工具帮助" class="headerlink" title="macOS Sierra: 网络实用工具帮助"></a><a href="https://support.apple.com/kb/PH25801?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">macOS Sierra: 网络实用工具帮助</a></h2><ul>
+<li><p><a href="https://support.apple.com/kb/PH25352?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">检查您的网络连接</a></p>
+</li>
+<li><p><a href="https://support.apple.com/kb/PH25178?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">查看网络路由表和统计数据</a></p>
+</li>
+<li><p><a href="https://support.apple.com/kb/PH25238?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">测试您是否可以联系另一台电脑</a></p>
+</li>
+<li><p><a href="https://support.apple.com/kb/PH25354?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">测试 DNS 服务器</a></p>
+</li>
+<li><p><a href="https://support.apple.com/kb/PH25356?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">追踪网络通信的路径</a></p>
+</li>
+<li><p><a href="https://support.apple.com/kb/PH25357?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">检查开放的 TCP 端口</a></p>
+</li>
+</ul>
+<hr>
+<hr>
 <h2 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h2><p>为什么会读这本书？作为一名普通的iOS开发者，在iOS开发过程中一般使用三方库<a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="noopener">AFNetworking</a>来进行网络请求，很少使用到系统的网络请求接口<a href="https://developer.apple.com/documentation/foundation/nsurlsession?language=occ" target="_blank" rel="noopener">NSURLSession</a>，顶多顶多使用过<a href="https://developer.apple.com/documentation/foundation/socketport/1399492-socket" target="_blank" rel="noopener">socket</a>套接字进行网络请求，<a href="https://github.com/lionsom/FastDFS_iOS_demo" target="_blank" rel="noopener">这里</a>是我用socket与FastDFS文件服务器进行交互的一个demo。所以我们作为上层开发者一般只会使用规定好的接口，根本不会在意网络请求底层是如何实现或者说是如何传递数据的，基于这种情况，我也就很好奇网络请求底层是如何如何的。</p>
 <p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/cover.png" alt="作者：[日]户根勤"></p>
 <p>于是我也就在亚马逊上挑选了这本《网络是怎样连接的》书籍来进行阅读，希望能从中得到些许启发，借此文章来记录一些我对网络的理解。</p>
 <h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%9B%AE%E5%BD%95.png" alt="整体结构"></p>
-<h3 id="一、生成HTTP请求消息"><a href="#一、生成HTTP请求消息" class="headerlink" title="一、生成HTTP请求消息"></a>一、生成HTTP请求消息</h3><ul>
-<li><h4 id="浏览器输入URL"><a href="#浏览器输入URL" class="headerlink" title="浏览器输入URL"></a>浏览器输入URL</h4></li>
-</ul>
-<blockquote>
+<h2 id="快速温习"><a href="#快速温习" class="headerlink" title="快速温习"></a>快速温习</h2><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%80%BB%E7%BA%B21.png" alt="总纲1"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%80%BB%E7%BA%B22.png" alt="总纲2"></p>
+<h2 id="一、生成HTTP请求消息"><a href="#一、生成HTTP请求消息" class="headerlink" title="一、生成HTTP请求消息"></a>一、生成HTTP请求消息</h2><h3 id="1-1、浏览器输入URL"><a href="#1-1、浏览器输入URL" class="headerlink" title="1.1、浏览器输入URL"></a>1.1、浏览器输入URL</h3><blockquote>
 <p><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
 </blockquote>
-<ul>
-<li><h4 id="首先根据HTTP的规则，解析URL"><a href="#首先根据HTTP的规则，解析URL" class="headerlink" title="首先根据HTTP的规则，解析URL"></a>首先根据HTTP的规则，解析URL</h4></li>
-</ul>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/URL%E5%90%84%E7%A7%8D%E6%A0%BC%E5%BC%8F.png" alt=""></p>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E6%A0%BC%E5%BC%8FURL%E8%A7%A3%E6%9E%90.png" alt=""></p>
-<ul>
-<li><h4 id="URL省略文件名的几种情况"><a href="#URL省略文件名的几种情况" class="headerlink" title="URL省略文件名的几种情况"></a>URL省略文件名的几种情况</h4><strong>a）、<a href="http://www.baidu.com/dir/" target="_blank" rel="noopener">http://www.baidu.com/dir/</a></strong><blockquote>
+<h3 id="1-2、首先根据HTTP的规则，解析URL"><a href="#1-2、首先根据HTTP的规则，解析URL" class="headerlink" title="1.2、首先根据HTTP的规则，解析URL"></a>1.2、首先根据HTTP的规则，解析URL</h3><p><img src="https://user-gold-cdn.xitu.io/2018/6/3/163c64fc435d748f?w=643&amp;h=854&amp;f=jpeg&amp;s=88415" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/3/163c64fc17878ac4?w=659&amp;h=493&amp;f=jpeg&amp;s=57769" alt=""></p>
+<h4 id="1-3、URL省略文件名的几种情况"><a href="#1-3、URL省略文件名的几种情况" class="headerlink" title="1.3、URL省略文件名的几种情况"></a>1.3、URL省略文件名的几种情况</h4><p><strong>a）、<a href="http://www.baidu.com/dir/" target="_blank" rel="noopener">http://www.baidu.com/dir/</a></strong></p>
+<blockquote>
 <p>在<code>/dir/</code>后面省略了访问的文件名，服务器已经默认设置在省略文件名情况下要访问的默认文件名，一般都会访问<code>/dir/index.html</code>或者<code>/dir/default.html</code>。</p>
 </blockquote>
-</li>
-</ul>
 <p><strong>b）、<a href="http://www.baidu.com/dir" target="_blank" rel="noopener">http://www.baidu.com/dir</a></strong></p>
 <blockquote>
 <p>一般处理方案：如果web服务器上存在dir文件，则将dir当作文件名来处理；如果web服务器上存在名为dir的目录，则将dir当作目录来处理。</p>
@@ -231,14 +301,12 @@
 <blockquote>
 <p>没有路径时，表示访问<code>根目录</code>下事先设置的默认文件夹，也就是<code>/index.html</code>或者<code>/default.html</code>。</p>
 </blockquote>
-<ul>
-<li><h4 id="HTTP的基本思路"><a href="#HTTP的基本思路" class="headerlink" title="HTTP的基本思路"></a>HTTP的基本思路</h4></li>
-</ul>
-<blockquote>
+<h3 id="1-4、HTTP的基本思路"><a href="#1-4、HTTP的基本思路" class="headerlink" title="1.4、HTTP的基本思路"></a>1.4、HTTP的基本思路</h3><blockquote>
 <h5 id="HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"><a href="#HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤" class="headerlink" title="HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"></a>HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤</h5></blockquote>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt=""></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF.png" alt="HTTP基本思路"></p>
 <p>HTTP请求消息包含『对什么』和『进行怎样的操作』两个部分。<br>其中相当于『对什么』的部分称为<strong>URI</strong>。一般来说URI的内容是一个存放网页的文件名或者是一个CGI程序的文件名，例如”/dir/file.html”、”/dir/program.cgi”等。<br>其中『进行怎样的操作』的部分称为<strong>方法</strong>。方法表示需要让web服务器完成怎样的工作，其中典型的例子包括读取URI表示的数据、将客户端输入的数据传递给CGI程序等。</p>
-<p><strong>URI：Uniform Resource Identifier，统一资源标识符</strong><br><strong>CGI程序：对web服务器程序调用其他程序的规则所做的定义就是CGI，安装这个规则来工作的程序就是CGI程序。</strong></p>
+<p><strong>URI：Uniform Resource Identifier，统一资源标识符</strong></p>
+<p><strong>CGI程序：对web服务器程序调用其他程序的规则所做的定义就是CGI，安装这个规则来工作的程序就是CGI程序。</strong></p>
 <p><strong>HTTP的主要方法</strong></p>
 <table>
 <thead>
@@ -258,50 +326,529 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li><h4 id="生成HTTP请求消息"><a href="#生成HTTP请求消息" class="headerlink" title="生成HTTP请求消息"></a>生成HTTP请求消息</h4></li>
-</ul>
-<p>HTTP消息在格式上是有严格规定的，因此浏览器会按照规定的格式来生成请求消息。</p>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF.png" alt=""></p>
-<ul>
-<li><h4 id="发送请求后收到响应消息"><a href="#发送请求后收到响应消息" class="headerlink" title="发送请求后收到响应消息"></a>发送请求后收到响应消息</h4></li>
-</ul>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF.png" alt=""></p>
+<h3 id="1-5、生成HTTP请求消息"><a href="#1-5、生成HTTP请求消息" class="headerlink" title="1.5、生成HTTP请求消息"></a>1.5、生成HTTP请求消息</h3><p>HTTP消息在格式上是有严格规定的，因此浏览器会按照规定的格式来生成请求消息。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF.png" alt="HTTP请求消息"></p>
+<h3 id="1-6、发送请求后收到响应消息"><a href="#1-6、发送请求后收到响应消息" class="headerlink" title="1.6、发送请求后收到响应消息"></a>1.6、发送请求后收到响应消息</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/HTTP%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF.png" alt="HTTP响应消息"></p>
 <p><strong>响应状态码</strong></p>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81.png" alt=""></p>
-<ul>
-<li><h4 id="请求网页中包含图片"><a href="#请求网页中包含图片" class="headerlink" title="请求网页中包含图片"></a>请求网页中包含图片</h4></li>
-</ul>
-<blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81.png" alt="响应状态码"></p>
+<h4 id="1-7、请求网页中包含图片"><a href="#1-7、请求网页中包含图片" class="headerlink" title="1.7、请求网页中包含图片"></a>1.7、请求网页中包含图片</h4><blockquote>
 <h5 id="1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"><a href="#1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求" class="headerlink" title="1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"></a>1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求</h5></blockquote>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B01.png" alt=""></p>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B02.png" alt=""></p>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B03.png" alt=""></p>
-<h3 id="二、向DNS服务器查询Web服务器的IP地址"><a href="#二、向DNS服务器查询Web服务器的IP地址" class="headerlink" title="二、向DNS服务器查询Web服务器的IP地址"></a>二、向DNS服务器查询Web服务器的IP地址</h3><blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B01.png" alt="复杂网页请求流程01"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B02.png" alt="复杂网页请求流程02"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%A4%8D%E6%9D%82%E7%BD%91%E9%A1%B5%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B03.png" alt="复杂网页请求流程03"></p>
+<h2 id="二、向DNS服务器查询Web服务器的IP地址"><a href="#二、向DNS服务器查询Web服务器的IP地址" class="headerlink" title="二、向DNS服务器查询Web服务器的IP地址"></a>二、向DNS服务器查询Web服务器的IP地址</h2><blockquote>
 <p>浏览器能够解析网址并生成HTTP消息，但它本身不具备将消息发送到网络的功能，因此这一功能需要委托操作系统来实现。在委托操作系统发送消息时，必须提供通讯对象的IP地址，而不是域名，因此在HTTP消息之后，我们需要根据域名查询IP地址。</p>
 </blockquote>
-<ul>
-<li><h4 id="TCP-IP网络"><a href="#TCP-IP网络" class="headerlink" title="TCP/IP网络"></a>TCP/IP网络</h4>互联网和公司内部的局域网都是基于TCP/IP的思路来设计的，TCP/IP的结构就是由一些小的子网，通过路由器连接起来组成一个大的网络，这里的子网可以理解为用集线器连接起来的几台计算机，我们将它看成一个单位，称为子网，将子网通过路由器连接起来，就形成一个网络。</li>
-</ul>
-<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP:IP%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" alt=""></p>
-<ul>
-<li><h4 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h4><blockquote>
+<h3 id="2-1、TCP-IP网络"><a href="#2-1、TCP-IP网络" class="headerlink" title="2.1、TCP/IP网络"></a>2.1、TCP/IP网络</h3><p>互联网和公司内部的局域网都是基于TCP/IP的思路来设计的，TCP/IP的结构就是由一些小的子网，通过路由器连接起来组成一个大的网络，这里的子网可以理解为用集线器连接起来的几台计算机，我们将它看成一个单位，称为子网，将子网通过路由器连接起来，就形成一个网络。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP:IP%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" alt="TCP/IP网络结构"></p>
+<h3 id="2-2、IP地址"><a href="#2-2、IP地址" class="headerlink" title="2.2、IP地址"></a>2.2、IP地址</h3><blockquote>
 <p>在网络中，所有的设备都会被分配一个地址，这个地址就相当于显示中某一条路上的”XX号XX室”，其中”号”对应的号码是分配给整个子网的，而”室”对应的号码是分配给子网中的计算机的，这就是网络中的地址。<strong>“号”称为网络号，”室”称为主机号</strong>，整个地址称为<code>IP地址</code>。<br><code>IP地址 = 网络号 + 主机号</code></p>
 </blockquote>
-</li>
-</ul>
 <blockquote>
-<p><strong>预热：数据传递过程</strong><br>通过IP地址我们可以判断出访问对象服务器的位置，从而将消息发送到服务器。消息传送的具体过程在后面的章节有详细讲解，不过现在我们先简单了解一下。发送者发出的消息首先经过子网中的集线器，转发到距离发送者最近的路由器上（上图①）。接下来，路由器会根据消息的目的地判断下一个路由器的位置，然后将消息发送到下一个路由器，即消息再次经过子网内的集线器被转发到下一个路由器（上图②）。前面的过程不断重复，最终消息就被传送到了目的地。</p>
+<p><strong>预热：数据传递过程</strong></p>
+<p>通过IP地址我们可以判断出访问对象服务器的位置，从而将消息发送到服务器。消息传送的具体过程在后面的章节有详细讲解，不过现在我们先简单了解一下。发送者发出的消息首先经过子网中的集线器，转发到距离发送者最近的路由器上（上图①）。接下来，路由器会根据消息的目的地判断下一个路由器的位置，然后将消息发送到下一个路由器，即消息再次经过子网内的集线器被转发到下一个路由器（上图②）。前面的过程不断重复，最终消息就被传送到了目的地。</p>
 </blockquote>
-<ul>
-<li><h4 id="实际的IP地址"><a href="#实际的IP地址" class="headerlink" title="实际的IP地址"></a>实际的IP地址</h4><blockquote>
+<h3 id="2-3、IP地址结构"><a href="#2-3、IP地址结构" class="headerlink" title="2.3、IP地址结构"></a>2.3、IP地址结构</h3><blockquote>
 <p>实际的IP地址是一串32比特(bit)的数字，按照8bit=1byte(字节)为一组分成4组，分别用十进制表示。这就是我们常见的IP地址格式，但仅凭这一串数字我们无法区分哪部分是网络号，哪部分是主机号。在IP地址的规则中，网络号和主机号连起来总共是32比特，但这两部分的具体结构是不固定的。在组建网络时，用户可以自行决定它们之间的分配关系，因此，我们还需要另外的附加信息来表示IP地址的内部结构。</p>
 </blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%9C%B0%E5%9D%80%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%B3%95.png" alt="IP地址的表示方法"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%9C%B0%E5%9D%80%E7%9A%84%E7%BB%93%E6%9E%84.png" alt="IP地址举例"></p>
+<blockquote>
+<p>IP地址的主机号：</p>
+<p>全0：表示<code>整个子网</code></p>
+<p>全1：表示向子网上所有设备发送包，即<code>『广播』</code></p>
+</blockquote>
+<p><strong>【拓展】</strong></p>
+<p>问：有了 IP 地址，为什么还要用 MAC 地址？</p>
+<p>答：<a href="https://www.zhihu.com/question/21546408" target="_blank" rel="noopener">知乎-有了 IP 地址，为什么还要用 MAC 地址？</a></p>
+<h3 id="2-4、浏览器如何向DNS服务器发出查询的呢？"><a href="#2-4、浏览器如何向DNS服务器发出查询的呢？" class="headerlink" title="2.4、浏览器如何向DNS服务器发出查询的呢？"></a>2.4、浏览器如何向DNS服务器发出查询的呢？</h3><p><strong>DNS解析器</strong></p>
+<blockquote>
+<p>向 DNS服务器发出查询，也就是向DNS服务器发送查询消息，并接收服务器返回的响应消息。换句话说，对于 DNS服务器，我们的计算机上一定有相应的 DNS客户端，而相当于 DNS客户端的部分称为 <code>DNS解析器</code>，或者简称<code>解析器</code>。通过 DNS查询 IP地址的操作称为<code>域名解析</code>，因此负责执行解析（ resolution）这一操作的就叫解析器（ resolver）了。解析器实际上是一段程序，它包含在操作系统的 Socket库中。</p>
+</blockquote>
+<p><strong>库</strong></p>
+<blockquote>
+<p>首先，库到底是什么东西呢？库就是一堆通用程序组件的集合，其他的应用程序都需要使用其中的组件。库有很多好处。首先，使用现成的组件搭建应用程序可以节省编程工作量；其次，多个程序使用相同的组件可以实现程序的标准化。除此之外还有很多其他的好处，因此使用库来进行软件开发的思路已经非常普及，库的种类和数量也非常之多。</p>
+</blockquote>
+<p><strong>Socket库</strong></p>
+<blockquote>
+<p>Socket库也是一种库，是用于调用网络功能的程序组件集合。其中包含的程序组件可以让其他的应用程序调用操作系统的网络功能 ，而<code>解析器</code>就是这个库中的其中一种程序组件。</p>
+</blockquote>
+<h3 id="2-5、如何通过解析器向DNS服务器发出查询"><a href="#2-5、如何通过解析器向DNS服务器发出查询" class="headerlink" title="2.5、如何通过解析器向DNS服务器发出查询"></a>2.5、如何通过解析器向DNS服务器发出查询</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/C%E8%AF%AD%E8%A8%80gethostbyname.png" alt="代码调用查询DNS"></p>
+<p>根据域名查询 IP地址时，浏览器会使用 Socket库中的解析器。</p>
+<p>调用解析器后，解析器会向 DNS服务器发送查询消息，然后DNS服务器会返回响应消息。响应消息中包含查询到的IP地址，解析器会取出 IP地址，并将其写入浏览器指定的内存地址中。只要运行图 1.11中的这一行程序，就可以完成前面所有这些工作，我们也就完成了IP地址的查询。接下来，浏览器在向 Web服务器发送消息时，只要从该内存地址取出 IP地址，并将它与HTTP请求消息一起交给操作系统就可以了。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B.png" alt="调用解析器时，计算机内部工作流程"></p>
+<h3 id="2-6、如何获取DNS服务器IP地址？（Domain-Name-System，域名系统）"><a href="#2-6、如何获取DNS服务器IP地址？（Domain-Name-System，域名系统）" class="headerlink" title="2.6、如何获取DNS服务器IP地址？（Domain Name System，域名系统）"></a>2.6、如何获取DNS服务器IP地址？（Domain Name System，域名系统）</h3><p>向 DNS服务器发送消息时，我们当然也需要知道 DNS服务器的 IP地址。只不过这个 IP地址是作为 TCP/ IP的一个设置项目事先设置好的，不需要再去查询了。不同的操作系统中 TCP/ IP的设置方法也有差异， MAC中的设置如下图所示，解析器会根据这里设置的 DNS服务器 IP地址来发送消息。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E7%9A%84IP%E5%9C%B0%E5%9D%80.png" alt="Mac中DNS服务器地址的设置"></p>
+<h3 id="2-7、DNS服务器是如何工作的"><a href="#2-7、DNS服务器是如何工作的" class="headerlink" title="2.7、DNS服务器是如何工作的"></a>2.7、DNS服务器是如何工作的</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C.png" alt="DNS服务器基本工作"></p>
+<blockquote>
+<h4 id="DNS服务器会从域名与-IP地址的对照表中查找相应的记录，并返回-IP地址。"><a href="#DNS服务器会从域名与-IP地址的对照表中查找相应的记录，并返回-IP地址。" class="headerlink" title="DNS服务器会从域名与 IP地址的对照表中查找相应的记录，并返回 IP地址。"></a>DNS服务器会从域名与 IP地址的对照表中查找相应的记录，并返回 IP地址。</h4></blockquote>
+<p><strong>域名</strong></p>
+<blockquote>
+<p>例如：<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>服务器、邮件服务器（邮件地址中 @后面的部分）的名称</p>
+</blockquote>
+<p><strong>Class</strong></p>
+<blockquote>
+<p>在最早设计 DNS方案时， DNS在互联网以外的其他网络中的应用也被考虑到了，而 Class就是用来识别网络的信息。不过，如今除了互联网并没有其他的网络了，因此 Class的值永远是代表互联网的 IN</p>
+</blockquote>
+<p><strong>记录类型</strong></p>
+<blockquote>
+<p>例如：A = IP地址</p>
+<p>MX = 邮件服务器</p>
+<p>CNAME = 域名相关的别名</p>
+<p>表示域名对应何种类型的记录。例如，当类型为 A时，表示域名对应的是 IP地址；当类型为 MX时，表示域名对应的是邮件服务器。对于不同的记录类型，服务器向客户端返回的信息也会不同</p>
+</blockquote>
+<h3 id="2-8、如何在数万DNS服务器中找到目标DNS服务器"><a href="#2-8、如何在数万DNS服务器中找到目标DNS服务器" class="headerlink" title="2.8、如何在数万DNS服务器中找到目标DNS服务器"></a>2.8、如何在数万DNS服务器中找到目标DNS服务器</h3><p><strong>域名层次结构</strong></p>
+<blockquote>
+<p>DNS中的域名都是用句点来分隔的，比如 <a href="http://www.lab.glasscom.com，这里的句点代表了不同层次之间的界限，就相当于公司里面的组织结构不用部、科之类的名称来划分，只是用句点来分隔而已" target="_blank" rel="noopener">www.lab.glasscom.com，这里的句点代表了不同层次之间的界限，就相当于公司里面的组织结构不用部、科之类的名称来划分，只是用句点来分隔而已</a> 。</p>
+<p><code>在域名中，越靠右的位置表示其层级越高</code>，比如 www. lab. glasscom. com这个域名如果按照公司里的组织结构来说，大概就是“ com事业集团 glasscom部 lab科的 www”这样。其中，相当于一个层级的部分称为域。因此， com域的下一层是 glasscom域，再下一层是 lab域，再下面才是 www这个名字。</p>
+</blockquote>
+<p><strong>根域</strong></p>
+<blockquote>
+<p>com、jp、cn这些域（称为顶级域）就是最顶层了，它们各自负责保存下级DNS服务器的信息，但实际上并非如此。在互联网中，com和 jp的上面还有一级域，称为根域。根域不像 com、 jp那样有自己的名字，因此在一般书写域名时经常被省略，如果要明确表示根域，应该像 www. lab. glasscom. com.这样在域名的最后再加上一个句点，而这个最后的句点就代表根域。不过，一般都不写最后那个句点，因此根域的存在往往被忽略，但根域毕竟是真实存在的，根域的 DNS服务器中保管着 com、 jp等的 DNS服务器的信息。由于上级 DNS服务器保管着所有下级 DNS服务器的信息，所以我们可以从根域开始一路往下顺藤摸瓜找到任意一个域的 DNS服务器。</p>
+</blockquote>
+<p><strong>通过根域找到目标DNS服务器</strong></p>
+<blockquote>
+<p>还需要完成另一项工作，那就是将根域的 DNS服务器信息保存在互联网中所有的 DNS服务器中。这样一来，任何 DNS服务器就都可以找到并访问根域 DNS服务器了。因此，客户端只要能够找到任意一台 DNS服务器，就可以通过它找到根域 DNS服务器，然后再一路顺藤摸瓜找到位于下层的某台目标 DNS服务器。分配给根域 DNS服务器的 IP地址在全世界仅有 13个，而且这些地址几乎不发生变化，因此将这些地址保存在所有的 DNS服务器中也并不是一件难事。实际上，根域 DNS服务器的相关信息已经包含在 DNS服务器程序的配置文件中了，因此只要安装了 DNS服务器程序，这些信息也就被自动配置好了。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%9F%A5%E6%89%BE%E7%9B%AE%E6%A0%87DNS%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%AF%A6%E7%BB%86.png" alt="查找目标DNS服务器"></p>
+<h2 id="三、浏览器委托协议栈发送消息"><a href="#三、浏览器委托协议栈发送消息" class="headerlink" title="三、浏览器委托协议栈发送消息"></a>三、浏览器委托协议栈发送消息</h2><h3 id="整体流程一览图"><a href="#整体流程一览图" class="headerlink" title="整体流程一览图"></a>整体流程一览图</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket%E8%BF%9E%E6%8E%A5.png" alt="TCP整体流程"></p>
+<h3 id="3-1、创建套接字"><a href="#3-1、创建套接字" class="headerlink" title="3.1、创建套接字"></a>3.1、创建套接字</h3><blockquote>
+<h4 id="lt-描述符-gt-socket-lt-使用IPv4-gt-lt-使用TCP-gt-…"><a href="#lt-描述符-gt-socket-lt-使用IPv4-gt-lt-使用TCP-gt-…" class="headerlink" title="&lt;描述符&gt; = socket(&lt;使用IPv4&gt;,&lt;使用TCP&gt;,…)"></a>&lt;描述符&gt; = socket(&lt;使用IPv4&gt;,&lt;使用TCP&gt;,…)</h4><p>浏览器调用Socket库中socket程序组件，和调用解析器一样，调用socket之后，控制流程会转移到socket内部并执行创建套接字的操作，完成之后控制流程又会被移交回应用程序。</p>
+<p>应用程序调用 socket申请创建套接字，协议栈根据应用程序的申请执行创建套接字的操作。在这个过程中，协议栈首先会分配用于存放一个套接字所需的内存空间，然后写入初始状态。此内存空间用于记录套接字的控制信息。</p>
+<p><strong>套接字</strong> 创建成功后，协议栈会返回一个<strong>描述符</strong>，应用程序会将收到的描述符存放在内存中。</p>
+</blockquote>
+<p><strong>描述符</strong></p>
+<blockquote>
+<h4 id="应用程序是通过“描述符”这一类-似号码牌的东西来识别套接字的。"><a href="#应用程序是通过“描述符”这一类-似号码牌的东西来识别套接字的。" class="headerlink" title="应用程序是通过“描述符”这一类 似号码牌的东西来识别套接字的。"></a>应用程序是通过“描述符”这一类 似号码牌的东西来识别套接字的。</h4><p>描述符是用来识别不同的套接字的，大家可以作如下理解。我们现在只关注了浏览器访问 Web服务器的过程，但实际上计算机中会同时进行多个数据的通信操作，比如可以打开两个浏览器窗口，同时访问两台 Web服务器。这时，有两个数据收发操作在同时进行，也就需要创建两个不同的套接字。这个例子说明，同一台计算机上可能同时存在多个套接字，在这样的情况下，我们就需要一种方法来识别出某个特定的套接字，这种方法就是描述符。我们可以将描述符理解成给某个套接字分配的编号。也许光说编号还不够形象，大家可以想象一下在酒店寄存行李时的场景，酒店服务人员会给你一个号码牌，向服务人员出示号码牌，就可以取回自己寄存的行李，描述符的原理和这个差不多。当创建套接字后，我们就可以使用这个套接字来执行收发数据的操作了。这时，只要我们出示描述符，协议栈就能够判断出我们希望用哪一个套接字来连接或者收发数据了。</p>
+<p>由于套接字中记录了通信双方的信息以及通信处于怎样的状态，所以只要通过描述符确定了相应的套接字，协议栈就能够获取所有的相关信息，这样一来，应用程序就不需要每次都告诉协议栈应该和谁进行通信了。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%AC%A1.png" alt="协议栈内部"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket%E4%BD%8D%E7%BD%AE.png" alt="socket所在位置"></p>
+<p><strong>套接字</strong></p>
+<blockquote>
+<p>socket本质是编程接口(API)，对TCP/IP的封装，TCP/IP也要提供可供程序员做网络开发所用的接口，这就是Socket编程接口。</p>
+<p>套接字是网络通信过程中端点的抽象表示，包含进行网络通信必需的五种信息：连接使用的协议，本地主机的IP地址，本地进程的协议端口，远地主机的IP地址，远地进程的协议端口。</p>
+<p>socket = IP address + TCP/UDP + port。</p>
+</blockquote>
+<h3 id="Mac查看实际的套接字"><a href="#Mac查看实际的套接字" class="headerlink" title="Mac查看实际的套接字"></a>Mac查看实际的套接字</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8B%E5%A5%97%E6%8E%A5%E5%AD%97.png" alt="Mac查看实际的套接字"></p>
+<p><strong>协议栈</strong></p>
+<blockquote>
+<p>操作系统中的网络控制软件也就是协议栈，网络硬件是网卡。</p>
+</blockquote>
+<p><strong>套接字与协议栈之间的关系</strong></p>
+<blockquote>
+<p>套接字中记录了用于控制通信操作的各种控制信息，协议栈则需要根据这些信息判断下一步的行动，这就是套接字的作用。</p>
+<p>协议栈是根据套接字中记录的控制信息来工作的。</p>
+</blockquote>
+<h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>OSI七层网络模型（Open System Interconnect）</strong></th>
+<th style="text-align:center"><strong>TCP/IP网络模型</strong></th>
+<th style="text-align:center"><strong>对应网络协议</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层（Application）</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">HTTP、FTP、TFTP、SMTP、NFS</td>
+</tr>
+<tr>
+<td style="text-align:center">表示层（Presentation）</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">会话层（Session）</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">SMTP、DNS</td>
+</tr>
+<tr>
+<td style="text-align:center">传输层（Transport）</td>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">TCP、UDP</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层（Network）</td>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">IP、ARP、ICMP</td>
+</tr>
+<tr>
+<td style="text-align:center">数据链路层（Data Link）</td>
+<td style="text-align:center">数据链路层</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">物理层（Physical）</td>
+<td style="text-align:center">物理层</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-2、连接服务器"><a href="#3-2、连接服务器" class="headerlink" title="3.2、连接服务器"></a>3.2、连接服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/socket.h&gt;</span><br><span class="line">int connect(int sockfd, const struct sockaddr* servaddr, socklen_t addrlen); // 返回：成功为0，出错-1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>应用程序通过调用 Socket库中的名为 connect的程序组件来完成这一操作。</p>
+<p>第一个参数：即<strong>描述符</strong>，connect会将应用程序指定的描述符告知协议栈，然后协议栈根据这个描述符来判断到底使用哪一个套接字去和服务器端的套接字进行连接，并执行连接的操作</p>
+<p>第二个参数，即<strong>服务器 IP地址</strong>，就是通过 DNS服务器查询得到的我们要访问的服务器的 IP地址。</p>
+<p>第三个参数，即<strong>端口号</strong>，IP地址是为了区分网络中的各个计算机而分配的数值。因此，只要知道了 IP地址，我们就可以识别出网络上的某台计算机。但是，连接操作的对象是某个具体的套接字，因此必须要识别到具体的套接字才行，而仅凭IP地址是无法做到这一点的。</p>
+<p><strong><em>如果说描述符是用来在一台计算机内部识别套接字的机制，那么端口号就是用来让通信的另一方能够识别出套接字的机制。</em></strong></p>
+<p>服务器上所使用的端口号是根据应用的种类事先规定好的，仅此而已。</p>
+<p>Web是 80号端口，电子邮件是 25号端口 65</p>
+</blockquote>
+<p><strong>问题：我们知道了服务器的端口号，但是服务器不知道客户端的端口号？</strong></p>
+<blockquote>
+<p>既然确定连接对象的套接字需要使用端口号，那么服务器也得知道客户端的套接字号码才行吧，这个问题是怎么解决的呢？</p>
+<p>事情是这样的，首先，客户端在创建套接字时，协议栈会为这个套接字随便分配一个端口号。接下来，当协议栈执行连接操作时，会将这个随便分配的端口号通知给服务器。</p>
+</blockquote>
+<p><strong>连接服务器本质</strong></p>
+<blockquote>
+<p>连接实际上是通信双方交换控制信息</p>
+</blockquote>
+<p><strong>控制信息</strong></p>
+<blockquote>
+<p>通信操作中使用的控制信息分为两类。 </p>
+<p>（1）头部中记录的信息 </p>
+<p>（2）套接字（协议栈中的内存空间）中记录的信息</p>
+</blockquote>
+<p><strong>控制信息一：头部中记录的信息</strong></p>
+<blockquote>
+<p>他们是客户端和服务器相互联络时交换的控制信息。这些字段是固定的，在连接、收发、断开等各个阶段中，每次客户端和服务器之间进行通信时，都需要提供这些控制信息。具体来说，这些信息会被添加在客户端与服务器之间传递的网络包的开头。在连接阶段，由于数据收发还没有开始，网络包中没有实际的数据，只有控制信息。这些控制信息位于网络包的开头，因此被称为头部。此外，以太网和IP协议也有自己的控制信息，这些信息也叫 <strong><em>头部</em></strong>，为了避免各种不同的头部发生混淆，我们一般会记作 <strong><em>TCP头部、以太网头部、 IP头部</em></strong>。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E5%A4%B4%E9%83%A8.png" alt="TCP头部格式"></p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BB%9C%E5%8C%85%E4%B8%AD%E5%A4%B4%E9%83%A8.png" alt="网络包中各个头部"></p>
+<p><strong>控制信息二：套接字（协议栈中的内存空间）中记录的信息</strong></p>
+<blockquote>
+<p>那就是保存在套接字中，用来控制协议栈操作的信息。应用程序传递来的信息以及从通信对象接收到的信息都会保存在这里，还有收发数据操作的执行状态等信息也会保存在这里，协议栈会根据这些信息来执行每一步的操作。</p>
+</blockquote>
+<h4 id="3-2-1、连接操作的实际过程"><a href="#3-2-1、连接操作的实际过程" class="headerlink" title="3.2.1、连接操作的实际过程"></a>3.2.1、连接操作的实际过程</h4><blockquote>
+<p>这个过程是从应用程序调用 Socket库的connect开始的（看上图『整体流程一览图』中②）。 &gt;</p>
+<h4 id="connect-lt-描述符-gt-lt-服务器IP地址和端口号-gt-…"><a href="#connect-lt-描述符-gt-lt-服务器IP地址和端口号-gt-…" class="headerlink" title="connect(&lt;描述符&gt;,&lt;服务器IP地址和端口号&gt;, …)"></a>connect(&lt;描述符&gt;,&lt;服务器IP地址和端口号&gt;, …)</h4><p>连接操作的第一步是在 TCP模块处创建表示连接控制信息的头部。</p>
+<p>通过 TCP头部中的发送方和接收方端口号可以找到要连接的套接字。</p>
+</blockquote>
+<h4 id="TCP建立连接要进行“三次握手”"><a href="#TCP建立连接要进行“三次握手”" class="headerlink" title="TCP建立连接要进行“三次握手”"></a>TCP建立连接要进行“三次握手”</h4><ul>
+<li>客户端向服务器发送一个SYN J</li>
+<li>服务器向客户端响应一个SYN K，并对SYN J进行确认ACK J+1</li>
+<li>客户端再向服务器发一个确认ACK K+1</li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E8%BF%9E%E6%8E%A5%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP三次握手"></p>
+<p>从图中可以看出，当客户端调用connect时，触发了连接请求，向服务器发送了SYN J包，这时connect进入阻塞状态；服务器监听到连接请求，即收到SYN J包，调用accept函数接收请求向客户端发送SYN K ，ACK J+1，这时accept进入阻塞状态；客户端收到服务器的SYN K ，ACK J+1之后，这时connect返回，并对SYN K进行确认；服务器收到ACK K+1时，accept返回，至此三次握手完毕，连接建立。</p>
+<p>建立连接之后，协议栈的连接操作就结束了，也就是说 connect已经执行完毕，控制流程被交回到应用程序。</p>
+<h3 id="3-3、收发数据"><a href="#3-3、收发数据" class="headerlink" title="3.3、收发数据"></a>3.3、收发数据</h3><h4 id="3-3-1、将HTTP请求消息交给协议栈"><a href="#3-3-1、将HTTP请求消息交给协议栈" class="headerlink" title="3.3.1、将HTTP请求消息交给协议栈"></a>3.3.1、将HTTP请求消息交给协议栈</h4><p>接下来就进入数据收发阶段了。数据收发操作是从应用程序调用 write将要发送的数据交给协议栈开始的（看上图『整体流程一览图』中③），协议栈收到数据后执行发送操作。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MTU:MSS.png" alt="MTU/MSS"></p>
+<blockquote>
+<p>MTU： Maximum Transmission Unit，最大传输单元。一个网络包的最大长度，以太网中一般为 1500字节。</p>
+<p>MSS： Maximum Segment Size，最大分段大小。除去头部之后，一个网络包所能容纳的 TCP数据的最大长度。TCP和 IP的头部加起来一般是 40字节，因此 MTU减去这个长度就是 MSS。例如，在以太网中， MTU为 1500，因此 MSS就是 1460。 TCP/ IP可以使用一些可选参数（ protocol option），如加密等，这时头部的长度会增加，那么 MSS就会随着头部长度增加而相应缩短。</p>
+</blockquote>
+<h4 id="3-3-2、对较大数据进行拆分"><a href="#3-3-2、对较大数据进行拆分" class="headerlink" title="3.3.2、对较大数据进行拆分"></a>3.3.2、对较大数据进行拆分</h4><blockquote>
+<p>应用程序的数据一般都比较大，因此 TCP会按照网络包的大小对数据进行拆分。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%95%B0%E6%8D%AE%E6%8B%86%E5%88%86.png" alt="数据拆分"></p>
+<h4 id="3-3-3、TCP通过ACK号确保网络包是否收到"><a href="#3-3-3、TCP通过ACK号确保网络包是否收到" class="headerlink" title="3.3.3、TCP通过ACK号确保网络包是否收到"></a>3.3.3、TCP通过ACK号确保网络包是否收到</h4><blockquote>
+<p>通过“序号”和“ ACK号”可以确认接收方是否收到了网络包。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ACK%E5%8E%9F%E7%90%86.png" alt="ACK原理"></p>
+<h4 id="3-3-4、接受HTTP响应消息"><a href="#3-3-4、接受HTTP响应消息" class="headerlink" title="3.3.4、接受HTTP响应消息"></a>3.3.4、接受HTTP响应消息</h4><blockquote>
+<p>首先，浏览器在委托协议栈发送请求消息之后，会调用read程序（看上图『整体流程一览图』中④）来获取响应消息。然后，控制流程会通过read转移到协议栈，然后协议栈会执行接下来<br>的操作。和发送数据一样，接收数据也需要将数据暂存到接收缓冲区中，这里的操作过程如下。首先，协议栈尝试从接收缓冲区中取出数据并传递给应用程序，但这个时候请求消息刚刚发送出去，响应消息可能还没返回。响应消息的返回还需要等待一段时间，因此这时接收缓冲区中并没有数据，那么接收数据的操作也就无法继续。这时，协议栈会将应用程序的委托，也就是从接收缓冲区中取出数据并传递给应用程序的工作暂时挂起，等服务器返回的响应消息到达之后再继续执行接收操作。</p>
+</blockquote>
+<blockquote>
+<p>协议栈会检查收到的数据块和 TCP头部的内容，判断是否有数据丢失，如果没有问题则返回 ACK号。然后，协议栈将数据块暂存到接收缓冲区中，并将数据块按顺序连接起来还原出原始的数据，最后将数据交给应用程序。具体来说，协议栈会将接收到的数据复制到应用程序指定的内存地址中，然后将控制流程交回应用程序。将数据交给应用程序之后，协议栈还需要找到合适的时机向发送方发送窗口更新。</p>
+</blockquote>
+<h3 id="3-4、断开连接，并删除套接字"><a href="#3-4、断开连接，并删除套接字" class="headerlink" title="3.4、断开连接，并删除套接字"></a>3.4、断开连接，并删除套接字</h3><h4 id="3-4-1、从服务器端断开连接"><a href="#3-4-1、从服务器端断开连接" class="headerlink" title="3.4.1、从服务器端断开连接"></a>3.4.1、从服务器端断开连接</h4><blockquote>
+<p>这里我们以服务器一方发起断开过程为例来进行讲解。</p>
+<p>首先，服务器一方的应用程序会调用Socket库的close程序。然后，服务器的协议栈会生成包含断开信息的 TCP头部，具体来说就是将控制位中的 FIN比特设为 1。接下来，协议栈会委托 IP模块向客户端发送数据。同时，服务器的套接字中也会记录下断开操作的相关信息。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/socket_Close.png" alt="服务器端断开socket"></p>
+<h4 id="3-4-2、从客户端断开连接"><a href="#3-4-2、从客户端断开连接" class="headerlink" title="3.4.2、从客户端断开连接"></a>3.4.2、从客户端断开连接</h4><ul>
+<li>应用进程首先调用close主动关闭连接，这时TCP发送一个FIN M；</li>
+<li>另一端接收到FIN M之后，执行被动关闭，对这个FIN进行确认。它的接收也作为文件结束符传递给应用进程，因为FIN的接收意味着应用进程在相应的连接上再也接收不到额外数据；</li>
+<li>一段时间之后，接收到文件结束符的应用进程调用close关闭它的socket。这导致它的TCP也发送一个FIN N；</li>
+<li>接收到这个FIN的源发送端TCP对它进行确认。</li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%96%AD%E5%BC%80%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP客户端断开连接"></p>
+<h4 id="3-4-3、删除套接字"><a href="#3-4-3、删除套接字" class="headerlink" title="3.4.3、删除套接字"></a>3.4.3、删除套接字</h4><blockquote>
+<p>和服务器的通信结束之后，用来通信的套接字也就不会再使用了，这时我们就可以删除这个套接字了。不过，套接字并不会立即被删除，而是会等待一段时间之后再被删除。等待这段时间是为了防止误操作。</p>
+<p><strong>误操作举例</strong>：如果最后客户端返回的 ACK号丢失了，结果会如何呢？这时，服务器没有接收到  ACK号，可能会重发一次 FIN。如果这时客户端的套接字已经删除了，会发生什么事呢？套接字被删除，那么套接字中保存的控制信息也就跟着消失了，套接字对应的端口号就会被释放出来。这时，如果别的应用程序要创建套接字，新套接字碰巧又被分配了同一个端口号，而服务器重发的  FIN正好到达，会怎么样呢？本来这个 FIN是要发给刚刚删除的那个套接字的，但新套接字具有相同的端口号，于是这个 FIN就会错误地跑到新套接字里面，新套接字就开始执行断开操作了。之所以不马上删除套接字，就是为了防止这样的误操作。</p>
+</blockquote>
+<h4 id="TCP整个流程一览"><a href="#TCP整个流程一览" class="headerlink" title="TCP整个流程一览"></a>TCP整个流程一览</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B.png" alt="TCP整个流程"></p>
+<h2 id="四、IP与以太网的包收发操作"><a href="#四、IP与以太网的包收发操作" class="headerlink" title="四、IP与以太网的包收发操作"></a>四、IP与以太网的包收发操作</h2><h3 id="4-1、包的基本知识"><a href="#4-1、包的基本知识" class="headerlink" title="4.1、包的基本知识"></a>4.1、包的基本知识</h3><blockquote>
+<p><strong>TCP模块在执行连接、收发、断开等各阶段操作时，都需要委托 IP模块将数据封装成包发送给通信对象</strong>。我们在 TCP的讲解中也经常提到 IP，下面就来讨论一下 IP模块是如何将包发送给对方的。</p>
+<p>正式开始这个话题之前，我们先来介绍一下关于网络包的一些基本知识。首先，包是由头部和数据两部分构成的（下图（a））。头部包含目的地址等控制信息，大家可以把它理解为快递包裹的面单；头部后面就是委托方要发送给对方的数据，也就相当于快递包裹里的货物。一个包发往目的地的过程如图 2. 15所示。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%8C%85.png" alt="包的基本结构"></p>
+<h3 id="4-2、IP模块的作用"><a href="#4-2、IP模块的作用" class="headerlink" title="4.2、IP模块的作用"></a>4.2、IP模块的作用</h3><h4 id="4-2-1、发送包的时候，IP模块工作"><a href="#4-2-1、发送包的时候，IP模块工作" class="headerlink" title="4.2.1、发送包的时候，IP模块工作"></a>4.2.1、发送包的时候，IP模块工作</h4><blockquote>
+<p>收到委托后， IP模块会将包的内容当作一整块数据，在前面加上包含控制信息的头部。</p>
+<p><strong>IP模块负责添加如下两个头部：</strong></p>
+<p><strong><em>（1）IP头部： IP用的头部，包含 IP地址。IP头部中包含 IP协议规定的、根据 IP地址将包发往目的地所需的控制信息；</em></strong></p>
+<p><strong><em>（2）MAC头部：以太网用的头部，包含 MAC地址。MAC头部包含通过以太网的局域网将包传输至最近的路由器所需的控制信息。</em></strong></p>
+<p>总之，加上这两个头部之后，一个包就封装好了，这些就是 IP模块负责的工作。</p>
+</blockquote>
+<h4 id="4-2-2、接收包的时候，IP模块工作"><a href="#4-2-2、接收包的时候，IP模块工作" class="headerlink" title="4.2.2、接收包的时候，IP模块工作"></a>4.2.2、接收包的时候，IP模块工作</h4><blockquote>
+<p>返回的包也会通过转发设备发送回来，然后我们需要接收这个包。接收的过程和发送的过程是相反的，信息先以电信号的形式从网线传输进来，然后由网卡将其转换为数字信息并传递给 IP模块（下图中的“ ③接收”）。接下来， IP模块会将 MAC头部和 IP头部后面的内容，也就是 TCP头部加上数据块，传递给 TCP模块。接下来的操作就是我们之前讲过的 TCP模块负责的部分了。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E6%A8%A1%E5%9D%97%E5%B7%A5%E4%BD%9C%E5%9B%BE.png" alt="IP模块工作图"></p>
+<h3 id="4-3、生成包含接收方IP地址的IP头部"><a href="#4-3、生成包含接收方IP地址的IP头部" class="headerlink" title="4.3、生成包含接收方IP地址的IP头部"></a>4.3、生成包含接收方IP地址的IP头部</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/IP%E5%A4%B4%E9%83%A8.png" alt="IP头部"></p>
+<blockquote>
+<p>IP头部的“接收方 IP地址”填写通信对象的 IP地址。</p>
+<p>发送方 IP地址需要判断发送所使用的网卡，并填写该网卡的 IP地址。</p>
+</blockquote>
+<h4 id="问题来了：一台计算机多个网卡，如何设置发送方IP地址？"><a href="#问题来了：一台计算机多个网卡，如何设置发送方IP地址？" class="headerlink" title="问题来了：一台计算机多个网卡，如何设置发送方IP地址？"></a>问题来了：一台计算机多个网卡，如何设置发送方IP地址？</h4><p>很多服务器上都会安装多块网卡，这时一台计算机就有多个 IP地址，在填写发送方 IP地址时就需要判断到底应该填写哪个地址。这个判断相当于在多块网卡中判断应该使用哪一块网卡来发送这个包，也就相当于判断应该把包发往哪个路由器，因此只要确定了目标路由器，也就确定了应该使用哪块网卡，也就确定了发送方的 IP地址。</p>
+<p>那么，我们应该如何判断应该把包交给哪块网卡呢？其实和路由器使用 IP表（也叫<strong>路由表</strong>）判断下一个路由器位置的操作是一样的。因为协议栈的 IP模块与路由器中负责包收发的部分都是根据 IP协议规则来进行包收发操作的，所以它们也都用相同的方法来判断把包发送给谁。</p>
+<p><strong>（路由器收发下一章节具体说）</strong></p>
+<h4 id="查看Mac本机的路由表Route-Table"><a href="#查看Mac本机的路由表Route-Table" class="headerlink" title="查看Mac本机的路由表Route Table"></a>查看Mac本机的路由表Route Table</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8BRouteTable.png" alt="Mac查看RouteTable"></p>
+<h4 id="查看Windows本机的路由表Route-Table"><a href="#查看Windows本机的路由表Route-Table" class="headerlink" title="查看Windows本机的路由表Route Table"></a>查看Windows本机的路由表Route Table</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Windows%E6%9F%A5%E7%9C%8BRouteTable.png" alt="Windows查看RouteTable"></p>
+<h3 id="4-4、生成以太网用的MAC头部"><a href="#4-4、生成以太网用的MAC头部" class="headerlink" title="4.4、生成以太网用的MAC头部"></a>4.4、生成以太网用的MAC头部</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MAC%E5%A4%B4%E9%83%A8.png" alt="MAC头部"></p>
+<ul>
+<li><p>发送方 MAC地址</p>
+<blockquote>
+<p>发送方 MAC地址，这里填写网卡本身的 MAC地址。 MAC地址是在网卡生产时写入 ROM里的，只要将这个值读取出来写入 MAC头部就可以了。对于多块网卡的情况，请大家回想一下设置发送方 IP地址的方法 。设置发送方 IP地址时，我们已经判断出了从哪块网卡发送这个包，那么现在只要将这块网卡对应的 MAC地址填进去就好了。</p>
+</blockquote>
+</li>
+<li><p>接收方MAC地址</p>
+<blockquote>
+<p>只要告诉以太网对方的 MAC的地址，以太网就会帮我们把包发送过去，那么很显然这里应该填写对方的 MAC地址。然而，在这个时间点上，我们还没有把包发送出去，所以先得搞清楚应该把包发给谁，这个只要查一下路由表就知道了。在路由表中找到相匹配的条目，然后把包发给 Gateway列中的 IP地址就可以了。既然已经知道了包应该发给谁，那么只要将对方的 MAC地址填上去就好了，但到这里为止根本没有出现对方的 MAC地址，也就是说我们现在根本不知道对方的 MAC地址是什么。因此，我们还需要执行根据 IP地址查询 MAC地址的操作。<strong>详情看 4.4.1、通过 ARP查询目标路由器的 MAC地址</strong></p>
+<p><strong>IP模块根据路由表 Gateway栏的内容判断应该把包发送给谁。</strong></p>
+</blockquote>
 </li>
 </ul>
-<p><img src="" alt="IP地址的表示方法"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.200</span><br><span class="line">1100 0000 . 1010 1000 . 0000 0001 . 1100 1000</span><br></pre></td></tr></table></figure>
-<p><strong>【拓展】</strong><br>问：有了 IP 地址，为什么还要用 MAC 地址？<br>答：<a href="https://www.zhihu.com/question/21546408" target="_blank" rel="noopener">知乎-有了 IP 地址，为什么还要用 MAC 地址？</a></p>
+<h4 id="4-4-1、通过-ARP查询目标路由器的-MAC地址"><a href="#4-4-1、通过-ARP查询目标路由器的-MAC地址" class="headerlink" title="4.4.1、通过 ARP查询目标路由器的 MAC地址"></a>4.4.1、通过 ARP查询目标路由器的 MAC地址</h4><blockquote>
+<p>这里我们需要使用 <strong>ARP协议</strong>（网络层协议），它其实非常简单。在以太网中，有一种叫作广播的方法，可以把包发给连接在同一以太网中的所有设备。 ARP就是利用广播对所有设备提问：“ × ×这个 IP地址是谁的？请把你的 MAC地址告诉我。”然后就会有人回答：“这个 IP地址是我的，我的 MAC地址是 × × × ×。” （下图） </p>
+<p>ARP： Address Resolution Protocol，地址解析协议。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ARP%E5%B7%A5%E4%BD%9C%E5%9B%BE.png" alt="ARP工作图"></p>
+<blockquote>
+<p>通过ARP缓存提升效率，避免每次发送</p>
+</blockquote>
+<h4 id="Mac查看ARP缓存"><a href="#Mac查看ARP缓存" class="headerlink" title="Mac查看ARP缓存"></a>Mac查看ARP缓存</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Mac%E6%9F%A5%E7%9C%8BARP%E7%BC%93%E5%AD%98.png" alt="Mac查看ARP缓存"></p>
+<h4 id="Windows查看ARP缓存"><a href="#Windows查看ARP缓存" class="headerlink" title="Windows查看ARP缓存"></a>Windows查看ARP缓存</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/Windows%E6%9F%A5%E7%9C%8BARP%E7%BC%93%E5%AD%98.png" alt="Windows查看ARP缓存"></p>
+<h4 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/MAC%E6%A0%BC%E5%BC%8F.png" alt="MAC格式"></p>
+<blockquote>
+<h4 id="MAC：-Media-Access-Control的缩写。-MAC头部、-MAC地址中的-MAC也是这个意思。也就是说，通过-MAC模块控制包收发操作时所使用的头部和地址就叫作-MAC头部和-MAC地址。"><a href="#MAC：-Media-Access-Control的缩写。-MAC头部、-MAC地址中的-MAC也是这个意思。也就是说，通过-MAC模块控制包收发操作时所使用的头部和地址就叫作-MAC头部和-MAC地址。" class="headerlink" title="MAC： Media Access Control的缩写。 MAC头部、 MAC地址中的 MAC也是这个意思。也就是说，通过 MAC模块控制包收发操作时所使用的头部和地址就叫作 MAC头部和 MAC地址。"></a>MAC： Media Access Control的缩写。 MAC头部、 MAC地址中的 MAC也是这个意思。也就是说，通过 MAC模块控制包收发操作时所使用的头部和地址就叫作 MAC头部和 MAC地址。</h4></blockquote>
+<h3 id="4-5、网卡-将IP包转换成电或光信号发送出去"><a href="#4-5、网卡-将IP包转换成电或光信号发送出去" class="headerlink" title="4.5、网卡-将IP包转换成电或光信号发送出去"></a>4.5、网卡-将IP包转换成电或光信号发送出去</h3><blockquote>
+<p>IP生成的网络包只是存放在内存中的一串数字信息，没有办法直接发送给对方。因此，我们需要将数字信息转换为电或光信号，才能在网线上传输，也就是说，这才是真正的数据发送过程。负责执行这一操作的是网卡，但网卡也无法单独工作，要控制网卡还需要网卡驱动程序。驱动程序不只有网卡才有，键盘、鼠标、显卡、声卡等各种硬件设备都有。当然，不同厂商和型号的网卡在结构上有所不同，因此网卡驱动程序也是厂商开发的专用程序。</p>
+</blockquote>
+<h4 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1.png" alt="网卡"></p>
+<blockquote>
+<p><strong>网卡的 ROM中保存着全世界唯一的 MAC地址，这是在生产网卡时写入的。</strong></p>
+</blockquote>
+<h4 id="网卡是如何将包转换成电信号并发送到网线中的"><a href="#网卡是如何将包转换成电信号并发送到网线中的" class="headerlink" title="网卡是如何将包转换成电信号并发送到网线中的"></a>网卡是如何将包转换成电信号并发送到网线中的</h4><blockquote>
+<p>网卡驱动从 IP模块获取包之后，会将其复制到网卡内的缓冲区中，然后向 MAC模块发送发送包的命令。接下来就轮到 MAC模块进行工作了。首先， MAC模块会将包从缓冲区中取出，并在开头加上报头和起始帧分界符，在末尾加上用于检测错误的帧校验序列</p>
+</blockquote>
+<h4 id="给网络包再加-3个控制数据"><a href="#给网络包再加-3个控制数据" class="headerlink" title="给网络包再加 3个控制数据"></a>给网络包再加 3个控制数据</h4><p>网卡MAC模块将包从缓冲区中取出，并在开头加上 <strong><em>报头</em></strong> 和 <strong><em>起始帧分界符</em></strong>，在末尾加上用于检测错误的 <strong><em>帧校验序列</em></strong>。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%8C%85%E6%A0%BC%E5%BC%8F.png" alt="网卡包格式"></p>
+<h4 id="4-5-1、报头"><a href="#4-5-1、报头" class="headerlink" title="4.5.1、报头"></a>4.5.1、报头</h4><h4 id="报头作用"><a href="#报头作用" class="headerlink" title="报头作用"></a>报头作用</h4><blockquote>
+<p>报头是一串像 10101010…这样 1和 0交替出现的比特序列，长度为 56比特，<strong><em>它的作用是确定包的读取时机</em></strong>。当这些 1010的比特序列被转换成电信号后，会形成如图这样的波形。接收方在收到信号时，遇到这样的波形就可以判断读取数据的时机。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%8C%85%E7%9A%84%E6%8A%A5%E5%A4%B4.png" alt="网卡包的报头"></p>
+<h4 id="如何通过电信号来读取数据"><a href="#如何通过电信号来读取数据" class="headerlink" title="如何通过电信号来读取数据"></a>如何通过电信号来读取数据</h4><blockquote>
+<p>用电信号来表达数字信息时，我们需要让 0和 1两种比特分别对应特定的电压和电流，例如下图（ a）这样的电信号就可以表达数字信息。通过电信号来读取数据的过程就是将这种对应关系颠倒过来。也就是说，通过测量信号中的电压和电流变化，还原出 0和 1两种比特的值。然而，实际的信号并不像下图所示的那样有分隔每个比特的辅助线，因此在测量电压和电流时必须先判断出每个比特的界限在哪里。但是，像下图（ a）右边这种 1和 0连续出现的信号，由于电压和电流没有变化，我们就没办法判断出其中每个比特到底应该从哪里去切分。</p>
+</blockquote>
+<h4 id="通过时钟测量读取信号的时机"><a href="#通过时钟测量读取信号的时机" class="headerlink" title="通过时钟测量读取信号的时机"></a>通过时钟测量读取信号的时机</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%97%B6%E9%92%9F%E6%B5%8B%E9%87%8F%E8%AF%BB%E5%8F%96%E4%BF%A1%E5%8F%B7.png" alt="通过时钟测量读取信号的时机"></p>
+<h4 id="如何判断出其中每个比特到底应该从哪里去切分？"><a href="#如何判断出其中每个比特到底应该从哪里去切分？" class="headerlink" title="如何判断出其中每个比特到底应该从哪里去切分？"></a>如何判断出其中每个比特到底应该从哪里去切分？</h4><blockquote>
+<p>要解决这个问题，最简单的方法就是在数据信号之外再发送一组用来区分比特间隔的时钟信号。如图（ b）所示，当时钟信号从下往上变化时读取电压和电流的值，然后和 0或 1进行对应就可以了。但是这种方法存在问题。当距离较远，网线较长时，两条线路的长度会发生差异，数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。 </p>
+</blockquote>
+<h4 id="数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。"><a href="#数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。" class="headerlink" title="数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。"></a>数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。</h4><blockquote>
+<p>另外一种方法是当时钟信号从上往下变化时进行读取。要解决这个问题，可以采用将数据信号和时钟信号叠加在一起的方法。这样的信号如图（ c）所示，发送方将这样的信号发给接收方。由于时钟信号是像图（ b）这样按固定频率进行变化的，只要能够找到这个变化的周期，就可以从接收到的信号（ c）中提取出时钟信号（ b），进而通过接收信号（ c）和时钟信号（ b）计算出数据信号（ a），这和发送方将数据信号和时钟信号进行叠加的过程正好相反。然后，只要根据时钟信号（ b）的变化周期，我们就可以从数据信号（ a）中读取相应的电压和电流值，并将其还原为 0或 1的比特了。</p>
+</blockquote>
+<h4 id="4-5-2、起始帧分界符"><a href="#4-5-2、起始帧分界符" class="headerlink" title="4.5.2、起始帧分界符"></a>4.5.2、起始帧分界符</h4><blockquote>
+<p>起始帧分界符，它的末尾比特排列有少许变化。接收方以这一变化作为标记，从这里开始提取网络包数据。也就是说，起始帧分界符是一个用来表示包起始位置的标记。</p>
+</blockquote>
+<h4 id="4-5-3、帧校验序列"><a href="#4-5-3、帧校验序列" class="headerlink" title="4.5.3、帧校验序列"></a>4.5.3、帧校验序列</h4><blockquote>
+<p>末尾的 FCS（帧校验序列）用来检查包传输过程中因噪声导致的波形紊乱、数据错误，它是一串 32比特的序列，是通过一个公式对包中从头到尾的所有内容进行计算而得出来的。具体的计算公式在此省略，它和磁盘等设备中使用的 CRC错误校验码是同一种东西，当原始数据中某一个比特发生变化时，计算出来的结果就会发生变化。在包传输过程中，如果受到噪声的干扰而导致其中的数据发生了变化，那么接收方计算出的 FCS和发送方计算出的 FCS就会不同，这样我们就可以判断出数据有没有错误。</p>
+</blockquote>
+<h4 id="4-5-4、向集线器发送网络包"><a href="#4-5-4、向集线器发送网络包" class="headerlink" title="4.5.4、向集线器发送网络包"></a>4.5.4、向集线器发送网络包</h4><blockquote>
+<p>网卡的 MAC模块生成通用信号，然后由 PHY（ MAU）模块转换成可在网线中传输的格式，并通过网线发送出去。</p>
+</blockquote>
+<h3 id="4-6、接收返回包"><a href="#4-6、接收返回包" class="headerlink" title="4.6、接收返回包"></a>4.6、接收返回包</h3><h4 id="网卡接收网络包"><a href="#网卡接收网络包" class="headerlink" title="网卡接收网络包"></a>网卡接收网络包</h4><blockquote>
+<p>接收操作的第一步就是不管三七二十一把这些信号全都收进来再说。信号的开头是报头，通过报头的波形同步时钟，然后遇到起始帧分界符时开始将后面的信号转换成数字信息。这个操作和发送时是相反的，即 PHY（ MAU）模块先开始工作，然后再轮到 MAC模块。首先， PHY（ MAU）模块会将信号转换成通用格式并发送给 MAC模块， MAC模块再从头开始将信号转换为数字信息，并存放到缓冲区中。当到达信号的末尾时，还需要检查 FCS。具体来说，就是将从包开头到结尾的所有比特套用到公式中计算出 FCS，然后和包末尾的 FCS进行对比，正常情况下两者应该是一致的，如果中途受到噪声干扰而导致波形发生紊乱，则两者的值会产生差异，这时这个包就会被当作错误包而被丢弃。如果 FCS校验没有问题，接下来就要看一下 MAC头部中接收方 MAC地址与网卡在初始化时分配给自己的 MAC地址是否一致，以判断这个包是不是发给自己的。我们没必要去接收发给别人的包，因此如果不是自己的包就直接丢弃，如果接收方 MAC地址和自己 MAC地址一致，则将包放入缓冲区中 。到这里， MAC模块的工作就完成了，接下来网卡会通知计算机收到了一个包。</p>
+</blockquote>
+<h4 id="网卡中断计算机，网卡驱动从网卡缓存中读取数据"><a href="#网卡中断计算机，网卡驱动从网卡缓存中读取数据" class="headerlink" title="网卡中断计算机，网卡驱动从网卡缓存中读取数据"></a>网卡中断计算机，网卡驱动从网卡缓存中读取数据</h4><blockquote>
+<p>通知计算机的操作会使用一个叫作中断的机制。在网卡执行接收包的操作的过程中，计算机并不是一直监控着网卡的活动，而是去继续执行其他的任务。因此，如果网卡不通知计算机，计算机是不知道包已经收到了这件事的。网卡驱动也是在计算机中运行的一个程序，因此它也不知道包到达的状态。在这种情况下，我们需要一种机制能够打断计算机正在执行的任务，让计算机注意到网卡中发生的事情，这种机制就是中断。具体来说，中断的工作过程是这样的。首先，网卡向扩展总线中的中断信号线发送信号，该信号线通过计算机中的中断控制器连接到 CPU。当产生中断信号时， CPU会暂时挂起正在处理的任务，切换到操作系统中的中断处理程序 。然后，中断处理程序会调用网卡驱动，控制网卡执行相应的接收操作。</p>
+</blockquote>
+<blockquote>
+<p>网卡驱动被中断处理程序调用后，会从网卡的缓冲区中取出收到的包，并通过 MAC头部中的以太类型字段判断协议的类型。现在我们在大多数情况下都是使用 TCP/ IP协议，但除了 TCP/ IP之外还有很多其他类型的协议，例如 NetWare中使用的 IPX/ SPX，以及 Mac电脑中使用的 AppleTalk等协议。这些协议都被分配了不同的以太类型，如 0080（十六进制）代表 IP协议，网卡驱动就会把这样的包交给 TCP/ IP协议栈；如果是 809B则表示 AppleTalk协议，就把包交给 AppleTalk协议栈，以此类推。</p>
+</blockquote>
+<h3 id="4-7、将服务器的响应包从-IP传递给-TCP"><a href="#4-7、将服务器的响应包从-IP传递给-TCP" class="headerlink" title="4.7、将服务器的响应包从 IP传递给 TCP"></a>4.7、将服务器的响应包从 IP传递给 TCP</h3><blockquote>
+<p>下面我们假设 Web服务器返回了一个网络包，那么协议栈会进行哪些处理呢 100？服务器返回的包的以太类型应该是 0800，因此网卡驱动会将其交给 TCP/ IP协议栈来进行处理。接下来就轮到 IP模块先开始工作了，第一步是检查 IP头部，确认格式是否正确。如果格式没有问题，下一步就是查看接收方 IP地址。如果接收网络包的设备是一台 Windows客户端计算机，那么服务器返回的包的接收方 IP地址应该与客户端网卡的地址一致，检查确认之后我们就可以接收这个包了。</p>
+</blockquote>
+<h4 id="IP模块检查IP头部，如果接收方-IP地址不是自己的地址，通过ICMP反馈回去"><a href="#IP模块检查IP头部，如果接收方-IP地址不是自己的地址，通过ICMP反馈回去" class="headerlink" title="IP模块检查IP头部，如果接收方 IP地址不是自己的地址，通过ICMP反馈回去"></a>IP模块检查IP头部，如果接收方 IP地址不是自己的地址，通过ICMP反馈回去</h4><blockquote>
+<p>如果接收方 IP地址不是自己的地址，那一定是发生了什么错误。客户端计算机不负责对包进行转发，因此不应该收到不是发给自己的包 101。当发生这样的错误时， IP模块会通过 ICMP消息将错误告知发送方（图 2. 1）。 ICMP规定了各种类型的消息，如表所示。当我们遇到这个错误时， IP模块会通过表中的 Destination unreachable消息通知对方。从这张表的内容中我们可以看到在包的接收和转发过程中能够遇到的各种错误，因此希望大家看一看这张表。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/ICMP%E6%A0%BC%E5%BC%8F.png" alt="ICMP格式"></p>
+<h4 id="IP模块检查IP头部，如果接收方-IP地址是自己的地址，进行分片重组"><a href="#IP模块检查IP头部，如果接收方-IP地址是自己的地址，进行分片重组" class="headerlink" title="IP模块检查IP头部，如果接收方 IP地址是自己的地址，进行分片重组"></a>IP模块检查IP头部，如果接收方 IP地址是自己的地址，进行分片重组</h4><blockquote>
+<p>如果接收方 IP地址正确，则这个包会被接收下来，这时还需要完成另一项工作。 IP协议有一个叫作分片的功能。简单来说，网线和局域网中只能传输小包，因此需要将大的包切分成多个小包。如果接收到的包是经过分片的，那么 IP模块会将它们还原成原始的包。分片的包会在 IP头部的标志字段中进行标记，当收到分片的包时， IP模块会将其暂存在内部的内存空间中，然后等待 IP头部中具有相同 ID的包全部到达，这是因为同一个包的所有分片都具有相同的 ID。此外， IP头部还有一个分片偏移量（ fragment offset）字段，它表示当前分片在整个包中所处的位置。根据这些信息，在所有分片全部收到之后，就可以将它们还原成原始的包，这个操作叫作分片重组。</p>
+</blockquote>
+<h4 id="TCP模块接收包"><a href="#TCP模块接收包" class="headerlink" title="TCP模块接收包"></a>TCP模块接收包</h4><p>接下来包会被交给 TCP模块。 TCP模块会根据 IP头部中的接收方和发送方 IP地址，以及 TCP头部中的接收方和发送方端口号来查找对应的套接字。找到对应的套接字之后，就可以根据套接字中记录的通信状态，执行相应的操作了。例如，如果包的内容是应用程序数据，则返回确认接收的包，并将数据放入缓冲区，等待应用程序</p>
+<h2 id="五、集线器、交换机、路由器"><a href="#五、集线器、交换机、路由器" class="headerlink" title="五、集线器、交换机、路由器"></a>五、集线器、交换机、路由器</h2><blockquote>
+<p>（1）路由器根据目标地址判断下一个路由器的位置 </p>
+<p>（2）集线器在子网中将网络包传输到下一个路由</p>
+<p>实际上，集线器是按照以太网规则传输包的设备，而路由器是按照 IP规则传输包的设备，因此我们也可以作如下理解。 </p>
+<p>（1）IP协议根据目标地址判断下一个 IP转发设备的位置</p>
+<p>（2）子网中的以太网协议将包传输到下一个转发设备</p>
+</blockquote>
+<blockquote>
+<p>场景设定：网络包在进入互联网之前经历的传输过程。这里我们假设客户端计算机连接的局域网结构是像下图这样的。也就是说，网络包从客户端计算机发出之后，要经过集线器、交换机和路由器最终进入互联网。实际上，我们家里用的路由器已经集成了集线器和交换机的功能，像图上这样使用独立设备的情况很少见。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%B1%80%E5%9F%9F%E7%BD%91%E5%B8%83%E5%B1%80.png" alt="局域网的结构"></p>
+<h3 id="5-1、信号在网线中传播"><a href="#5-1、信号在网线中传播" class="headerlink" title="5.1、信号在网线中传播"></a>5.1、信号在网线中传播</h3><blockquote>
+<p>网卡 -&gt; 网线 -&gt; 集线器</p>
+<p>从信号流出网卡进入网线开始。网卡中的 PHY（ MAU） 2模块负责将包转换成电信号，信号通过 RJ-45接口进入双绞线，这部分的放大图如下图的右侧部分所示。以太网信号的本质是正负变化的电压，大家可以认为网卡的 PHY（ MAU）模块就是一个从正负两个信号端子输出信号的电路。</p>
+</blockquote>
+<h4 id="网卡与集线器用双绞线连接的形态"><a href="#网卡与集线器用双绞线连接的形态" class="headerlink" title="网卡与集线器用双绞线连接的形态"></a>网卡与集线器用双绞线连接的形态</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E5%8D%A1%E5%88%B0%E9%9B%86%E7%BA%BF%E5%99%A8.png" alt="网卡与集线器用双绞线连接的形态"></p>
+<h4 id="问题来了：信号衰减"><a href="#问题来了：信号衰减" class="headerlink" title="问题来了：信号衰减"></a>问题来了：信号衰减</h4><blockquote>
+<p>信号在网线的传输过程中，能量会逐渐损失。网线越长，信号衰减就越严重。集线器收到的信号有时会出现衰减。如下图。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BD%91%E7%BA%BF%E4%BF%A1%E5%8F%B7%E8%A1%B0%E5%BC%B1.png" alt="接收方信号变得难以识别"></p>
+<h4 id="“双绞”是为了抑制噪声"><a href="#“双绞”是为了抑制噪声" class="headerlink" title="“双绞”是为了抑制噪声"></a>“双绞”是为了抑制噪声</h4><blockquote>
+<p>局域网网线使用的是双绞线，其中“双绞”的意思就是以两根信号线为一组缠绕在一起，这种拧麻花一样的设计是为了抑制噪声的影响。</p>
+</blockquote>
+<h4 id="噪声是如何产生的"><a href="#噪声是如何产生的" class="headerlink" title="噪声是如何产生的"></a>噪声是如何产生的</h4><blockquote>
+<p>首先，我们来看看噪声是如何产生的。产生噪声的原因是网线周围的电磁波，当电磁波接触到金属等导体时，在其中就会产生电流。因此，如果网线周围存在电磁波，就会在网线中产生和原本的信号不同的电流。由于信号本身也是一种带有电压变化的电流，其本质和噪声产生的电流是一样的，所以信号和噪声的电流就会混杂在一起，导致信号的波形发生失真，这就是噪声的影响。</p>
+</blockquote>
+<h4 id="电磁波来源有两种：外部和内部"><a href="#电磁波来源有两种：外部和内部" class="headerlink" title="电磁波来源有两种：外部和内部"></a>电磁波来源有两种：外部和内部</h4><blockquote>
+<p>影响网线的电磁波分为两种：</p>
+<p>一种是由电机、荧光灯、 CRT显示器等设备泄漏出来的电磁波，这种电磁波来自网线之外的其他设备，</p>
+<p>另一种电磁波是从网线中相邻的信号线泄漏出来的。由于传输的信号本身就是一种电流，当电流流过时就会向周围发出电磁波，这些电磁波对于其他信号线来说就成了噪声。这种内部产生的噪声称为串扰（ crosstalk）。</p>
+</blockquote>
+<h4 id="双绞线对噪声的抑制"><a href="#双绞线对噪声的抑制" class="headerlink" title="双绞线对噪声的抑制"></a>双绞线对噪声的抑制</h4><blockquote>
+<p>a）通过两根信号线的缠绕抵消外源性噪声；</p>
+<p>b）通过改变节距抑制内源性噪声。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E5%8F%8C%E7%BB%9E%E7%BA%BF%E5%AF%B9%E5%99%AA%E5%A3%B0%E7%9A%84%E6%8A%91%E5%88%B6.png" alt="双绞线对噪声的抑制"></p>
+<h3 id="5-2、集线器将信号发往所有设备"><a href="#5-2、集线器将信号发往所有设备" class="headerlink" title="5.2、集线器将信号发往所有设备"></a>5.2、集线器将信号发往所有设备</h3><blockquote>
+<p><strong>集线器的作用?</strong></p>
+<p><strong>集线器将信号发送给所有连接在它上面的线路。</strong></p>
+</blockquote>
+<blockquote>
+<p>信号到达集线器的 PHY（ MAU）模块后，会进入中继电路。中继电路的基本功能就是将输入的信号广播到集线器的所有端口上。当然，也有一些产品具有信号整形、错误抑制等功能，但基本上就是将输入的信号原封不动地输出到网线接口。接下来，信号从所有接口流出，到达连接在集线器上的所有设备。然后，这些设备在收到信号之后会通过 MAC头部中的接收方 MAC地址判断是不是发给自己的，如果是发给自己的就接受，否则就忽略。这样，网络包就能够到达指定 MAC地址的接收方了。</p>
+</blockquote>
+<blockquote>
+<p>由于集线器只是原封不动地将信号广播出去，所以即便信号受到噪声的干扰发生了失真，也会原样发送到目的地。这时，接收信号的设备，也就是交换机、路由器、服务器等，会在将信号转换成数字信息后通过 FCS8校验发现错误，并将出错的包丢弃。当然，丢弃包并不会影响数据的传输，因为丢弃的包不会触发确认响应。因此协议栈的 TCP模块会检测到丢包，并对该包进行重传。</p>
+</blockquote>
+<h3 id="5-3、交换机的包转发操作"><a href="#5-3、交换机的包转发操作" class="headerlink" title="5.3、交换机的包转发操作"></a>5.3、交换机的包转发操作</h3><hr>
+<h3 id="对于交换机暂时理解不深刻"><a href="#对于交换机暂时理解不深刻" class="headerlink" title="对于交换机暂时理解不深刻"></a>对于交换机暂时理解不深刻</h3><hr>
+<h3 id="5-4、路由器的包转发操作"><a href="#5-4、路由器的包转发操作" class="headerlink" title="5.4、路由器的包转发操作"></a>5.4、路由器的包转发操作</h3><h4 id="5-4-1、路由器内部结构"><a href="#5-4-1、路由器内部结构" class="headerlink" title="5.4.1、路由器内部结构"></a>5.4.1、路由器内部结构</h4><blockquote>
+<p>大家只要看明白路由器包括转发模块和端口模块两部分就可以了。其中转发模块负责判断包的转发目的地，端口模块负责包的收发操作。换句话说，路由器转发模块和端口模块的关系，就相当于协议栈的 IP模块和网卡之间的关系。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="路由器内部结构"></p>
+<blockquote>
+<p><strong>路由器的各个端口都具有 MAC地址和 IP地址。</strong></p>
+</blockquote>
+<h4 id="5-4-2、路由器的工作原理"><a href="#5-4-2、路由器的工作原理" class="headerlink" title="5.4.2、路由器的工作原理"></a>5.4.2、路由器的工作原理</h4><blockquote>
+<p>路由器在转发包时，首先会通过端口将发过来的包接收进来，这一步的工作过程取决于端口对应的通信技术。对于以太网端口来说，就是按照以太网规范进行工作，而无线局域网端口则按照无线局域网的规范工作，总之就是委托端口的硬件将包接收进来。接下来，转发模块会根据接收到的包的 IP头部中记录的接收方 IP地址，在路由表中进行查询，以此判断转发目标。然后，转发模块将包转移到转发目标对应的端口，端口再按照硬件的规则将包发送出去，也就是转发模块委托端口模块将包发送出去的意思。</p>
+</blockquote>
+<h4 id="5-4-3、路由器根据路由表对包进行转发"><a href="#5-4-3、路由器根据路由表对包进行转发" class="headerlink" title="5.4.3、路由器根据路由表对包进行转发"></a>5.4.3、路由器根据路由表对包进行转发</h4><blockquote>
+<p>交换机是通过 MAC头部中的接收方 MAC地址来判断转发目标的，而路由器则是根据 IP头部中的 IP地址来判断的。</p>
+</blockquote>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B7%AF%E7%94%B1%E8%A1%A8.png" alt="路由表"></p>
+<blockquote>
+<p>交换机在地址表中只匹配完全一致的记录，而 <strong><em>路由器则会忽略主机号部分，只匹配网络号部分</em></strong>。打个比方，路由器在转发包的时候只看接收方地址属于哪个区， × ×区发往这一边， × ×区发往那一边。</p>
+</blockquote>
+<h4 id="5-4-4、路由器的包接收操作"><a href="#5-4-4、路由器的包接收操作" class="headerlink" title="5.4.4、路由器的包接收操作"></a>5.4.4、路由器的包接收操作</h4><blockquote>
+<p>路由器的整个工作过程。首先，路由器会接收网络包。路由器的端口有各种不同的类型，这里我们只介绍以太网端口是如何接收包的。以太网端口的结构和计算机的网卡基本相同，接收包并存放到缓冲区中的过程也和网卡几乎没有区别。首先，信号到达网线接口部分，其中的 PHY（ MAU）模块和 MAC模块将信号转换为数字信息，然后通过包末尾的 FCS进行错误校验，如果没问题则检查 MAC头部中的接收方 MAC地址，看看是不是发给自己的包，如果是就放到接收缓冲区中，否则就丢弃这个包。如果包的接收方 MAC地址不是自己，说明这个包是发给其他设备的，如果接收这个包就违反了以太网的规则。</p>
+<p><strong><em>路由器的端口都具有 MAC地址，只接收与自身地址匹配的包，遇到不匹配的包则直接丢弃。</em></strong></p>
+</blockquote>
+<h4 id="5-4-5、查询路由表确定输出端口"><a href="#5-4-5、查询路由表确定输出端口" class="headerlink" title="5.4.5、查询路由表确定输出端口"></a>5.4.5、查询路由表确定输出端口</h4><h4 id="MAC头部作用"><a href="#MAC头部作用" class="headerlink" title="MAC头部作用"></a>MAC头部作用</h4><blockquote>
+<p>完成包接收操作之后，路由器就会丢弃包开头的 MAC头部。 MAC头部的作用就是将包送达路由器，其中的接收方 MAC地址就是路由器端口的 MAC地址。因此，当包到达路由器之后， MAC头部的任务就完成了，于是 MAC头部就会被丢弃。</p>
+<p><strong>通过路由器转发的网络包，其接收方 MAC地址为路由器端口的 MAC地址。</strong></p>
+</blockquote>
+<h4 id="路由器会根据-IP头部中的内容进行包的转发操作"><a href="#路由器会根据-IP头部中的内容进行包的转发操作" class="headerlink" title="路由器会根据 IP头部中的内容进行包的转发操作"></a>路由器会根据 IP头部中的内容进行包的转发操作</h4><ul>
+<li>a）查询路由表判断转发目标</li>
+</ul>
+<blockquote>
+<p>关于具体的工作过程，我们还是来看一个实际的例子，如上图的情况，假设地址为 10. 10. 1. 101的计算机要向地址为 192. 168. 1. 10的服务器发送一个包，这个包先到达图中的路由器。判断转发目标的第一步，就是根据包的接收方 IP地址查询路由表中的目标地址栏，以找到相匹配的记录。就像前面讲过的一样，这个匹配并不是匹配全部 32个比特，而是根据子网掩码列中的值判断网络号的比特数，并匹配相应数量的比特 33。例如，上图的第 3行，子网掩码列为 255. 255. 255. 0，就表示需要匹配从左起 24个比特。网络包的接收方 IP地址和路由表中的目标地址左起 24个比特的内容都是 192. 168. 1，因此两者是匹配的，该行记录就是候选转发目标之一。</p>
+</blockquote>
+<ul>
+<li>b）路由器修改包的有效期</li>
+<li>c）路由器通过分片功能拆分大网络包</li>
+<li>d）路由器的发送操作</li>
+</ul>
+<blockquote>
+<p>这一步操作取决于输出端口的类型。如果是以太网端口，则按照以太网的规则将包转换为电信号发送出去；如果是 ADSL则按照 ADSL的规则来转换，以此类推。在家庭网络中，路由器后面一般连接 ADSL等线路接入互联网，因此路由器会根据接入网的规则来发送包。不过，要理解具体的操作过程，需要先理解相应的通信线路 ，比较复杂，因此我们留到下一章探索互联网内部时再讲解。这里，我们假设路由器位于公司等局域网的内部，即输出端口也是以太网，看看这种情况是如何操作的。</p>
+<p>以太网的包发送操作是根据以太网规则来进行的，即便设备种类不同，规则也是相同的。也就是说，其基本过程和协议栈中的 IP模块发送包的过程是相同的，即在包前面加上 MAC头部，</p>
+<p>设置其中的一些字段，然后将完成的包转换成电信号并发送出去。下面来简单复习一下这个过程。首先，为了判断 MAC头部中的 MAC地址应该填写什么值，我们需要根据路由表的网关列判断对方的地址。如果网关是一个 IP地址，则这个 IP地址就是我们要转发到的目标地址；如果网关为空，则 IP头部中的接收方 IP地址就是要转发到的目标地址。知道对方的 IP地址之后，接下来需要通过 ARP根据 IP地址查询 MAC地址，并将查询的结果作为接收方 MAC地址。路由器也有 ARP缓存，因此首先会在 ARP缓存中查询，如果找不到则发送 ARP查询请求。</p>
+<p>路由器判断下一个转发目标的方法如下。</p>
+<ul>
+<li>如果路由表的网关列内容为 IP地址，则该地址就是下一个转发目标。</li>
+<li>如果路由表的网关列内容为空，则 IP头部中的接收方 IP地址就是下一个转发目标。</li>
+</ul>
+<p>路由器也会使用 ARP来查询下一个转发目标的 MAC地址。</p>
+<p>网络包完成后，接下来会将其转换成电信号并通过端口发送出去。这一步的工作过程和计算机也是相同的。例如，当以太网工作在半双工模式时，需要先确认线路中没有其他信号后才能发送，如果检测到碰撞，则需要等待一段时间后重发。如果以太网工作在全双工模式，则不需要确认线路中的信号，可以直接发送。如果输出端口为以太网，则发送出去的网络包会通过交换机到达下一个路由器。由于接收方 MAC地址就是下一个路由器的地址，所以交换机会根据这一地址将包传输到下一个路由器。接下来，下一个路由器会将包转发给再下一个路由器，经过层层转发之后，网络包就到达了最终的目的地。</p>
+</blockquote>
+<h3 id="5-5、路由器与交换机的关系"><a href="#5-5、路由器与交换机的关系" class="headerlink" title="5.5、路由器与交换机的关系"></a>5.5、路由器与交换机的关系</h3><blockquote>
+<p>IP协议本身没有传输包的功能，因此包的实际传输要委托以太网来进行。</p>
+<p>路由器是基于 IP设计的，而交换机是基于以太网设计的，因此 IP与以太网的关系也就是路由器与交换机的关系。换句话说，路由器将包的传输工作委托给交换机来进行</p>
+</blockquote>
+<blockquote>
+<p><strong>IP（路由器）负责将包送达通信对象这一整体过程，而其中将包传输到下一个路由器的过程则是由以太网（交换机）来负责的。</strong></p>
+</blockquote>
+<h2 id="六、探索接入网和网络运营商"><a href="#六、探索接入网和网络运营商" class="headerlink" title="六、探索接入网和网络运营商"></a>六、探索接入网和网络运营商</h2><p>此章节没啥好说的，了解下即可！</p>
+<h2 id="七、服务器端的局域网中有什么玄机"><a href="#七、服务器端的局域网中有什么玄机" class="headerlink" title="七、服务器端的局域网中有什么玄机"></a>七、服务器端的局域网中有什么玄机</h2><h3 id="7-1、防火墙"><a href="#7-1、防火墙" class="headerlink" title="7.1、防火墙"></a>7.1、防火墙</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E9%98%B2%E7%81%AB%E5%A2%99.png" alt="防火墙基本布局"></p>
+<h4 id="防火墙的基本思路"><a href="#防火墙的基本思路" class="headerlink" title="防火墙的基本思路"></a>防火墙的基本思路</h4><blockquote>
+<p>防火墙的基本思路，即只允许发往特定服务器中的特定应用程序的包通过，然后屏蔽其他的包。</p>
+</blockquote>
+<h4 id="主流的是包过滤方式的防火墙"><a href="#主流的是包过滤方式的防火墙" class="headerlink" title="主流的是包过滤方式的防火墙"></a>主流的是包过滤方式的防火墙</h4><blockquote>
+<p><strong>包过滤方式的防火墙可根据接收方 IP地址、发送方 IP地址、接收方端口号、发送方端口号、控制位等信息来判断是否允许某个包通过。</strong></p>
+</blockquote>
+<h4 id="防火墙的不足"><a href="#防火墙的不足" class="headerlink" title="防火墙的不足"></a>防火墙的不足</h4><blockquote>
+<p><strong>防火墙无法抵御的攻击</strong></p>
+<p>防火墙可以根据包的起点和终点来判断是否允许其通过，但仅凭起点和终点并不能筛选出所有有风险的包。</p>
+<p>比如，假设 Web服务器在收到含有特定数据的包时会引起宕机。但是防火墙只关心包的起点和终点，因此即便包中含有特定数据，防火墙也无法发现，于是包就被放行了。然后，当包到达 Web服务器时，就会引发服务器宕机。通过这个例子大家可以看出，只有检查包的内容才能识别这种风险，因此防火墙对这种情况无能为力。</p>
+</blockquote>
+<h4 id="对防火墙无法抵御攻击的应对方法"><a href="#对防火墙无法抵御攻击的应对方法" class="headerlink" title="对防火墙无法抵御攻击的应对方法"></a>对防火墙无法抵御攻击的应对方法</h4><p>a）方法一：这个问题的根源在于 Web服务器程序的 Bug，因此修复 Bug防止宕机就是其中一种方法。这类 Bug中，危险性较高的会作为安全漏洞公布出来，开发者会很快发布修复了 Bug的新版本，因此持续关注安全漏洞信息并更新软件的版本是非常重要的。</p>
+<p>b）另一种方法就是在防火墙之外部署用来检查包的内容并阻止有害包的设备或软件。</p>
+<h3 id="7-2、负载均衡"><a href="#7-2、负载均衡" class="headerlink" title="7.2、负载均衡"></a>7.2、负载均衡</h3><h4 id="7-2-1、多台服务器-–-分布式架构"><a href="#7-2-1、多台服务器-–-分布式架构" class="headerlink" title="7.2.1、多台服务器 – 分布式架构"></a>7.2.1、多台服务器 – 分布式架构</h4><blockquote>
+<p>使用多台服务器来分担负载的方法更有效。这种架构统称为分布式架构。</p>
+</blockquote>
+<ul>
+<li><p>DNS轮询分配服务器IP地址</p>
+<blockquote>
+<p>最简单的一种是通过 DNS服务器来分配。当访问服务器时，客户端需要先向 DNS服务器查询服务器的 IP地址，如果在 DNS服务器中填写多个名称相同的记录，则每次查询时 DNS服务器都会按顺序返回不同的 IP地址。</p>
+<p><strong>DNS轮询不足之处</strong></p>
+<p>例如：假如多台 Web服务器中有一台出现了故障，这时我们希望在返回 IP地址时能够跳过故障的 Web服务器，然而普通的 DNS服务器并不能确认 Web服务器是否正常工作，因此即便 Web服务器宕机了，它依然可能会返回这台服务器的 IP地址。</p>
+</blockquote>
+</li>
+<li><p>使用负载均衡器分配访问</p>
+</li>
+</ul>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%99%A8.png" alt="负载均衡器分配访问"></p>
+<h4 id="7-2-2、缓存服务器"><a href="#7-2-2、缓存服务器" class="headerlink" title="7.2.2、缓存服务器"></a>7.2.2、缓存服务器</h4><h4 id="临时保存内容并代替-Web服务器返回内容的缓存服务器"><a href="#临时保存内容并代替-Web服务器返回内容的缓存服务器" class="headerlink" title="临时保存内容并代替 Web服务器返回内容的缓存服务器"></a>临时保存内容并代替 Web服务器返回内容的缓存服务器</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="临时保存内容并代替 Web服务器返回内容的缓存服务器"></p>
+<h4 id="缓存服务器三种部署"><a href="#缓存服务器三种部署" class="headerlink" title="缓存服务器三种部署"></a>缓存服务器三种部署</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%89%E7%A7%8D%E9%83%A8%E7%BD%B2.png" alt="缓存服务器三种部署"></p>
+<h3 id="7-3、内容分发服务"><a href="#7-3、内容分发服务" class="headerlink" title="7.3、内容分发服务"></a>7.3、内容分发服务</h3><blockquote>
+<p>根据缓存服务器分布第三种方式，进行布局。</p>
+</blockquote>
+<h2 id="八、请求到达Web服务器，响应返回浏览器"><a href="#八、请求到达Web服务器，响应返回浏览器" class="headerlink" title="八、请求到达Web服务器，响应返回浏览器"></a>八、请求到达Web服务器，响应返回浏览器</h2><h3 id="8-1、服务器概览"><a href="#8-1、服务器概览" class="headerlink" title="8.1、服务器概览"></a>8.1、服务器概览</h3><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B.png" alt="服务器工作过程"></p>
+<h3 id="8-2、服务器的接收操作"><a href="#8-2、服务器的接收操作" class="headerlink" title="8.2、服务器的接收操作"></a>8.2、服务器的接收操作</h3><h4 id="8-2-1、-网卡将接收到的信号转换成数字信息"><a href="#8-2-1、-网卡将接收到的信号转换成数字信息" class="headerlink" title="8.2.1、 网卡将接收到的信号转换成数字信息"></a>8.2.1、 网卡将接收到的信号转换成数字信息</h4><h4 id="服务器将接收到的电信号还原数字信息"><a href="#服务器将接收到的电信号还原数字信息" class="headerlink" title="服务器将接收到的电信号还原数字信息"></a>服务器将接收到的电信号还原数字信息</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E7%94%B5%E4%BF%A1%E5%8F%B7%E8%BD%AC%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7.png" alt="网卡将接收到的信号转换成数字信息"></p>
+<h4 id="根据信号还原的数字信息"><a href="#根据信号还原的数字信息" class="headerlink" title="根据信号还原的数字信息"></a>根据信号还原的数字信息</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/%E8%BF%98%E5%8E%9F%E6%95%B0%E5%AD%97%E4%BF%A1%E6%81%AF.png" alt="根据信号还原的数字信息"></p>
+<blockquote>
+<p><strong>网卡的 MAC模块将网络包从信号还原为数字信息，校验 FCS并存入缓冲区。</strong></p>
+<p>在这个过程中，服务器的 CPU并不是一直在监控网络包的到达，而是在执行其他的任务，因此 CPU并不知道此时网络包已经到达了。但接下来的接收操作需要 CPU来参与，因此网卡需要通过 <strong><em>中断</em></strong> 将网络包到达的事件通知给 CPU。接下来， CPU就会暂停当前的工作，并切换到网卡的任务。然后，网卡驱动会开始运行，从网卡缓冲区中将接收到的包读取出来，根据 MAC头部的以太类型字段判断协议的种类，并调用负责处理该协议的软件。这里，以太类型的值应该是表示 IP协议，因此会调用 TCP/ IP协议栈，并将包转交给它。</p>
+<p>网卡驱动会根据 MAC头部判断协议类型，并将包交给相应的协议栈。</p>
+</blockquote>
+<h4 id="8-2-2、IP模块接收操作"><a href="#8-2-2、IP模块接收操作" class="headerlink" title="8.2.2、IP模块接收操作"></a>8.2.2、IP模块接收操作</h4><blockquote>
+<p>（ 1）IP模块首先会检查 IP头部的格式是否符合规范，然后检查接收方 IP地址，看包是不是发给自己的；</p>
+<p>（ 2）判断网络包是否经过分片；</p>
+<p>（ 3）需要检查 IP头部的协议号字段，并将包转交给相应的模块。例如，如果协议号为 06（十六进制），则将包转交给 TCP模块；如果是 11（十六进制），则转交给 UDP模块。</p>
+</blockquote>
+<h4 id="8-2-3、TCP模块如何处理连接包"><a href="#8-2-3、TCP模块如何处理连接包" class="headerlink" title="8.2.3、TCP模块如何处理连接包"></a>8.2.3、TCP模块如何处理连接包</h4><p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E8%BF%9E%E6%8E%A5%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP三次握手"></p>
+<p>第一步：当 TCP头部中的控制位 SYN为 1时，表示这是一个发起连接的包。这时， TCP模块会执行接受连接的操作，不过在此之前，需要先检查包的接收方端口号，并确认在该端口上有没有与接收方端口号相同且正在处于等待连接状态的套接字。如果指定端口号没有等待连接的套接字，则向客户端返回错误通知的包。向客户端返回一个表示接收方端口不存在等待连接的套接字的 ICMP消息。</p>
+<p>第二步：如果存在等待连接的套接字，则为这个套接字复制一个新的副本，并将发送方 IP地址、端口号、序号初始值、窗口大小等必要的参数写入这个套接字中，同时分配用于发送缓冲区和接收缓冲区的内存空间。然后生成代表接收确认的 ACK号，用于从服务器向客户端发送数据的序号初始值，表示接收缓冲区剩余容量的窗口大小，并用这些信息生成 TCP头部，委托 IP模块发送给客户端。</p>
+<p>第三步：这个包到达客户端之后，客户端会返回表示接收确认的 ACK号，当这个 ACK号返回服务器后，连接操作就完成了。这时，服务器端的程序应该进入调用 accept的暂停状态，当将新套接字的描述符转交给服务器程序之后，服务器程序就会恢复运行。</p>
+<h4 id="8-2-4、TCP模块如何处理数据包"><a href="#8-2-4、TCP模块如何处理数据包" class="headerlink" title="8.2.4、TCP模块如何处理数据包"></a>8.2.4、TCP模块如何处理数据包</h4><blockquote>
+<p>（ 1）收到数据包时， TCP模块会根据收到的包的发送方 IP地址、发送方端口号、接收方 IP地址、接收方端口号找到相对应的套接字；</p>
+<p>（ 2）将数据块拼合起来并保存在接收缓冲区中；</p>
+<p>（ 3）向客户端返回 ACK。</p>
+</blockquote>
+<h4 id="8-2-5、TCP模块的断开操作"><a href="#8-2-5、TCP模块的断开操作" class="headerlink" title="8.2.5、TCP模块的断开操作"></a>8.2.5、TCP模块的断开操作</h4><p>在TCP协议的规则中，断开操作可以由客户端或服务器任何一方发起，具体的顺序是由应用层协议决定的。Web中，这一顺序随HTTP协议版本不同而不同，在HTTP1.0中，是服务器先发起断开操作。</p>
+<p><img src="http://p5vr8lvt8.bkt.clouddn.com/myblog/HowNetWork/TCP%E6%96%AD%E5%BC%80%E5%9B%9B%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt="TCP客户端断开连接"></p>
+<blockquote>
+<p>（1）服务器会调用Socket库的socket，TCP模块会生成一个 FIN为 1的 TCP头部，并委托 IP模块发送给客户端</p>
+<p>（2）当客户端收到这个包后，会返回一个ACK号，</p>
+<p>（3）接下来客户端会调用close，生成一个 FIN为 1的 TCP头部发给服务器，</p>
+<p>（4）服务器再返回一个 ACK号。</p>
+</blockquote>
+<h3 id="8-3、Web服务器程序解释请求消息并作出响应"><a href="#8-3、Web服务器程序解释请求消息并作出响应" class="headerlink" title="8.3、Web服务器程序解释请求消息并作出响应"></a>8.3、Web服务器程序解释请求消息并作出响应</h3><h3 id="8-4、浏览器接收到响应并显示内容"><a href="#8-4、浏览器接收到响应并显示内容" class="headerlink" title="8.4、浏览器接收到响应并显示内容"></a>8.4、浏览器接收到响应并显示内容</h3><h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><p><a href="https://juejin.im/post/5b10be81518825139e0d8160" target="_blank" rel="noopener">完整的一次 HTTP 请求响应过程（一）</a></p>
+<p><a href="https://juejin.im/post/5b152061e51d4506a269a34f" target="_blank" rel="noopener">完整的一次 HTTP 请求响应过程（二）</a></p>
 
       
 
@@ -456,7 +1003,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前序"><span class="toc-number">2.</span> <span class="toc-text">前序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体结构"><span class="toc-number">3.</span> <span class="toc-text">整体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、生成HTTP请求消息"><span class="toc-number">3.1.</span> <span class="toc-text">一、生成HTTP请求消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器输入URL"><span class="toc-number">3.1.1.</span> <span class="toc-text">浏览器输入URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#首先根据HTTP的规则，解析URL"><span class="toc-number">3.1.2.</span> <span class="toc-text">首先根据HTTP的规则，解析URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL省略文件名的几种情况"><span class="toc-number">3.1.3.</span> <span class="toc-text">URL省略文件名的几种情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP的基本思路"><span class="toc-number">3.1.4.</span> <span class="toc-text">HTTP的基本思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成HTTP请求消息"><span class="toc-number">3.1.5.</span> <span class="toc-text">生成HTTP请求消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发送请求后收到响应消息"><span class="toc-number">3.1.6.</span> <span class="toc-text">发送请求后收到响应消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求网页中包含图片"><span class="toc-number">3.1.7.</span> <span class="toc-text">请求网页中包含图片</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"><span class="toc-number">3.1.7.1.</span> <span class="toc-text">1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、向DNS服务器查询Web服务器的IP地址"><span class="toc-number">3.2.</span> <span class="toc-text">二、向DNS服务器查询Web服务器的IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP网络"><span class="toc-number">3.2.1.</span> <span class="toc-text">TCP/IP网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP地址"><span class="toc-number">3.2.2.</span> <span class="toc-text">IP地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实际的IP地址"><span class="toc-number">3.2.3.</span> <span class="toc-text">实际的IP地址</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-Sierra-网络实用工具帮助"><span class="toc-number">2.</span> <span class="toc-text">macOS Sierra: 网络实用工具帮助</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前序"><span class="toc-number">3.</span> <span class="toc-text">前序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整体结构"><span class="toc-number">4.</span> <span class="toc-text">整体结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速温习"><span class="toc-number">5.</span> <span class="toc-text">快速温习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、生成HTTP请求消息"><span class="toc-number">6.</span> <span class="toc-text">一、生成HTTP请求消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、浏览器输入URL"><span class="toc-number">6.1.</span> <span class="toc-text">1.1、浏览器输入URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、首先根据HTTP的规则，解析URL"><span class="toc-number">6.2.</span> <span class="toc-text">1.2、首先根据HTTP的规则，解析URL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3、URL省略文件名的几种情况"><span class="toc-number">6.2.1.</span> <span class="toc-text">1.3、URL省略文件名的几种情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、HTTP的基本思路"><span class="toc-number">6.3.</span> <span class="toc-text">1.4、HTTP的基本思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤"><span class="toc-number">6.3.0.1.</span> <span class="toc-text">HTTP协议：它定义了客户端与服务器之间交互信息的内容和步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、生成HTTP请求消息"><span class="toc-number">6.4.</span> <span class="toc-text">1.5、生成HTTP请求消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、发送请求后收到响应消息"><span class="toc-number">6.5.</span> <span class="toc-text">1.6、发送请求后收到响应消息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7、请求网页中包含图片"><span class="toc-number">6.5.1.</span> <span class="toc-text">1.7、请求网页中包含图片</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求"><span class="toc-number">6.5.1.1.</span> <span class="toc-text">1条请求消息中只能写一个URI，如果需要获取多个文件，必须对每个文件单独发送1条请求</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、向DNS服务器查询Web服务器的IP地址"><span class="toc-number">7.</span> <span class="toc-text">二、向DNS服务器查询Web服务器的IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、TCP-IP网络"><span class="toc-number">7.1.</span> <span class="toc-text">2.1、TCP/IP网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、IP地址"><span class="toc-number">7.2.</span> <span class="toc-text">2.2、IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3、IP地址结构"><span class="toc-number">7.3.</span> <span class="toc-text">2.3、IP地址结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4、浏览器如何向DNS服务器发出查询的呢？"><span class="toc-number">7.4.</span> <span class="toc-text">2.4、浏览器如何向DNS服务器发出查询的呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5、如何通过解析器向DNS服务器发出查询"><span class="toc-number">7.5.</span> <span class="toc-text">2.5、如何通过解析器向DNS服务器发出查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6、如何获取DNS服务器IP地址？（Domain-Name-System，域名系统）"><span class="toc-number">7.6.</span> <span class="toc-text">2.6、如何获取DNS服务器IP地址？（Domain Name System，域名系统）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7、DNS服务器是如何工作的"><span class="toc-number">7.7.</span> <span class="toc-text">2.7、DNS服务器是如何工作的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS服务器会从域名与-IP地址的对照表中查找相应的记录，并返回-IP地址。"><span class="toc-number">7.7.1.</span> <span class="toc-text">DNS服务器会从域名与 IP地址的对照表中查找相应的记录，并返回 IP地址。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8、如何在数万DNS服务器中找到目标DNS服务器"><span class="toc-number">7.8.</span> <span class="toc-text">2.8、如何在数万DNS服务器中找到目标DNS服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、浏览器委托协议栈发送消息"><span class="toc-number">8.</span> <span class="toc-text">三、浏览器委托协议栈发送消息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整体流程一览图"><span class="toc-number">8.1.</span> <span class="toc-text">整体流程一览图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、创建套接字"><span class="toc-number">8.2.</span> <span class="toc-text">3.1、创建套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-描述符-gt-socket-lt-使用IPv4-gt-lt-使用TCP-gt-…"><span class="toc-number">8.2.1.</span> <span class="toc-text">&lt;描述符&gt; = socket(&lt;使用IPv4&gt;,&lt;使用TCP&gt;,…)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用程序是通过“描述符”这一类-似号码牌的东西来识别套接字的。"><span class="toc-number">8.2.2.</span> <span class="toc-text">应用程序是通过“描述符”这一类 似号码牌的东西来识别套接字的。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac查看实际的套接字"><span class="toc-number">8.3.</span> <span class="toc-text">Mac查看实际的套接字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络协议"><span class="toc-number">8.4.</span> <span class="toc-text">网络协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、连接服务器"><span class="toc-number">8.5.</span> <span class="toc-text">3.2、连接服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1、连接操作的实际过程"><span class="toc-number">8.5.1.</span> <span class="toc-text">3.2.1、连接操作的实际过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#connect-lt-描述符-gt-lt-服务器IP地址和端口号-gt-…"><span class="toc-number">8.5.2.</span> <span class="toc-text">connect(&lt;描述符&gt;,&lt;服务器IP地址和端口号&gt;, …)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP建立连接要进行“三次握手”"><span class="toc-number">8.5.3.</span> <span class="toc-text">TCP建立连接要进行“三次握手”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3、收发数据"><span class="toc-number">8.6.</span> <span class="toc-text">3.3、收发数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1、将HTTP请求消息交给协议栈"><span class="toc-number">8.6.1.</span> <span class="toc-text">3.3.1、将HTTP请求消息交给协议栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2、对较大数据进行拆分"><span class="toc-number">8.6.2.</span> <span class="toc-text">3.3.2、对较大数据进行拆分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3、TCP通过ACK号确保网络包是否收到"><span class="toc-number">8.6.3.</span> <span class="toc-text">3.3.3、TCP通过ACK号确保网络包是否收到</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4、接受HTTP响应消息"><span class="toc-number">8.6.4.</span> <span class="toc-text">3.3.4、接受HTTP响应消息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4、断开连接，并删除套接字"><span class="toc-number">8.7.</span> <span class="toc-text">3.4、断开连接，并删除套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1、从服务器端断开连接"><span class="toc-number">8.7.1.</span> <span class="toc-text">3.4.1、从服务器端断开连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2、从客户端断开连接"><span class="toc-number">8.7.2.</span> <span class="toc-text">3.4.2、从客户端断开连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3、删除套接字"><span class="toc-number">8.7.3.</span> <span class="toc-text">3.4.3、删除套接字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP整个流程一览"><span class="toc-number">8.7.4.</span> <span class="toc-text">TCP整个流程一览</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、IP与以太网的包收发操作"><span class="toc-number">9.</span> <span class="toc-text">四、IP与以太网的包收发操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1、包的基本知识"><span class="toc-number">9.1.</span> <span class="toc-text">4.1、包的基本知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2、IP模块的作用"><span class="toc-number">9.2.</span> <span class="toc-text">4.2、IP模块的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1、发送包的时候，IP模块工作"><span class="toc-number">9.2.1.</span> <span class="toc-text">4.2.1、发送包的时候，IP模块工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2、接收包的时候，IP模块工作"><span class="toc-number">9.2.2.</span> <span class="toc-text">4.2.2、接收包的时候，IP模块工作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3、生成包含接收方IP地址的IP头部"><span class="toc-number">9.3.</span> <span class="toc-text">4.3、生成包含接收方IP地址的IP头部</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题来了：一台计算机多个网卡，如何设置发送方IP地址？"><span class="toc-number">9.3.1.</span> <span class="toc-text">问题来了：一台计算机多个网卡，如何设置发送方IP地址？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看Mac本机的路由表Route-Table"><span class="toc-number">9.3.2.</span> <span class="toc-text">查看Mac本机的路由表Route Table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看Windows本机的路由表Route-Table"><span class="toc-number">9.3.3.</span> <span class="toc-text">查看Windows本机的路由表Route Table</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4、生成以太网用的MAC头部"><span class="toc-number">9.4.</span> <span class="toc-text">4.4、生成以太网用的MAC头部</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1、通过-ARP查询目标路由器的-MAC地址"><span class="toc-number">9.4.1.</span> <span class="toc-text">4.4.1、通过 ARP查询目标路由器的 MAC地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac查看ARP缓存"><span class="toc-number">9.4.2.</span> <span class="toc-text">Mac查看ARP缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows查看ARP缓存"><span class="toc-number">9.4.3.</span> <span class="toc-text">Windows查看ARP缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAC地址"><span class="toc-number">9.4.4.</span> <span class="toc-text">MAC地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAC：-Media-Access-Control的缩写。-MAC头部、-MAC地址中的-MAC也是这个意思。也就是说，通过-MAC模块控制包收发操作时所使用的头部和地址就叫作-MAC头部和-MAC地址。"><span class="toc-number">9.4.5.</span> <span class="toc-text">MAC： Media Access Control的缩写。 MAC头部、 MAC地址中的 MAC也是这个意思。也就是说，通过 MAC模块控制包收发操作时所使用的头部和地址就叫作 MAC头部和 MAC地址。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5、网卡-将IP包转换成电或光信号发送出去"><span class="toc-number">9.5.</span> <span class="toc-text">4.5、网卡-将IP包转换成电或光信号发送出去</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网卡"><span class="toc-number">9.5.1.</span> <span class="toc-text">网卡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网卡是如何将包转换成电信号并发送到网线中的"><span class="toc-number">9.5.2.</span> <span class="toc-text">网卡是如何将包转换成电信号并发送到网线中的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给网络包再加-3个控制数据"><span class="toc-number">9.5.3.</span> <span class="toc-text">给网络包再加 3个控制数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1、报头"><span class="toc-number">9.5.4.</span> <span class="toc-text">4.5.1、报头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#报头作用"><span class="toc-number">9.5.5.</span> <span class="toc-text">报头作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何通过电信号来读取数据"><span class="toc-number">9.5.6.</span> <span class="toc-text">如何通过电信号来读取数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过时钟测量读取信号的时机"><span class="toc-number">9.5.7.</span> <span class="toc-text">通过时钟测量读取信号的时机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何判断出其中每个比特到底应该从哪里去切分？"><span class="toc-number">9.5.8.</span> <span class="toc-text">如何判断出其中每个比特到底应该从哪里去切分？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。"><span class="toc-number">9.5.9.</span> <span class="toc-text">数据信号和时钟信号的传输会产生时间差，时钟就会发生偏移。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2、起始帧分界符"><span class="toc-number">9.5.10.</span> <span class="toc-text">4.5.2、起始帧分界符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3、帧校验序列"><span class="toc-number">9.5.11.</span> <span class="toc-text">4.5.3、帧校验序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-4、向集线器发送网络包"><span class="toc-number">9.5.12.</span> <span class="toc-text">4.5.4、向集线器发送网络包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6、接收返回包"><span class="toc-number">9.6.</span> <span class="toc-text">4.6、接收返回包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网卡接收网络包"><span class="toc-number">9.6.1.</span> <span class="toc-text">网卡接收网络包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网卡中断计算机，网卡驱动从网卡缓存中读取数据"><span class="toc-number">9.6.2.</span> <span class="toc-text">网卡中断计算机，网卡驱动从网卡缓存中读取数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7、将服务器的响应包从-IP传递给-TCP"><span class="toc-number">9.7.</span> <span class="toc-text">4.7、将服务器的响应包从 IP传递给 TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IP模块检查IP头部，如果接收方-IP地址不是自己的地址，通过ICMP反馈回去"><span class="toc-number">9.7.1.</span> <span class="toc-text">IP模块检查IP头部，如果接收方 IP地址不是自己的地址，通过ICMP反馈回去</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP模块检查IP头部，如果接收方-IP地址是自己的地址，进行分片重组"><span class="toc-number">9.7.2.</span> <span class="toc-text">IP模块检查IP头部，如果接收方 IP地址是自己的地址，进行分片重组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP模块接收包"><span class="toc-number">9.7.3.</span> <span class="toc-text">TCP模块接收包</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、集线器、交换机、路由器"><span class="toc-number">10.</span> <span class="toc-text">五、集线器、交换机、路由器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1、信号在网线中传播"><span class="toc-number">10.1.</span> <span class="toc-text">5.1、信号在网线中传播</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#网卡与集线器用双绞线连接的形态"><span class="toc-number">10.1.1.</span> <span class="toc-text">网卡与集线器用双绞线连接的形态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题来了：信号衰减"><span class="toc-number">10.1.2.</span> <span class="toc-text">问题来了：信号衰减</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#“双绞”是为了抑制噪声"><span class="toc-number">10.1.3.</span> <span class="toc-text">“双绞”是为了抑制噪声</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#噪声是如何产生的"><span class="toc-number">10.1.4.</span> <span class="toc-text">噪声是如何产生的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电磁波来源有两种：外部和内部"><span class="toc-number">10.1.5.</span> <span class="toc-text">电磁波来源有两种：外部和内部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双绞线对噪声的抑制"><span class="toc-number">10.1.6.</span> <span class="toc-text">双绞线对噪声的抑制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2、集线器将信号发往所有设备"><span class="toc-number">10.2.</span> <span class="toc-text">5.2、集线器将信号发往所有设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3、交换机的包转发操作"><span class="toc-number">10.3.</span> <span class="toc-text">5.3、交换机的包转发操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于交换机暂时理解不深刻"><span class="toc-number">10.4.</span> <span class="toc-text">对于交换机暂时理解不深刻</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4、路由器的包转发操作"><span class="toc-number">10.5.</span> <span class="toc-text">5.4、路由器的包转发操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-1、路由器内部结构"><span class="toc-number">10.5.1.</span> <span class="toc-text">5.4.1、路由器内部结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-2、路由器的工作原理"><span class="toc-number">10.5.2.</span> <span class="toc-text">5.4.2、路由器的工作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-3、路由器根据路由表对包进行转发"><span class="toc-number">10.5.3.</span> <span class="toc-text">5.4.3、路由器根据路由表对包进行转发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-4、路由器的包接收操作"><span class="toc-number">10.5.4.</span> <span class="toc-text">5.4.4、路由器的包接收操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-5、查询路由表确定输出端口"><span class="toc-number">10.5.5.</span> <span class="toc-text">5.4.5、查询路由表确定输出端口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MAC头部作用"><span class="toc-number">10.5.6.</span> <span class="toc-text">MAC头部作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由器会根据-IP头部中的内容进行包的转发操作"><span class="toc-number">10.5.7.</span> <span class="toc-text">路由器会根据 IP头部中的内容进行包的转发操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5、路由器与交换机的关系"><span class="toc-number">10.6.</span> <span class="toc-text">5.5、路由器与交换机的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、探索接入网和网络运营商"><span class="toc-number">11.</span> <span class="toc-text">六、探索接入网和网络运营商</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、服务器端的局域网中有什么玄机"><span class="toc-number">12.</span> <span class="toc-text">七、服务器端的局域网中有什么玄机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1、防火墙"><span class="toc-number">12.1.</span> <span class="toc-text">7.1、防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#防火墙的基本思路"><span class="toc-number">12.1.1.</span> <span class="toc-text">防火墙的基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主流的是包过滤方式的防火墙"><span class="toc-number">12.1.2.</span> <span class="toc-text">主流的是包过滤方式的防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#防火墙的不足"><span class="toc-number">12.1.3.</span> <span class="toc-text">防火墙的不足</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对防火墙无法抵御攻击的应对方法"><span class="toc-number">12.1.4.</span> <span class="toc-text">对防火墙无法抵御攻击的应对方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2、负载均衡"><span class="toc-number">12.2.</span> <span class="toc-text">7.2、负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-1、多台服务器-–-分布式架构"><span class="toc-number">12.2.1.</span> <span class="toc-text">7.2.1、多台服务器 – 分布式架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-2、缓存服务器"><span class="toc-number">12.2.2.</span> <span class="toc-text">7.2.2、缓存服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#临时保存内容并代替-Web服务器返回内容的缓存服务器"><span class="toc-number">12.2.3.</span> <span class="toc-text">临时保存内容并代替 Web服务器返回内容的缓存服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存服务器三种部署"><span class="toc-number">12.2.4.</span> <span class="toc-text">缓存服务器三种部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3、内容分发服务"><span class="toc-number">12.3.</span> <span class="toc-text">7.3、内容分发服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八、请求到达Web服务器，响应返回浏览器"><span class="toc-number">13.</span> <span class="toc-text">八、请求到达Web服务器，响应返回浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1、服务器概览"><span class="toc-number">13.1.</span> <span class="toc-text">8.1、服务器概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2、服务器的接收操作"><span class="toc-number">13.2.</span> <span class="toc-text">8.2、服务器的接收操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-1、-网卡将接收到的信号转换成数字信息"><span class="toc-number">13.2.1.</span> <span class="toc-text">8.2.1、 网卡将接收到的信号转换成数字信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务器将接收到的电信号还原数字信息"><span class="toc-number">13.2.2.</span> <span class="toc-text">服务器将接收到的电信号还原数字信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根据信号还原的数字信息"><span class="toc-number">13.2.3.</span> <span class="toc-text">根据信号还原的数字信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-2、IP模块接收操作"><span class="toc-number">13.2.4.</span> <span class="toc-text">8.2.2、IP模块接收操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-3、TCP模块如何处理连接包"><span class="toc-number">13.2.5.</span> <span class="toc-text">8.2.3、TCP模块如何处理连接包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-4、TCP模块如何处理数据包"><span class="toc-number">13.2.6.</span> <span class="toc-text">8.2.4、TCP模块如何处理数据包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-5、TCP模块的断开操作"><span class="toc-number">13.2.7.</span> <span class="toc-text">8.2.5、TCP模块的断开操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3、Web服务器程序解释请求消息并作出响应"><span class="toc-number">13.3.</span> <span class="toc-text">8.3、Web服务器程序解释请求消息并作出响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4、浏览器接收到响应并显示内容"><span class="toc-number">13.4.</span> <span class="toc-text">8.4、浏览器接收到响应并显示内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展阅读"><span class="toc-number">14.</span> <span class="toc-text">拓展阅读</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -586,19 +1133,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">崩溃</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">崩溃</a>
               </li>
              
               <li class="article-tag-list-item">
