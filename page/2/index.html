@@ -154,6 +154,219 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SDWebImage4-0源码探究（二）框架分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/">SDWebImage4.0源码探究（二）框架分析</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/" class="archive-article-date">
+  	<time datetime="2018-03-22T06:32:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>一、SDWebImage UML分析</li>
+<li>二、SDWebImage 中 <strong>@autoreleasepool</strong> 的应用</li>
+<li>三、SDWebImage 支持 <strong>GIF动图</strong> 吗？</li>
+<li>四、SDWebImage 如何 <strong>区分图片格式</strong>？</li>
+<li>五、SDWebImage 缓存图片的名称如何 <strong>避免重名</strong>？</li>
+<li>六、SDWebImage 中 <strong>常量的定义</strong></li>
+<li>七、SDWebImage 如何保证UI操作放在主线程中执行？</li>
+<li>八、SDWebImage 的 <strong>最大并发数</strong> 和 <strong>超时时长</strong></li>
+<li>九、SDWebImage 的Memory缓存和Disk缓存是用什么实现的？</li>
+<li>十、SDWebImage 读取Memory和Disk的时候如何保证 <strong>线程安全</strong>？</li>
+<li>十一、SDWebImage 的 <strong>Memory警告</strong> 是如何处理的！</li>
+<li>十二、SDWebImage Disk缓存时长？ Disk清理操作时间点？ Disk清理原则？</li>
+<li>十三、SDWebImage <strong>Disk目录</strong> 位于哪里？</li>
+<li>十四、SDWebImage 的回调设计？</li>
+<li>十五、SDWebImage 中 <strong>NS_OPTIONS</strong> 与 <strong>NS_ENUM</strong> 的使用</li>
+<li>十六、SDWebImage 中的工具类介绍</li>
+</ul>
+        
+          <a class="article-more-a" href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SDWebImage</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/框架分析//" class="article-tag-list-link color5">框架分析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/22/SDWebImage4-0源码探究（二）框架分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mac安装CocoaPods详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/21/Mac安装CocoaPods详解/">Mac安装CocoaPods详解</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/21/Mac安装CocoaPods详解/" class="archive-article-date">
+  	<time datetime="2018-03-21T03:57:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>Ruby环境的安装<ul>
+<li>安装系统需要的包</li>
+<li>Homebrew安装</li>
+<li>安装RVM</li>
+<li>使用RVM安装Ruby环境</li>
+<li>设置 Ruby 版本</li>
+<li>替换Ruby源为taobao.org    </li>
+</ul>
+</li>
+<li>安装CocoaPods<ul>
+<li>CocoaPods是什么？</li>
+<li>直接安装CocoaPods</li>
+<li>更新repos文件</li>
+</ul>
+</li>
+<li>CocoaPods使用原理</li>
+<li>后期使用出现的问题<ul>
+<li>问题一：”setting up cocoapods master repo”卡着不动</li>
+<li>问题二：<code>pod search</code>异常</li>
+</ul>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2018/03/21/Mac安装CocoaPods详解/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pods</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/CocoaPods相关//" class="article-tag-list-link color2">CocoaPods相关</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/21/Mac安装CocoaPods详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-避免程序崩溃iOS探索" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -463,6 +676,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">pods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
@@ -471,7 +688,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pods</a>
+                <a href="javascript:void(0)" class="js-tag color4">property</a>
               </li>
              
               <li class="article-tag-list-item">
