@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1859399-e8a04c04c7ff5da5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1859399-70a13b88047d427c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1859399-fabda3e0a9c5665a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-15T15:18:51.000Z">
+<meta property="og:updated_time" content="2018-08-15T15:22:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC中属性和成员变量（一）概念篇">
 <meta name="twitter:description" content="文章首发于个人blog 欢迎指正补充，可联系lionsom_lin@qq.com 原文地址：OC中属性和成员变量（一）概念篇  目录 一、什么是成员变量？ 成员变量的访问权限 .h文件与.m文件中的@interface声明成员变量的区别？ .m文件中@implementation声明变量?   二、成员变量与实例变量的区别 三、属性 3.1、@property 历史 3.2、@dynamic -">
@@ -206,7 +206,10 @@
 <li>4.4、方法名</li>
 </ul>
 </li>
-<li>五、实际使用属性</li>
+<li>五、实际使用属性<ul>
+<li>5.1、不要在init 和 dealloc 中使用 accessor 即 self.XX</li>
+</ul>
+</li>
 </ul>
 <a id="more"></a>
 <h2 id="一、什么是成员变量？"><a href="#一、什么是成员变量？" class="headerlink" title="一、什么是成员变量？"></a>一、什么是成员变量？</h2><h3 id="成员变量的访问权限"><a href="#成员变量的访问权限" class="headerlink" title="成员变量的访问权限"></a>成员变量的访问权限</h3><ul>
