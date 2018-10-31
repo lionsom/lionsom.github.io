@@ -180,26 +180,32 @@
 <p><strong>原文地址：<a href="http://lionsom.com/2018/10/16/iOS项目总结-CPR/" target="_blank" rel="noopener">iOS项目总结-CPR</a></strong></p>
 </blockquote>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li><h4 id="一、Masonry-布局-1-5处"><a href="#一、Masonry-布局-1-5处" class="headerlink" title="一、Masonry 布局 1/5处"></a>一、Masonry 布局 1/5处</h4></li>
-<li><h4 id="二、masonry-不立刻生成frame"><a href="#二、masonry-不立刻生成frame" class="headerlink" title="二、masonry 不立刻生成frame"></a>二、masonry 不立刻生成frame</h4></li>
-<li><h4 id="三、UIButton中image和title的-UIEdgeInsets"><a href="#三、UIButton中image和title的-UIEdgeInsets" class="headerlink" title="三、UIButton中image和title的 UIEdgeInsets"></a>三、UIButton中image和title的 UIEdgeInsets</h4></li>
-<li><h4 id="四、YYModel使用"><a href="#四、YYModel使用" class="headerlink" title="四、YYModel使用"></a>四、YYModel使用</h4></li>
-<li><h4 id="五、ipad横竖屏，固定竖屏"><a href="#五、ipad横竖屏，固定竖屏" class="headerlink" title="五、ipad横竖屏，固定竖屏"></a>五、ipad横竖屏，固定竖屏</h4></li>
-<li><h4 id="六、启动页黑屏"><a href="#六、启动页黑屏" class="headerlink" title="六、启动页黑屏"></a>六、启动页黑屏</h4></li>
-<li><h4 id="七、数组谓词排序、倒序"><a href="#七、数组谓词排序、倒序" class="headerlink" title="七、数组谓词排序、倒序"></a>七、数组谓词排序、倒序</h4></li>
-<li><h4 id="八、tableview的cell点击-与-手势点击冲突"><a href="#八、tableview的cell点击-与-手势点击冲突" class="headerlink" title="八、tableview的cell点击 与 手势点击冲突"></a>八、tableview的cell点击 与 手势点击冲突</h4></li>
-<li><h4 id="九、cell-上的-定时器"><a href="#九、cell-上的-定时器" class="headerlink" title="九、cell 上的 定时器"></a>九、cell 上的 定时器</h4></li>
-<li><h4 id="十、float-四舍五入"><a href="#十、float-四舍五入" class="headerlink" title="十、float 四舍五入"></a>十、float 四舍五入</h4></li>
-<li><h4 id="十一、tableview-删除某一行cell使用-deleteRowsAtIndexPaths"><a href="#十一、tableview-删除某一行cell使用-deleteRowsAtIndexPaths" class="headerlink" title="十一、tableview 删除某一行cell使用 deleteRowsAtIndexPaths"></a>十一、tableview 删除某一行cell使用 deleteRowsAtIndexPaths</h4></li>
-<li><h4 id="十二、Objective-C-同步锁"><a href="#十二、Objective-C-同步锁" class="headerlink" title="十二、Objective-C 同步锁"></a>十二、Objective-C 同步锁</h4></li>
-<li><h4 id="十三、线程同步"><a href="#十三、线程同步" class="headerlink" title="十三、线程同步"></a>十三、线程同步</h4></li>
-<li><h4 id="十四、NSURL地址有中文"><a href="#十四、NSURL地址有中文" class="headerlink" title="十四、NSURL地址有中文"></a>十四、NSURL地址有中文</h4></li>
-<li><h4 id="十五、全局隐藏状态栏"><a href="#十五、全局隐藏状态栏" class="headerlink" title="十五、全局隐藏状态栏"></a>十五、全局隐藏状态栏</h4></li>
-<li><h4 id="十六、设备适配，区分iphoneX-XR-XS等"><a href="#十六、设备适配，区分iphoneX-XR-XS等" class="headerlink" title="十六、设备适配，区分iphoneX XR XS等"></a>十六、设备适配，区分iphoneX XR XS等</h4></li>
-<li><h4 id="十七、GCD定时器，暂停状态，直接关闭定时器，崩溃"><a href="#十七、GCD定时器，暂停状态，直接关闭定时器，崩溃" class="headerlink" title="十七、GCD定时器，暂停状态，直接关闭定时器，崩溃"></a>十七、GCD定时器，暂停状态，直接关闭定时器，崩溃</h4></li>
-<li><h4 id="十八、Validate-APP-报错"><a href="#十八、Validate-APP-报错" class="headerlink" title="十八、Validate APP 报错"></a>十八、Validate APP 报错</h4></li>
-<li><h4 id="十九、iOS中延迟执行和取消的几种方式"><a href="#十九、iOS中延迟执行和取消的几种方式" class="headerlink" title="十九、iOS中延迟执行和取消的几种方式"></a>十九、iOS中延迟执行和取消的几种方式</h4></li>
-<li><h4 id="二十、NSArray-的-copy-和-multecopy"><a href="#二十、NSArray-的-copy-和-multecopy" class="headerlink" title="二十、NSArray 的 copy 和 multecopy"></a>二十、NSArray 的 copy 和 multecopy</h4></li>
+<li>零、页面卡顿处理</li>
+<li>一、Masonry 布局 1/5处</li>
+<li>二、masonry 不立刻生成frame</li>
+<li>三、UIButton中image和title的 UIEdgeInsets</li>
+<li>四、YYModel使用</li>
+<li>五、ipad横竖屏，固定竖屏</li>
+<li>六、启动页黑屏</li>
+<li>七、数组谓词排序、倒序</li>
+<li>八、tableview的cell点击 与 手势点击冲突</li>
+<li>九、cell 上的 定时器</li>
+<li>十、float 四舍五入</li>
+<li>十一、tableview 删除某一行cell使用 deleteRowsAtIndexPaths</li>
+<li>十二、Objective-C 同步锁</li>
+<li>十三、线程同步</li>
+<li>十四、NSURL地址有中文</li>
+<li>十五、全局隐藏状态栏</li>
+<li>十六、设备适配，区分iphoneX XR XS等</li>
+<li>十七、GCD定时器，暂停状态，直接关闭定时器，崩溃</li>
+<li>十八、Validate APP 报错</li>
+<li>十九、iOS中延迟执行和取消的几种方式</li>
+<li>二十、NSArray 的 copy 和 multecopy</li>
+<li>二十一、在Controller中监听APP进入后台与APP被杀死状态</li>
+<li>二十二、设备适配，区分iphoneX XR XS等</li>
+<li>二十三、dealloc中只释放引用和解除监听，不作其他操作</li>
+<li>二十四、@aotureleasepool降低内存峰值</li>
+<li>二十五、数组遍历。</li>
 </ul>
         
           <a class="article-more-a" href="/2018/10/16/iOS项目总结-CPR/#more">more >></a>
@@ -763,15 +769,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">崩溃</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,15 +789,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FlatBuffers</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
               </li>
              
               <li class="article-tag-list-item">
