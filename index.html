@@ -154,6 +154,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS-SKPSMTPMessage-日志缓存" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/20/iOS-SKPSMTPMessage-日志缓存/">iOS-SKPSMTPMessage+日志缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/20/iOS-SKPSMTPMessage-日志缓存/" class="archive-article-date">
+  	<time datetime="2019-05-20T12:48:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>文章首发于<a href="http://lionsom.com" target="_blank" rel="noopener">个人blog</a></strong></p>
+<p><strong>欢迎指正补充，可联系<a href="lionsom_lin@qq.com">lionsom_lin@qq.com</a></strong></p>
+<p><strong>原文地址：<a href="http://lionsom.com/2019/05/20/iOS-SKPSMTPMessage+日志缓存/" target="_blank" rel="noopener">iOS项目总结-CPR</a></strong></p>
+</blockquote>
+<h3 id="一、效果"><a href="#一、效果" class="headerlink" title="一、效果"></a>一、效果</h3><p><img src="https://upload-images.jianshu.io/upload_images/1859399-8b3822a7d4d6f481.gif?imageMogr2/auto-orient/strip" alt="demo操作"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1859399-55d4d7715e01f57e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="邮箱"></p>
+<h3 id="二、功能介绍"><a href="#二、功能介绍" class="headerlink" title="二、功能介绍"></a>二、功能介绍</h3><p><strong>1、日志写入沙盒文件中进行缓存，设置缓存机制（参考SDWebImage：保存时长+最大容量）；</strong></p>
+<p><strong>2、沙盒文件可视化，参考自（<a href="https://github.com/music4kid/AirSandbox" target="_blank" rel="noopener">AirSandbox</a>）；</strong></p>
+<p><strong>3、内部发送邮件，使用<a href="https://github.com/jetseven/skpsmtpmessage" target="_blank" rel="noopener">SKPSMTPMessage</a>，可参考<a href="https://www.jianshu.com/p/6cbb7f82c625" target="_blank" rel="noopener">iOS发送邮件 - SKPSMTPMessage</a>；</strong></p>
+<p><strong>4、新增PNG、JPG、MP3、MOV等附件发送，但是文件要小一点，否则发送失败。<br>原因：文件会被转成base64格式，所以会非常大。</strong></p>
+<h3 id="三、方法调用"><a href="#三、方法调用" class="headerlink" title="三、方法调用"></a>三、方法调用</h3><ul>
+<li><p>打日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OSCELog(@&quot;你好啊啊啊啊&quot;);</span><br><span class="line"></span><br><span class="line">同 NSLog();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[时间] [文件] [函数] [行号] [主线程/子线程] [内容]</span><br><span class="line"></span><br><span class="line">[2019-05-10 16:11:55] [ViewController.m] [WriteFileBtn:] [Line:33] [Main Thread] [你好啊啊啊啊]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="四、Demo"><a href="#四、Demo" class="headerlink" title="四、Demo"></a>四、Demo</h3><p><strong><a href="https://github.com/lionsom/SomeEasyDemos/tree/master/ShowSandBoxFile_SendFileByMail_Demo" title="ShowSandBoxFile_SendFileByMail_Demo" target="_blank" rel="noopener">ShowSandBoxFile_SendFileByMail_Demo</a></strong></p>
+<blockquote>
+<p>注：Demo中的<code>SKPSMTPMessage</code>需要自己配置下。可参考<a href="https://www.jianshu.com/p/6cbb7f82c625" target="_blank" rel="noopener">iOS发送邮件 - SKPSMTPMessage</a></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1859399-f21953591a9b29e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SMTP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/iOS//" class="article-tag-list-link color4">iOS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/20/iOS-SKPSMTPMessage-日志缓存/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-iOS项目总结-CPR" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -558,102 +670,6 @@
 
 
   
-    <article id="post-EffectiveObjectiveC(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/30/EffectiveObjectiveC(一)/">EffectiveObjectiveC（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/30/EffectiveObjectiveC(一)/" class="archive-article-date">
-  	<time datetime="2018-06-30T06:58:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>文章首发于<a href="http://lionsom.com" target="_blank" rel="noopener">个人blog</a></strong></p>
-<p><strong>欢迎指正补充，可联系<a href="lionsom_lin@qq.com">lionsom_lin@qq.com</a></strong></p>
-<p><strong>原文地址：<a href="http://lionsom.com/2018/06/30/EffectiveObjectiveC（一）/" target="_blank" rel="noopener">《Effective Objective-C 2.0》</a></strong></p>
-</blockquote>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li>第一章：熟悉Objective-C<ul>
-<li>第1条：了解OC语言的起源 </li>
-<li>第2条：头文件引入</li>
-<li>第3条：字面量语法</li>
-<li>第4条：多用类型常量，少用#define预处理指令</li>
-<li>第5条：用枚举来表示状态、选项</li>
-</ul>
-</li>
-<li>第二章：对象、消息、运行时<ul>
-<li>第6条：理解”属性”这一概念 </li>
-<li>第7条：在对象内部尽量直接访问实例对象</li>
-<li>第8条：理解”对象等同性”这一概念</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/06/30/EffectiveObjectiveC(一)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Reading//" class="article-tag-list-link color3">Reading</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/30/EffectiveObjectiveC(一)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -761,14 +777,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
@@ -777,15 +785,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pods</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SDWebImage</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,7 +813,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目总结</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SMTP</a>
               </li>
             
             <div class="clearfix"></div>
